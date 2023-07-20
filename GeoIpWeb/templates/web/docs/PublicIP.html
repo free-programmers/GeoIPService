@@ -1,0 +1,127 @@
+{% extends "web/base.html" %}
+
+{% block title %}
+Public IP Address
+{% endblock %}
+
+
+{% block content %}
+    {% include "web/utils/navbar.html" %}
+
+    <section class="my-5">
+        <div class="container-fluid my-5">
+            <div class="row justify-content-center">
+                <div class="col-10 ">
+                    <div class="row justify-content-center">
+
+                <div class="col-12">
+                    <h3 class="text-center text-white fs-2">
+                        Public IP address
+                    </h3>
+                </div>
+                <div class="col-11">
+                    <p class="text-white my-4" style="text-align: justify">
+                        A public IP address is a unique identifier assigned to a device that is connected to the Internet. This address allows other devices on the Internet to communicate with the device that has been assigned the public IP address. Public IP addresses are typically provided by an Internet Service Provider (ISP) and can be either dynamic, meaning they can change over time, or static, meaning they remain the same for an extended period of time. Public IP addresses are different from private IP addresses, which are used to identify devices on a local network.
+                    </p>
+                <div class="alert alert-dismisable alert-danger">
+                    <p class="m-0">notice: All of our Endpoints Have a rate limit of 60 request per minute</p>
+                </div>
+                </div>
+
+
+                <div class="col-11">
+                    <pre><code class="hljs bash rounded">{{ base_domain }}/ip/</code></pre>
+                </div>
+                <div class="col-11">
+                <p class="text-white">This Endpoint return Your public IP address in <span class="text-warning">JSON</span> format</p>
+                </div>
+                <div class="col-11">
+                    <pre><code class="hljs json rounded">{
+  "Country-Code": "IR",
+  "IPv4": "164.215.236.103",
+  "IPv6": "NULL",
+  "X-status": "True",
+  "x-Response-By": "www.ip2geo.ir/ip/"
+}</code></pre>
+                </div>
+
+              <div class="col-11 mt-5">
+              <h2 class="text-white">How to Use:</h2>
+              </div>
+
+            <div class="col-11 my-3">
+            <p class="text-warning fs-5 m-0">Curl</p>
+            <pre><code class="language-bash shadow-md rounded text-sm hljs">curl https://ip2geo.ip/ip/</code></pre>
+            </div>
+
+
+            <div class="col-11 my-3">
+            <p class="text-warning fs-5 m-0">Python</p>
+            <pre><code class="language-Python shadow-md rounded text-sm hljs">import requests
+response = requests.get("{{ base_domain }} /ip/")
+print(response.json())</code></pre>
+            </div>
+
+            <div class="col-11 my-3">
+            <p class="text-warning fs-5 m-0">C#</p>
+            <pre><code class="language-csharp shadow-md rounded text-sm hljs">using System.Net.Http;
+
+using var client = new HttpClient();
+using var response = await client.GetAsync("{{ base_domain }} /ip/");
+var content = await response.Content.ReadAsStringAsync();
+Console.WriteLine(content);</code></pre>
+            </div>
+
+
+            <div class="col-11 my-3">
+                <p class="text-warning fs-5 m-0">PHP</p>
+                <pre><code class="language-Php shadow-md rounded text-sm hljs">$url = "{{ base_domain }} /ip/";
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$result = curl_exec($ch);
+curl_close($ch);
+$json_data = json_decode($result, true);</code></pre>
+            </div>
+
+            <div class="col-11 my-3">
+                <p class="text-warning fs-5 m-0">JavaScript</p>
+                <pre><code class="language-javascript shadow-md rounded text-sm hljs">fetch('{{ base_domain }} /ip/', {
+  method: 'GET'
+})
+.then(response => response.json())
+.then(jsonData => {
+  console.log(jsonData);
+})
+.catch((Exception) => {
+  console.error(Exception);
+});</code></pre>
+            </div>
+
+            <div class="col-11 my-3">
+                <p class="text-warning fs-5 m-0">Javascript - Jquery</p>
+                <pre><code class="language-javascript shadow-md rounded text-sm hljs">$.get( "{{ base_domain }} /ip/", function (response) {
+  console.log(response)
+});</code></pre>
+            </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    {% include  "web/utils/footer.html" %}
+    {% include  "web/utils/alert.html" %}
+{% endblock %}
+
+{% block script %}
+        <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      });
+    </script>
+{% endblock %}

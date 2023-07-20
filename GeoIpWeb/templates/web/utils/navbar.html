@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg " style="border-bottom: 1px solid rgba(255,255,255,0.5)">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+        <img class="img-fluid rounded-circle" style="width:75px"
+         src="{{ url_for('web.WebStatic', path='web/media/51zdsrq20LL.png') }}">
+    </a>
+
+   <div id="navbar-burger-menu"
+        class="d-lg-none me-4 "
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent">
+        <div class="line1 bg-white shadow"></div>
+        <div class="line2 bg-white shadow"></div>
+        <div class="line3 bg-white shadow"></div>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="{{ url_for('web.index_view') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{url_for('web.contactUS')}}">Contact</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Services
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item " href="{{ url_for('web.doc_public_ip_address') }}">Public IP Address</a></li>
+            <li><a class="dropdown-item " href="{{ url_for('web.doc_ip_to_location') }}">IP to Location</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#" href="#UnderDevelopmentModal">Country info API</a></li>
+            <li><a class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#" href="#UnderDevelopmentModal">Country flag API</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#" href="#UnderDevelopmentModal">DNS Servers List</a></li>
+          </ul>
+        </li>
+
+       <li class="nav-item">
+          <a href="{{ url_for('web.privacy_term_of_use') }}" class="nav-link text-white">Privacy/Terms of Use</a>
+{#        </li>#}
+{#          <li class="nav-item">#}
+{#          <a class="nav-link text-white">Login</a>#}
+{#        </li>#}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="UnderDevelopmentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Under Development</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            This section is under development and not Available now,
+            Please Try again Later
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

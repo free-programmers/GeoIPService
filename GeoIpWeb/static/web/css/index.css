@@ -1,0 +1,71 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.base-index-background{
+    background: #000046;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #193e7a, #1d6896);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #193e7a, #1d6896); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.base-index-background{
+background: #1F242A; /* dark grey /
+color: #FFFFFF; / white text */
+}
+.FadeRightAnimation{
+    animation-duration: 1.5s;
+    animation-name: FadeRight;
+}.FadeLeftAnimation{
+    animation-duration: 1.5s;
+    animation-name: FadeLeft;
+}
+
+@keyframes FadeRight{
+    0%{
+        transform: translateX(-40px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}@keyframes FadeLeft{
+    0%{
+        transform: translateX(40px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+ }
+
+
+ .answer-faq{
+     color: #ccc;
+ }
+ .text-gray{
+     color: #ccc;
+ }
+
+#navbar-burger-menu:hover{
+    cursor: pointer;
+}
+.line1 , .line2, .line3{
+     width: 40px;
+     height: 5px;
+     margin-top: 6px;
+     background-color: white;
+     border-radius: 5px;
+     transition: transform 0.5s;
+     opacity: 1;
+ }
+
+ .line2.hide{
+     opacity: 0;
+ }
+.line1.active{
+  transform: rotate(45deg) translate(8px, 8px);
+ }
+ .line3.active{
+  transform: rotate(-45deg) translate(7px, -6px);
+ }

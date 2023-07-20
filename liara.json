@@ -1,0 +1,11 @@
+
+{
+  "flask": {
+    "pythonVersion": "3.11"
+  },
+
+  "platform": "flask",
+  "app": "geopip"
+
+    
+}

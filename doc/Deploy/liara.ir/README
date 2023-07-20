@@ -1,0 +1,3 @@
+# for deploy to liara first create a flask app with a unique name
+
+# then go to /liara.json and change name property to your app name then just run liara deploy ...
