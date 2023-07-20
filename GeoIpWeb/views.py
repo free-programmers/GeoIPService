@@ -29,7 +29,7 @@ def contactUS():
 @web.post("/contact-us/")
 def contactUSPost():
     """
-    this view take a post request for sibmitting a contact us form
+    this view take a post request for submitting a contact Us form
     """
     form = ContactUSForm()
     if not form.validate():
@@ -56,26 +56,19 @@ def contactUSPost():
         flash('Form Submitted successfully', 'success')
         return redirect(request.referrer)
 
-@web.get("/ip/")
-@limiter.limit("60 per minute")
-def PublicIpAddress():
-    ip = request.headers.get('X-Real-IP', "NULL")
-    return jsonify({
-        "IPv4":ip if ip else "NULL",
-        "IPv6":"NULL",
-        "X-status":"X-Real-IP False",
-        "x-Response-By": "www.ip2geo.ir"
-    })
+
 
 @web.get("/doc/Public-IP-Address/")
 @cache.cached(43200)
 def doc_public_ip_address():
     return render_template("web/docs/PublicIP.html")
 
+
 @web.get("/doc/IP-to-Location/")
 @cache.cached(43200)
 def doc_ip_to_location():
     return render_template("web/docs/IP2Location.html")
+
 
 @web.get("/Privacy-Terms-of-Use/")
 @cache.cached(43200)
