@@ -1,11 +1,11 @@
 import csv
 import json
-import os.path
-
 from GeoIpConfig import BASE_DIR
 
+
+
 def read_csv_ip_file(name):
-    """This function take a csvfile name and return context of it"""
+    """This function take a csvfile name and return content of it"""
     filePath = BASE_DIR.joinpath("GeoIpConfig") / name
     with open(file=filePath, encoding="UTF-8", mode="r") as fp:
         reader = csv.reader(fp)
