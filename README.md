@@ -46,9 +46,13 @@
 ### 0.3 change.env file
 
         mv .env.sample .env
-        then change data in .env file (like data base name, ...)
+        then change data in .env file (like database name, ...)
 
-### migrate to db
+### Migrate to db
+
+
+before running the below commands connect to you database and create a database (don't forget to put database name in .env file)        
+
     
     flask db migrate 
     flask db upgrade
