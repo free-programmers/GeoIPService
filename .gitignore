@@ -12,6 +12,7 @@ insert_data.py
 deploy_to_server.py
 change_github_to_deploy.py
 MakeServer
+migrations
 
 
 # Distribution / packaging
