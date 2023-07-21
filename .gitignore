@@ -14,6 +14,8 @@ change_github_to_deploy.py
 MakeServer
 migrations
 migrations/
+GeoIpUpdater/database
+GeoIpUpdater/database/
 
 
 # Distribution / packaging
