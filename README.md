@@ -53,10 +53,17 @@
 
 before running the below commands connect to you database and create a database (don't forget to put database name in .env file)        
 
-    
+    flask db init
     flask db migrate 
     flask db upgrade
 
+or go create database your self
+
+    flask shell
+    from GeoIpCore.extensions import db
+    
+    db.create_all() # database creation command
+    exit() # exit from ipython
 
 ### run App
     
