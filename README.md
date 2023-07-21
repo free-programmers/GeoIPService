@@ -41,12 +41,12 @@
     
 ### 0.2 install dependency:
         
-        pip install -r requirements.txt
+    pip install -r requirements.txt
 
 ### 0.3 change.env file
 
-        mv .env.sample .env
-        then change data in .env file (like database name, ...)
+    mv .env.sample .env
+    then change data in .env file (like database name, ...)
 
 ### Migrate to db
 
@@ -57,7 +57,7 @@ before running the below commands connect to you database and create a database 
     flask db migrate 
     flask db upgrade
 
-or go create database your self
+or go create database your self via flask interactive shell
 
     flask shell
     from GeoIpCore.extensions import db
@@ -67,10 +67,10 @@ or go create database your self
 
 ### run App
     
-        python app.py
-        or
-        flask run [--debug(for debug) --reload(reload template) --port 8080(for port)]
-            [...] is optional
+    python app.py
+    or
+    flask run [--debug(for debug) --reload(reload template) --port 8080(for port)]
+        [...] is optional
 
 ---
 
