@@ -51,7 +51,16 @@
 ### Migrate to db
 
 
-before running the below commands connect to you database and create a database (don't forget to put database name in .env file)        
+before running the below commands connect to you database and create a database (don't forget to put database name in .env file)
+or create database your self via flask interactive shell
+
+    flask shell
+    from GeoIpCore.extensions import db
+    
+    db.create_all() # database creation command
+    exit() # exit from ipython
+
+and after creation of database init migrations
 
     flask db init
     flask db migrate 
@@ -59,14 +68,6 @@ before running the below commands connect to you database and create a database 
 
     or just run MakeMigrate bash script (sudo chmod +x ./MakeMigrate then just run ./MakeMigrate)
 
-
-or go create database your self via flask interactive shell
-
-    flask shell
-    from GeoIpCore.extensions import db
-    
-    db.create_all() # database creation command
-    exit() # exit from ipython
 
 
 ### run App
