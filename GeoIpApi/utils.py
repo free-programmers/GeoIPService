@@ -244,6 +244,7 @@ def search_in_ipv4(octetIP, extera=False):
     if extera:
         countryDB = CountryInfo.query.filter(CountryInfo.CountryCode == ipLOOKup.CountryCode).first()
         serializer.Additionalserializer(countryDB)
+        print("seri")
 
     return jsonify(serializer.getSerialize()), 200
 

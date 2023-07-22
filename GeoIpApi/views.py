@@ -8,15 +8,15 @@ from GeoIpCore.extensions import limiter
 @limiter.limit("60 per minute")
 @cache.cached(timeout=43200)
 def process_ip_v4(octetIP):
-    print("Answer Queried in db")
+    print("Answer Queried in db 11")
     return search_in_ipv4(octetIP)
 
 
-@api.route("/ipv4/<string:octetIP>/<string:extra>", methods=["GET"])
+@api.route("/ipv4/<string:octetIP>/<string:extra>/", methods=["GET"])
 @limiter.limit("60 per minute")
 @cache.cached(timeout=43200)
 def process_ip_v4_extera(octetIP, extra):
-    print("Answer Queried in db")
+    print("Answer Queried in db 21")
     if extra.lower() != "true":
         return JsonAnswer({"message": "Invalid Params", "status": "false", "x-Response-By": "https://ip2geo.ip"},
                           http_status=400)
@@ -31,7 +31,7 @@ def process_ip_v6(octetIP):
     return search_in_ipv6(octetIP)
 
 
-@api.route("/ipv6/<string:octetIP>/<string:extra>", methods=["GET"])
+@api.route("/ipv6/<string:octetIP>/<string:extra>/", methods=["GET"])
 @limiter.limit("60 per minute")
 @cache.cached(timeout=43200)
 def process_ip_v6_extera(octetIP, extra):
