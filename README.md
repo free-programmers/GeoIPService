@@ -10,17 +10,17 @@
 
 ### Tech stack:
 
-        Python3
-        Flask 2.3x
-                Flask-wtf
-                Flask-Sqlalchemy
-                Flask-Migrate
-                Flask-Caching
-                Flask-Limiter
-                Flask-Captcha2
-                Flask-Cors
-        Redis
-        
+    Python3
+    Flask 2.3x
+            Flask-wtf
+            Flask-Sqlalchemy
+            Flask-Migrate
+            Flask-Caching
+            Flask-Limiter
+            Flask-Captcha2
+            Flask-Cors
+    Redis
+    
 
 
 
@@ -57,6 +57,9 @@ before running the below commands connect to you database and create a database 
     flask db migrate 
     flask db upgrade
 
+    or just run MakeMigrate bash script (sudo chmod +x ./MakeMigrate then just run ./MakeMigrate)
+
+
 or go create database your self via flask interactive shell
 
     flask shell
@@ -64,6 +67,7 @@ or go create database your self via flask interactive shell
     
     db.create_all() # database creation command
     exit() # exit from ipython
+
 
 ### run App
     
