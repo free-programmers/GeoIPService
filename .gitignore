@@ -16,6 +16,8 @@ migrations
 migrations/
 GeoIpUpdater/database
 GeoIpUpdater/database/
+Installer/
+.env.sample
 
 
 # Distribution / packaging
