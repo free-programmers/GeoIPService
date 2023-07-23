@@ -4,6 +4,7 @@ import datetime
 from GeoIpCore.extensions import db
 from sqlalchemy import Column, String, DateTime, Integer
 
+
 class BaseTable(db.Model):
     __abstract__ = True
 
@@ -22,4 +23,5 @@ class BaseTable(db.Model):
     PublicKey = Column(String(36), nullable=False, unique=True)
     CreatedTime = Column(DateTime, default=datetime.datetime.now)
     LastUpdateTime = Column(DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
+
 

@@ -1,12 +1,13 @@
+import json
 import os
 import pathlib
 import requests
 import subprocess
 
-from GeoIpCore import app
-from GeoIpApi.model import IPV4
-from GeoIpCore.extensions import db
 
+from GeoIpCore import app
+with app.app_context():
+    print(app.config)
 
 BASE_DIR = pathlib.Path(__file__).parent
 
@@ -59,14 +60,18 @@ gitInstalled = check_git_installed()
 if not gitInstalled:
     raise Exception("Git is not installed !!\ninstall git First")
 
-if not fetch_database_from_github():
-    raise Exception("Failed to fetch database from github")
-
+# if not fetch_database_from_github():
+#     raise Exception("Failed to fetch database from github")
+#
 
 def add_country_info():
-    country_info = "Countries-database"
-    countries = os.listdir(BASE_DIR / "database" / country_info)
-    print(countries)
+    country_info = BASE_DIR / "database" / "IP2Geo-database" / "Countries-database"
+
+    countries = (os.listdir(country_info))
+    for each in countries:
+        for c in os.listdir(country_info / each):
+            with open(country_info / each / c, mode="r", encoding="utf-8") as f:
+                print(json.load(f))
 
 
 add_country_info()

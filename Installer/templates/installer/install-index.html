@@ -1,0 +1,67 @@
+{% extends 'installer/base.html' %}
+
+
+{% block title %}
+    installation 0/10
+{% endblock title %}
+
+
+{% block content %}
+    <section class="d-flex flex-column justify-content-center align-items-center" style="width: 100vw; height: 100vh">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-11 col-md-11 col-12 text-center">
+                    <i class="bi bi-bounding-box text-warning display-1"></i>
+                </div>
+                <div class="row-lg-11 col-md-11 col-12">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <h3 class="text-center">installation 0/10</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>database info:</p>
+                            <form action="" method="">
+                                <label class="w-100 my-2">Database Host:
+                                    {{ form.DatabaseHost(class="form-control", placeholder="Host: localhost, 127.0.0.1, ...") }}
+                                </label>
+                                <label class="w-100 my-2">Database Port:
+                                    {{ form.DatabasePort(class="form-control", placeholder="port: 6379, 3307, 3306 , ...") }}
+                                </label>
+                                <label class="w-100 my-2">Database Username:
+                                    {{ form.DatabaseUsername(class="form-control", placeholder="Username") }}
+                                </label>
+                                <label class="w-100 my-2">Database Password:
+                                    {{ form.DatabaseUserPassword(class="form-control", placeholder="Username password") }}
+                                </label>
+                                <label class="w-100 my-2">Database Name:
+                                    {{ form.DatabaseName(class="form-control", placeholder="database name") }}
+                                </label>
+                                <label class="w-100 my-2">Table Prefix:
+                                        {{ form.DatabaseTablePrefix(placeholder="Food_ ...", class="form-control") }}
+                                </label>
+                                {{ form.hidden_tag() }}
+                                {{ form.submit(class="btn btn-success w-100 my-2", value="create database") }}
+                            </form>
+                        </div>
+{#                        <div class="card-footer">#}
+{#                            <h3 class="my-2">Some Security Advice: </h3>#}
+{#                            <li class="m-0" style="text-align: justify">#}
+{#                            Use strong and unique names: Choose a database name that is not easily guessable or related to the application it serves. Avoid using generic names like "database" or "admin." Similarly, select a strong and unique password that includes a combination of uppercase and lowercase letters, numbers, and special characters.#}
+{#                            </li>#}
+{#                            <li class="m-0" style="text-align: justify">#}
+{#                            Avoid default names and passwords: Many databases come with default names and passwords, such as "admin" or "password." It's crucial to change these defaults immediately during the setup process to prevent unauthorized access.#}
+{#                            </li>#}
+{#                        </div>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+
+{% block script %}
+{% endblock script %}
+
+
+

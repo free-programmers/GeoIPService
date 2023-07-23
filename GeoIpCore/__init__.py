@@ -1,8 +1,9 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 
 from GeoIpConfig import config
 from GeoIpCore.extensions import db, cache, migrate, \
         csrf, captchaVersion2, limiter, SessionServer
+
 
 def create_app():
     app = Flask(__name__)
@@ -22,6 +23,14 @@ def create_app():
 
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/")
+
+    if False:
+        from Installer import installer
+        app.register_blueprint(installer, url_prefix="/install/")
+
+        @app.get("/")
+        def index():
+            return redirect(url_for('installer.index'))
 
 
     return app
