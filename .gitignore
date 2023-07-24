@@ -16,8 +16,9 @@ migrations
 migrations/
 GeoIpUpdater/database
 GeoIpUpdater/database/
-Installer/
 .env.sample
+config.ini
+
 
 
 # Distribution / packaging

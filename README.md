@@ -44,11 +44,10 @@
     pip install -r requirements.txt
 
 ### 0.3 complete config.ini file 
-
+    mv config.sample.ini config.ini
     change data in config.ini file (like database name, ...)
 
 ### Migrate to db
-
 
 before running the below commands connect to you database and create a database (don't forget to put database name in config.ini file)        
 
