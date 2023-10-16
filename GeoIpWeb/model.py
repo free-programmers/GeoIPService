@@ -8,5 +8,3 @@ class ContactUS(BaseTable):
     Title = Column(String(255), nullable=False, unique=False)
     Email = Column(String(255), nullable=False, unique=False)
     Message = Column(String(512), nullable=False, unique=False)
-
-

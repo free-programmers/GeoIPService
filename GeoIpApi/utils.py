@@ -6,7 +6,8 @@ from flask import jsonify
 from GeoIpApi.model import CountryInfo, IPV4 as IPV4db, IPV6 as IPV6db
 from GeoIpConfig import BASE_DOMAIN
 
-def Convert2_IPv4(ip:str) -> ipaddress.IPv4Address:
+
+def Convert2_IPv4(ip: str) -> ipaddress.IPv4Address:
     """
     this function take an ip and convert it to ipaddress.ipv4
     """
@@ -20,7 +21,8 @@ def Convert2_IPv4(ip:str) -> ipaddress.IPv4Address:
 
     return ip
 
-def Convert2_IPv6(ip:str) -> ipaddress.IPv6Address:
+
+def Convert2_IPv6(ip: str) -> ipaddress.IPv6Address:
     """
     this function take an ip and convert it to ipaddress.ipv4
     """
@@ -35,10 +37,10 @@ def Convert2_IPv6(ip:str) -> ipaddress.IPv6Address:
     return ip
 
 
-
-def JsonAnswer(data:dict={},http_status=200 ):
+def JsonAnswer(data: dict = {}, http_status=200):
     """Return a Json Answer"""
     return jsonify(data), http_status
+
 
 class IPv6erializer:
     """
@@ -53,14 +55,13 @@ class IPv6erializer:
 
         self.__IPV6 = IpV6Object
 
-
     def serializer(self):
         """
         this method add base info about ip
         """
         data = {
             "Country": {
-                "name":self.__IPV6.CountryName,
+                "name": self.__IPV6.CountryName,
             },
             "CountryCode": self.__IPV6.CountryCode,
             "City": self.__IPV6.CityName,
@@ -74,10 +75,9 @@ class IPv6erializer:
                 "decimal": self.__IPV6.decimal_ip or "Null",
                 "hex": self.__IPV6.hex_ip or "Null",
             },
-            "x-Response-BY":f"{BASE_DOMAIN}/api/v1/ipv6/{self.__IPV6.octet_ip}"
+            "x-Response-BY": f"{BASE_DOMAIN}/api/v1/ipv6/{self.__IPV6.octet_ip}"
         }
         self.__DATA.update(data)
-
 
     def Additionalserializer(self, CountryINFO):
         """
@@ -87,21 +87,21 @@ class IPv6erializer:
         if CountryINFO:
             data = json.loads(CountryINFO.Info)
             country = {
-                "officialName":data["name"]["official"],
-                "nativeName":data["name"]["nativeName"],
-                "capital":data["capital"],
-                "capitalInfo":data["capitalInfo"],
-                "region":data["region"],
-                "subregion":data["subregion"],
-                "languages":data["languages"],
-                "translations":data["translations"],
-                "flag":data["flag"],
-                "maps":data["maps"],
-                "continents":data["continents"],
-                "flags":data["flags"]
+                "officialName": data["name"]["official"],
+                "nativeName": data["name"]["nativeName"],
+                "capital": data["capital"],
+                "capitalInfo": data["capitalInfo"],
+                "region": data["region"],
+                "subregion": data["subregion"],
+                "languages": data["languages"],
+                "translations": data["translations"],
+                "flag": data["flag"],
+                "maps": data["maps"],
+                "continents": data["continents"],
+                "flags": data["flags"]
             }
             dt = {
-                "tld":data["tld"],
+                "tld": data["tld"],
             }
 
             self.__DATA["Country"].update(country)
@@ -109,8 +109,6 @@ class IPv6erializer:
 
     def getSerialize(self):
         return self.__DATA
-
-
 
 
 class IPv4Serializer:
@@ -126,14 +124,13 @@ class IPv4Serializer:
 
         self.__IPV4 = IpV4Object
 
-
     def serializer(self):
         """
         this method add base info about ip
         """
         data = {
             "Country": {
-                "name":self.__IPV4.CountryName,
+                "name": self.__IPV4.CountryName,
             },
             "CountryCode": self.__IPV4.CountryCode,
             "City": self.__IPV4.CityName,
@@ -147,10 +144,9 @@ class IPv4Serializer:
                 "decimal": self.__IPV4.decimal_ip or "Null",
                 "hex": self.__IPV4.hex_ip or "Null",
             },
-            "x-Response-BY":f"{BASE_DOMAIN}/api/v1/ipv4/{self.__IPV4.octet_ip}"
+            "x-Response-BY": f"{BASE_DOMAIN}/api/v1/ipv4/{self.__IPV4.octet_ip}"
         }
         self.__DATA.update(data)
-
 
     def Additionalserializer(self, CountryINFO):
         """
@@ -160,21 +156,21 @@ class IPv4Serializer:
         if CountryINFO:
             data = json.loads(CountryINFO.Info)
             country = {
-                "officialName":data["name"]["official"],
-                "nativeName":data["name"]["nativeName"],
-                "capital":data["capital"],
-                "capitalInfo":data["capitalInfo"],
-                "region":data["region"],
-                "subregion":data["subregion"],
-                "languages":data["languages"],
-                "translations":data["translations"],
-                "flag":data["flag"],
-                "maps":data["maps"],
-                "continents":data["continents"],
-                "flags":data["flags"]
+                "officialName": data["name"]["official"],
+                "nativeName": data["name"]["nativeName"],
+                "capital": data["capital"],
+                "capitalInfo": data["capitalInfo"],
+                "region": data["region"],
+                "subregion": data["subregion"],
+                "languages": data["languages"],
+                "translations": data["translations"],
+                "flag": data["flag"],
+                "maps": data["maps"],
+                "continents": data["continents"],
+                "flags": data["flags"]
             }
             dt = {
-                "tld":data["tld"],
+                "tld": data["tld"],
             }
 
             self.__DATA["Country"].update(country)
@@ -182,8 +178,6 @@ class IPv4Serializer:
 
     def getSerialize(self):
         return self.__DATA
-
-
 
 
 def search_in_ipv4(octetIP, extera=False):
@@ -209,7 +203,7 @@ def search_in_ipv4(octetIP, extera=False):
                 "status": "False",
                 "ip": octetIP,
                 "time": (time.time())
-            },http_status=400)
+            }, http_status=400)
 
     if IPV4.is_reserved:
         return JsonAnswer(
@@ -219,7 +213,7 @@ def search_in_ipv4(octetIP, extera=False):
                 "status": "False",
                 "ip": octetIP,
                 "time": (time.time())
-            },http_status=400)
+            }, http_status=400)
 
     decimalIP = int(IPV4)
     ipLOOKup = IPV4db.query.filter(IPV4db.StartRange <= decimalIP).filter(IPV4db.EndRange >= decimalIP).first()
@@ -232,7 +226,7 @@ def search_in_ipv4(octetIP, extera=False):
                 "status": "False",
                 "ip": octetIP,
                 "time": str(time.time())
-            },http_status=404)
+            }, http_status=404)
 
     ipLOOKup.decimal_ip = decimalIP
     ipLOOKup.hex_ip = str(hex(decimalIP))
@@ -249,8 +243,6 @@ def search_in_ipv4(octetIP, extera=False):
     return jsonify(serializer.getSerialize()), 200
 
 
-
-
 def search_in_ipv6(octetIP, extera=False):
     """
         Search in IPV6 Tables for ip
@@ -265,7 +257,6 @@ def search_in_ipv6(octetIP, extera=False):
                 "ip": octetIP,
                 "time": (time.time())
             }, http_status=400)
-
 
     decimalIP = int(IPV6)
     ipLOOKup = IPV6db.query.filter(IPV6db.StartRange <= decimalIP).filter(IPV6db.EndRange >= decimalIP).first()

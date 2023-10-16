@@ -1,8 +1,8 @@
-from flask import Flask, redirect, url_for
+from flask import Flask
 
 from GeoIpConfig import config
 from GeoIpCore.extensions import db, cache, migrate, \
-        csrf, captchaVersion2, limiter, SessionServer
+    csrf, captchaVersion2, limiter, SessionServer
 
 
 def create_app():
@@ -24,14 +24,10 @@ def create_app():
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/")
 
-
-
-
     return app
 
 
 app = create_app()
-
 
 # read Base Views
 import GeoIpCore.views

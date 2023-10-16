@@ -4,11 +4,9 @@ from pathlib import Path
 from GeoIpCore.extensions import ServerRedis
 from configparser import ConfigParser
 
-
 config = ConfigParser()
 config.read('config.ini')
 BASE_DIR = Path(__file__).parent.parent
-
 
 USERNAME_DB = config.get(section="database", option="X_MYSQL_USERNAME", fallback="")
 PASSWORD_DB = config.get(section="database", option="X_MYSQL_PASSWORD", fallback="")
@@ -17,6 +15,7 @@ PORT_DB = config.get(section="database", option="X_MYSQL_PORT", fallback="")
 NAME_DB = config.get(section="database", option="X_MYSQL_DATABASE_NAME", fallback="")
 
 BASE_DOMAIN = config.get(section="app", option="X_DOMAIN", fallback="HTTPS://DOMAIN.IR")
+
 
 class config:
     SECRET_KEY = config.get(section="app", option="X_SECRET_KEY", fallback=secrets.token_hex(128))
@@ -42,15 +41,12 @@ class config:
     # caching config
     # CACHE_TYPE = "RedisCache"  # NullCache for disable Flask-Caching related configs
     CACHE_TYPE = config.get(section='cache', option="X_CACHE_TYPE", fallback='NullCache')
-    CACHE_DEFAULT_TIMEOUT = ((60*60)*12)
+    CACHE_DEFAULT_TIMEOUT = ((60 * 60) * 12)
     CACHE_REDIS_HOST = config.get(section='redis', option="X_REDIS_HOST", fallback='')
     CACHE_REDIS_PORT = config.get(section='redis', option="X_REDIS_PORT", fallback='')
     CACHE_REDIS_PASSWORD = config.get(section='redis', option="X_REDIS_PASSWORD", fallback='')
     CACHE_REDIS_DB = config.get(section='redis', option="X_REDIS_DB", fallback='')
     CACHE_REDIS_URL = config.get(section='redis', option="X_REDIS_URL", fallback='')
 
-
-    DEBUG = True if config.get(section='app', option="X_DEBUG", fallback=False)  else False
+    DEBUG = True if config.get(section='app', option="X_DEBUG", fallback=False) else False
     FLASK_DEBUG = True if config.get(section='app', option="X_DEBUG", fallback=False) else False
-
-

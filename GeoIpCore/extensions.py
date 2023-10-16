@@ -9,7 +9,6 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from configparser import ConfigParser
 
-
 config = ConfigParser()
 config.read('config.ini')
 
@@ -19,10 +18,10 @@ db = SQLAlchemy()
 migrate = Migrate()
 csrf = CSRFProtect()
 limiter = Limiter(
-  get_remote_address,
-  storage_uri=config.get(section='redis', option="X_REDIS_URL", fallback=''),
-  storage_options={"socket_connect_timeout": 30},
-  strategy="fixed-window", # or "moving-window"
+    get_remote_address,
+    storage_uri=config.get(section='redis', option="X_REDIS_URL", fallback=''),
+    storage_options={"socket_connect_timeout": 30},
+    strategy="fixed-window",  # or "moving-window"
 )
 cache = Cache()
 captchaVersion2 = FlaskCaptcha2()

@@ -2,6 +2,7 @@ from GeoIpCore import app
 from flask import jsonify, request
 import GeoIpConfig
 
+
 @app.get("/ip/")
 def PublicIpAddress():
     """

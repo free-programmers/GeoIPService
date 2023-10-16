@@ -23,5 +23,3 @@ class BaseTable(db.Model):
     PublicKey = Column(String(36), nullable=False, unique=True)
     CreatedTime = Column(DateTime, default=datetime.datetime.now)
     LastUpdateTime = Column(DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
-
-

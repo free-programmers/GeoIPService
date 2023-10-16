@@ -5,17 +5,17 @@ from GeoIpWeb import web
 from GeoIpConfig import BASE_DIR
 from GeoIpWeb.form import ContactUSForm
 from GeoIpWeb.model import ContactUS as ContactUsModel
-from GeoIpCore.extensions import captchaVersion2, db, limiter,\
+from GeoIpCore.extensions import captchaVersion2, db, limiter, \
     cache
-
 
 
 @web.get("/webStatic/<path:path>")
 def WebStatic(path):
     return send_from_directory(BASE_DIR.joinpath("GeoIpWeb/static"), path)
 
+
 @web.get("/")
-@cache.cached(3600*8)
+@cache.cached(3600 * 8)
 def index_view():
     return render_template("web/index.html")
 
@@ -55,7 +55,6 @@ def contactUSPost():
     else:
         flash('Form Submitted successfully', 'success')
         return redirect(request.referrer)
-
 
 
 @web.get("/doc/Public-IP-Address/")
