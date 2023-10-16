@@ -24,13 +24,7 @@ def create_app():
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/")
 
-    if False:
-        from Installer import installer
-        app.register_blueprint(installer, url_prefix="/install/")
 
-        @app.get("/")
-        def index():
-            return redirect(url_for('installer.index'))
 
 
     return app

@@ -18,7 +18,6 @@ NAME_DB = config.get(section="database", option="X_MYSQL_DATABASE_NAME", fallbac
 
 BASE_DOMAIN = config.get(section="app", option="X_DOMAIN", fallback="HTTPS://DOMAIN.IR")
 
-print(USERNAME_DB)
 class config:
     SECRET_KEY = config.get(section="app", option="X_SECRET_KEY", fallback=secrets.token_hex(128))
     SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{USERNAME_DB}:{PASSWORD_DB}@{HOST_DB}:{PORT_DB}/{NAME_DB}"
