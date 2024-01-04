@@ -1,35 +1,48 @@
-{% extends "web/base.html" %}
+{% extends "base.html" %}
 
 
 {% block title %}
-    IP 2 Geo Location
+    {{ _("IP to Geo") }}
 {% endblock title %}
 
 {% block style %}
+    <link rel="stylesheet" href="{{ 'index/css/index.css' | StorageUrl }}">
+
+    <!-- highlight code -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/go.min.js"></script>
+    <script>
+    window.addEventListener("DOMContentLoaded", event=>{
+        hljs.highlightAll();
+    })
+    </script>
+
 {% endblock style %}
 
 {% block content %}
-    {% include "web/utils/navbar.html" %}
-    <section class="w-100" >
-        <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center my-3"
-                     style="height: auto">
+    <section class="base-index-background p-0 m-0">
+        {% include "web/utils/navbar.html" %}
+        <section class="w-100">
+            <div class="container-fluid">
 
-                    <div class="my-4">
-                        <h4 class="text-center display-4 text-white FadeRightAnimation mt-3">IP 2 Geo Location</h4>
-                        <p class="m-0 text-center fs-4 text-gray FadeLeftAnimation">Fast, Free,Easy to use, and Open Source</p>
-                        <p class="m-0 text-center fs-4 text-gray FadeLeftAnimation">Easy to integrate, Available in JSON</p>
-                    </div>
+                <div class="row">
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center my-3"
+                         style="height: auto">
 
-                    <div class="row justify-content-center align-items-center w-100">
-                        <div class="col-lg-8 col-11 rounded shadow-md"
-                             style="border: 2px solid rgba(163,160,160,0.7)">
-                            <div class="demo-answer">
-                                <pre class="language-json bg-transparent text-white px-3">
+                        <div class="my-5">
+                            <h4 class="text-center display-4 text-warning fw-bold mt-3 " data-aos="fade-left">IP 2 Geo Location</h4>
+                            <p class="m-0 text-center fs-4 text-gray" data-aos="fade-right">{{ _('Fast') }}, <span
+                                    class="text-danger fw-bold">{{ _('Free') }}</span>, {{ _('Easy to use, and') }} Open Source</p>
+                            <p class="m-0 text-center fs-4 text-gray" data-aos="fade-left">{{ _('Easy to integrate, Available in') }} JSON</p>
+                        </div>
 
-{
+                        <div class="row justify-content-center align-items-center w-100">
+                            <div data-aos="fade-up" class="col-lg-8 col-11 rounded shadow-md"
+                                 style="border: 2px solid rgba(163,160,160,0.7)">
+                                <div class="">
+                                <pre class="mb-0"><code class="language-json bg-transparent">{
   "City": "Mountain View",
   "Country": {
     "name": "United States of America"
@@ -45,122 +58,139 @@
   "State": "California",
   "TimeZone": "-07:00",
   "ZipCode": "94043",
-  "x-Response-BY": "https://ip2geo.ir/api/v1/ipv4/8.8.8.8"
-}</pre>
+  "x-Response-BY": "https://ip2geo.ir/"
+}</code></pre>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center">
+                                <a href="" class="btn btn-info px-5 my-3 fw-bold w-50" data-aos="fade-up">API {{ _('Documentation') }}</a>
                             </div>
                         </div>
-                        <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center">
-                            <a href="{{ url_for('web.doc_ip_to_location') }}" class="btn btn-info px-5 my-2 w-50">API Documentation</a>
-                        </div>
-                    </div>
 
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- kaq section -->
-    <section class="my-5" style="border-top: 1px solid rgba(255,255,255,0.5)">
-        <div class="container-fluid">
-            <div class="row mt-5 justify-content-center">
-                <div class="col-12 my-3">
-                    <h5 class="text-center text-white fs-3">Frequently Asked Questions</h5>
-                </div>
-                <div class="col-11">
-                    <div class="row">
-
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">Is your database and information reliable and up-to-date?</h4>
-                            <p class="m-0 answer-faq">
-Yes, we update our databases daily and automatically to provide the most accurate and reliable information possible. we also use ip2location free data bases as well
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">Can I use your API for commercial products?</h4>
-                            <p class="m-0 answer-faq">
-                            Yes, we update our databases daily and automatically to provide the most accurate and reliable information possible.
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">Is it possible to access IP history information?</h4>
-                            <p class="m-0 answer-faq">
-                                No, it's not possible to access request and API history information as we don't keep this data to protect the privacy of our users.
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">Do I need to pay to use your API?</h4>
-                            <p class="m-0 answer-faq">
-                                    No, there is no cost to use the services provided by us, and all of these services are available for free.
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">Can I send more than 60 requests per minute?</h4>
-                            <p class="m-0 answer-faq">
-                                No, there is no cost to use the services provided by us, and all of these services are available for free.
-                            </p>
-                        </div>
-                         <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">Do I need an API key to make a request?</h4>
-                            <p class="m-0 answer-faq">
-                            Generally, no. All endpoints are open and accessible for free. However, we have implemented restrictions on requests to manage the volume of traffic. Each endpoint can respond to a maximum of 60 requests per minute.
-                            If you exceed the limit of 60 requests per minute, you will receive a 429 error and will need to wait until your 1-minute restriction has ended.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end of kaq section -->
-
-
-    <!-- Services -->
-    <section class="my-5" style="border-top: 1px solid rgba(255,255,255,0.5)">
-        <div class="container-fluid my-5">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <h2 class="text-white text-center">Services That We Provide</h2>
-                </div>
-                <div class="col-11">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">IP to GeoLocation Service</h4>
-                            <p class="m-0 answer-faq">
-                                This Service helps you to get location of an ip address
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">Countries Information</h4>
-                            <p class="m-0 answer-faq">
-                                This service can help you for getting a country full information in json format
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">DNS Servers</h4>
-                            <p class="m-0 answer-faq">
-                                This service can help you for getting a full list of a countries DNS servers
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
-                            <h4 class="text-warning">Uptime server</h4>
-                            <p class="m-0 answer-faq">
-                                This service can help you for monitoring your services
-                            </p>
-                        </div>
 
                     </div>
                 </div>
+
             </div>
-        </div>
+        </section>
+
+        <!-- faq section -->
+        <section class="my-5" style="border-top: 1px solid rgba(255,255,255,0.5)">
+            <div class="container-fluid">
+                <div class="row mt-5 justify-content-center">
+                    <div class="col-12 my-3">
+                        <h5 class="text-center text-white fs-3" data-aos="zoom-in">Frequently Asked Questions</h5>
+                    </div>
+                    <div class="col-11">
+                        <div class="row">
+                            <div data-aos="fade-up" class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">Is your database and information reliable and up-to-date?</h4>
+                                <p class="m-0 answer-faq">
+                                    Yes, we update our databases daily and automatically to provide the most accurate
+                                    and
+                                    reliable information possible. we also use ip2location free data bases as well
+                                </p>
+                            </div>
+                            <div data-aos="fade-up" class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">Can I use your API for commercial products?</h4>
+                                <p class="m-0 answer-faq">
+                                    Yes, we update our databases daily and automatically to provide the most accurate
+                                    and
+                                    reliable information possible.
+                                </p>
+                            </div>
+                            <div data-aos="fade-up" class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">Is it possible to access IP history information?</h4>
+                                <p class="m-0 answer-faq">
+                                    No, it's not possible to access request and API history information as we don't keep
+                                    this data to protect the privacy of our users.
+                                </p>
+                            </div>
+                            <div data-aos="fade-up" class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">Do I need to pay to use your API?</h4>
+                                <p class="m-0 answer-faq">
+                                    No, there is no cost to use the services provided by us, and all of these services
+                                    are
+                                    available for free.
+                                </p>
+                            </div>
+                            <div data-aos="fade-up" class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">Can I send more than 60 requests per minute?</h4>
+                                <p class="m-0 answer-faq">
+                                    No, there is no cost to use the services provided by us, and all of these services
+                                    are
+                                    available for free.
+                                </p>
+                            </div>
+                            <div data-aos="fade-up" class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">Do I need an API key to make a request?</h4>
+                                <p class="m-0 answer-faq">
+                                    Generally, no. All endpoints are open and accessible for free. However, we have
+                                    implemented restrictions on requests to manage the volume of traffic. Each endpoint
+                                    can
+                                    respond to a maximum of 60 requests per minute.
+                                    If you exceed the limit of 60 requests per minute, you will receive a 429 error and
+                                    will
+                                    need to wait until your 1-minute restriction has ended.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of faq section -->
+
+        <!-- Services -->
+        <section class="mt-5" style="border-top: 1px solid rgba(255,255,255,0.5)">
+            <div class="container-fluid my-5">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <h2 class="text-white text-center ">Services That We Provide</h2>
+                    </div>
+                    <div class="col-11">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">IP to GeoLocation Service</h4>
+                                <p class="m-0 answer-faq">
+                                    This Service helps you to get location of an ip address
+                                </p>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">Countries Information</h4>
+                                <p class="m-0 answer-faq">
+                                    This service can help you for getting a country full information in json format
+                                </p>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">DNS Servers</h4>
+                                <p class="m-0 answer-faq">
+                                    This service can help you for getting a full list of a countries DNS servers
+                                </p>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                                <h4 class="text-warning">Uptime server</h4>
+                                <p class="m-0 answer-faq">
+                                    This service can help you for monitoring your services
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of Services -->
+
+
+        {% include "web/utils/footer.html" %}
     </section>
-
-    <!-- end of Services -->
-
-
-    {% include "web/utils/footer.html" %}
 {% endblock content %}
 
 {% block script %}
+    <script src="{{ 'index/js/index.js' | StorageUrl }}"></script>
+    <script>
+
+    </script>
+
 {% endblock script %}

@@ -180,7 +180,11 @@ GeoIpConfig/*.zip
 GeoIpConfig/*.json
 GeoIpConfig/*.csv
 GeoIpConfig/*.rar
-
+GeoIpUpdater/Countries-database
+GeoIpUpdater/DNS-database
+GeoIpUpdater/IPV4-database
+GeoIpUpdater/IPV6-database
+app.py
 .env
 migrations
 

@@ -1,7 +1,8 @@
 from flask import Flask, session, url_for, redirect, request
 
 from GeoIpConfig import Setting
-from .extensions import db, ServerSession, ServerMigrate
+from .extensions import (db, babel, ServerSession, ServerMigrate,
+                         ServerMail, RedisServer, ServerCache, ServerCaptcha2)
 
 
 def create_app():
@@ -10,9 +11,13 @@ def create_app():
 
     # init Extensions
     db.init_app(app=app)
+    babel.init_app(app=app)
+
     ServerSession.init_app(app)
     ServerMigrate.init_app(app=app, db=db)
-
+    ServerMail.init_app(app=app)
+    ServerCache.init_app(app=app)
+    ServerCaptcha2.init_app(app=app)
 
 
     # read Apps
@@ -23,8 +28,6 @@ def create_app():
     app.register_blueprint(web, url_prefix="/")
 
     return app
-
-
 
 
 def userLocalSelector():
@@ -60,10 +63,11 @@ def set_user_statue():
 
 
     """
-    request.current_language = userLocalSelector()
-    request.is_authenticated = session.get("login", False)
-    request.user_object = db.session.execute(
-        db.select(User).filter_by(id=session.get("account-id", None))).scalar_one_or_none()
+    if False:
+        request.current_language = userLocalSelector()
+        request.is_authenticated = session.get("login", False)
+        request.user_object = db.session.execute(
+            db.select(User).filter_by(id=session.get("account-id", None))).scalar_one_or_none()
 
 
 @app.route("/lang/set/<string:language>")
@@ -80,5 +84,6 @@ def setUserLanguage(language):
         return redirect(location)
 
 
-
+from . import views
 from . import context_processor
+from . import template_filter

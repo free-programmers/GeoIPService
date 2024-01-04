@@ -1,10 +1,11 @@
 from flask import Blueprint
 
 web = Blueprint(
-    "web",
-    __name__,
-    static_folder="static",
-    template_folder="templates"
+    name="web",
+    import_name=__name__,
+    static_folder="static/web",
+    template_folder="templates",
+    static_url_path="WebStaticStorage",
 )
 
 import GeoIpWeb.views

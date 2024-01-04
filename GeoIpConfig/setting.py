@@ -12,8 +12,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-BASE_DIR = Path(__file__).parent.parent
-STORAGE_DIR = BASE_DIR.joinpath("Storage")
 DATABASE_TABLE_PREFIX_NAME = os.environ.get("DATABASE_TABLE_PREFIX_NAME", "")
 
 
@@ -21,9 +19,10 @@ class Setting:
     """ Flask configuration Class
         base Setting os.environ class for flask app
     """
-
+    BASE_DIR = Path(__file__).parent.parent
     APP_DEBUG_STATUS = os.environ.get("APP_DEBUG", "") == "True"
     SECRET_KEY = os.environ.get("APP_SECRET_KEY", generateRandomString())
+    STORAGE_DIR = BASE_DIR.joinpath("Storage")
 
     # Database Config
     DATABASE_NAME = os.environ.get("DATABASE_NAME", "")
@@ -38,11 +37,11 @@ class Setting:
     # Redis Config
     REDIS_URL = os.environ.get("REDIS_URI")
     REDIS_INTERFACE = redis.Redis().from_url(REDIS_URL)
-    REDIS_PORT = os.environ.get("REDIS_PORT")
-    REDIS_HOST = os.environ.get("REDIS_USERNAME")
-    REDIS_USERNAME = os.environ.get("REDIS_USERNAMES")
-    REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD")
-    REDIS_DB = os.environ.get("REDIS_DB")
+    REDIS_PORT = os.environ.get("REDIS_PORT", "")
+    REDIS_HOST = os.environ.get("REDIS_HOST", "")
+    REDIS_USERNAME = os.environ.get("REDIS_USERNAME", "")
+    REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", "")
+    REDIS_DB = os.environ.get("REDIS_DB", 0)
 
     # session cookie setting
     SESSION_TYPE = "redis"
@@ -85,14 +84,17 @@ class Setting:
     MAIL_DEBUG = os.environ.get("MAIL_DEBUG") == "True"
     MAIL_DEFAULT_SENDER = os.environ.get("MAIL_DEFAULT_SENDER")
 
+    # https: // flask - caching.readthedocs.io / en / latest /  # built-in-cache-backends
+    # https: // flask - caching.readthedocs.io / en / latest /  # configuring-flask-caching
     # CACHE_TYPE = "RedisCache"  # NullCache for disable Flask-Caching related os.environs
     CACHE_TYPE = os.environ.get("CACHE_TYPE", 'NullCache')
-    CACHE_DEFAULT_TIMEOUT = ((60 * 60) * 12)
+    CACHE_DEFAULT_TIMEOUT = ((60 * 60) * 12) # seconds
     CACHE_REDIS_HOST = os.environ.get("REDIS_HOST", '')
     CACHE_REDIS_PORT = os.environ.get("REDIS_PORT", '')
     CACHE_REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", '')
-    CACHE_REDIS_DB = os.environ.get("REDIS_DB", '')
-    CACHE_REDIS_URL = os.environ.get("REDIS_URI", '')
+    CACHE_REDIS_DB = os.environ.get("CACHE_REDIS_DB", '')
+    CACHE_REDIS_URL = (f"redis://{REDIS_HOST}:{REDIS_PORT}/{CACHE_REDIS_DB}")
+    # redis: // user: password @ localhost:6379 / 2
 
     # celery config
     CELERY = dict(
