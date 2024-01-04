@@ -1,1 +1,1 @@
-from setting import Development, Production
+from .setting import Setting

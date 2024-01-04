@@ -1,23 +1,18 @@
 from flask import Flask, session, url_for, redirect, request
 
-from GeoIpConfig import Development
-from GeoIpCore.extensions import db, cache, migrate, \
-    csrf, captchaVersion2, limiter, SessionServer
+from GeoIpConfig import Setting
+
 
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Development)
+    app.config.from_object(Setting)
 
     # init Extensions
-    db.init_app(app=app)
-    cache.init_app(app)
-    migrate.init_app(app=app, db=db)
-    csrf.init_app(app)
-    captchaVersion2.init_app(app)
-    limiter.init_app(app)
-    SessionServer.init_app(app)
 
+
+
+    # read Apps
     from GeoIpApi import api
     app.register_blueprint(api, url_prefix="/api/v1/")
 

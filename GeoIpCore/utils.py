@@ -1,15 +1,42 @@
+# build in
+import datetime
+import random
+import secrets
+from string import punctuation, digits, ascii_letters
+
+# framework
 from flask import Flask
+
+# libs
+import khayyam
 from celery import Celery, Task
 
-import datetime
-import khayyam
 
+def generateRandomString(len_prob: int = 6, punctuation: bool = True, digits: bool = True,
+                         ascii_letters: bool = True) -> str:
+    """
+    this function generates random string included punctuation number and ascii_letters
+    #TODO:
+        this function should act base on input flags
+                    punctuation: bool = True, digits: bool = True,
+                         ascii_letters: bool = True
+    """
+    if not punctuation and not digits and not ascii_letters:
+        return secrets.token_hex(80)
+
+    token = [each for each in secrets.token_hex(80 * len_prob)]
+    token += random.choices(punctuation, k=80)
+    token += random.choices(digits, k=80)
+    token += random.choices(ascii_letters, k=80)
+    random.shuffle(token)
+    return "".join(token)
 
 
 def celery_init_app(app: Flask) -> Celery:
     class FlaskTask(Task):
         """Every time a task is added to queue __call__ is called
         """
+
         def __call__(self, *args: object, **kwargs: object) -> object:
             with app.app_context():
                 return self.run(*args, **kwargs)
@@ -20,7 +47,6 @@ def celery_init_app(app: Flask) -> Celery:
     celery_app.set_default()
     app.extensions["celery"] = celery_app
     return celery_app
-
 
 
 class TimeStamp:

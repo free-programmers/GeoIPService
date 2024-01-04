@@ -1,28 +1,32 @@
+# flask extensions
+
+import os
 from redis import Redis
+from flask_mail import Mail
 from flask_session import Session
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_wtf.csrf import CSRFProtect
+from flask_sqlalchemy import SQLAlchemy
 from flask_captcha2 import FlaskCaptcha2
+from flask_babel import Babel
+from dotenv import load_dotenv
 from flask_caching import Cache
 from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
-from configparser import ConfigParser
 
+load_dotenv()
 
-config = ConfigParser()
-config.read('config.ini')
-
-ServerRedis = Redis().from_url(config.get(section='redis', option="X_REDIS_URL", fallback=''))
-SessionServer = Session()
-db = SQLAlchemy()
-migrate = Migrate()
-csrf = CSRFProtect()
-limiter = Limiter(
-    get_remote_address,
-    storage_uri=config.get(section='redis', option="X_REDIS_URL", fallback=''),
-    storage_options={"socket_connect_timeout": 30},
-    strategy="fixed-window",  # or "moving-window"
+RedisServer = Redis(
+    username=os.environ.get("REDIS_USERNAME", ""),
+    password=os.environ.get("REDIS_PASSWORD", ""),
+    host=os.environ.get("REDIS_HOST", "localhost"),
+    port=os.environ.get("REDIS_PORT", "6379"),
+    db=os.environ.get("REDIS_DB", "0"),
 )
-cache = Cache()
-captchaVersion2 = FlaskCaptcha2()
+
+db = SQLAlchemy()
+babel = Babel()
+ServerMail = Mail()
+ServerSession = Session()
+ServerMigrate = Migrate()
+ServerCaptcha2 = FlaskCaptcha2()
+ServerCache = Cache()
+ServerRequestLimiter = Limiter()
