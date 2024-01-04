@@ -1,7 +1,7 @@
 from flask import Flask, session, url_for, redirect, request
 
 from GeoIpConfig import Setting
-
+from .extensions import db, ServerSession, ServerMigrate
 
 
 def create_app():
@@ -9,6 +9,9 @@ def create_app():
     app.config.from_object(Setting)
 
     # init Extensions
+    db.init_app(app=app)
+    ServerSession.init_app(app)
+    ServerMigrate.init_app(app=app, db=db)
 
 
 

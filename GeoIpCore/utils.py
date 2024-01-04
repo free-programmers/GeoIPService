@@ -12,8 +12,7 @@ import khayyam
 from celery import Celery, Task
 
 
-def generateRandomString(len_prob: int = 6, punctuation: bool = True, digits: bool = True,
-                         ascii_letters: bool = True) -> str:
+def generateRandomString(len_prob: int = 6) -> str:
     """
     this function generates random string included punctuation number and ascii_letters
     #TODO:
@@ -21,9 +20,6 @@ def generateRandomString(len_prob: int = 6, punctuation: bool = True, digits: bo
                     punctuation: bool = True, digits: bool = True,
                          ascii_letters: bool = True
     """
-    if not punctuation and not digits and not ascii_letters:
-        return secrets.token_hex(80)
-
     token = [each for each in secrets.token_hex(80 * len_prob)]
     token += random.choices(punctuation, k=80)
     token += random.choices(digits, k=80)

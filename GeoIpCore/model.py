@@ -1,25 +1,36 @@
 import uuid
 import datetime
 
-from GeoIpCore.extensions import db
-from sqlalchemy import Column, String, DateTime, Integer
+from .extensions import db
+from GeoIpConfig.setting import DATABASE_TABLE_PREFIX_NAME
+from sqlalchemy import String, DateTime, Integer, Column
 
 
-class BaseTable(db.Model):
+class BaseModel(db.Model):
+    """
+    Base model class for all models
+    """
     __abstract__ = True
 
     id = Column(Integer, primary_key=True)
 
-    def SetPubicKey(self):
+    @staticmethod
+    def SetTableName(name):
+        """Use This Method For setting a table name"""
+        name = name.replace("-", "_").replace(" ", "")
+
+        return f"{DATABASE_TABLE_PREFIX_NAME}{name}"
+
+    def SetPublicKey(self):
+        """This Method Set a Unique PublicKey """
         while True:
-            key = str(uuid.uuid4())
-            db_res = self.query.filter(self.PublicKey == key).first()
-            if db_res:
+            token = str(uuid.uuid4())
+            if self.query.filter(self.PublicKey == token).first():
                 continue
             else:
-                self.PublicKey = key
+                self.PublicKey = token
                 break
 
     PublicKey = Column(String(36), nullable=False, unique=True)
-    CreatedTime = Column(DateTime, default=datetime.datetime.now)
-    LastUpdateTime = Column(DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
+    CreatedTime = Column(DateTime, default=datetime.datetime.utcnow)
+    LastUpdateTime = Column(DateTime, onupdate=datetime.datetime.utcnow, default=datetime.datetime.utcnow)

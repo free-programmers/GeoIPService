@@ -17,7 +17,7 @@ migrations/
 GeoIpUpdater/database
 GeoIpUpdater/database/
 .env.sample
-config.env
+.env
 
 
 
@@ -181,5 +181,6 @@ GeoIpConfig/*.json
 GeoIpConfig/*.csv
 GeoIpConfig/*.rar
 
-config.env
+.env
+migrations
 

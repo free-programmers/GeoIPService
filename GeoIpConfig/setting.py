@@ -4,14 +4,11 @@ import datetime
 from pathlib import Path
 
 # app
-from GeoIpCore.utils import generate_secret_key
-
+from GeoIpCore.utils import generateRandomString
 
 # libs
 import redis
 from dotenv import load_dotenv
-
-
 
 load_dotenv()
 
@@ -26,7 +23,7 @@ class Setting:
     """
 
     APP_DEBUG_STATUS = os.environ.get("APP_DEBUG", "") == "True"
-    SECRET_KEY = os.environ.get("APP_SECRET_KEY", generate_secret_key())
+    SECRET_KEY = os.environ.get("APP_SECRET_KEY", generateRandomString())
 
     # Database Config
     DATABASE_NAME = os.environ.get("DATABASE_NAME", "")
@@ -62,7 +59,6 @@ class Setting:
     RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY", '')
     RECAPTCHA_ENABLED = os.environ.get("RECAPTCHA_ENABLED", False) == "True"
     RECAPTCHA_LOG = os.environ.get("RECAPTCHA_LOG", True) == "True"
-
     # RECAPTCHA_THEME = ''
     # RECAPTCHA_TYPE = ''
     # RECAPTCHA_SIZE = ''
@@ -73,10 +69,10 @@ class Setting:
     LANGUAGES = {
         'fa': "فارسی/Farsi",
         'en': "English/American English",
-        'ar': "عربي/Arabic",
-        'tr': "Turkish/Türkçe",
-        'ru': "Russian/Россия",
-        'zh': "Chinese/中国人",
+        # 'ar': "عربي/Arabic",
+        # 'tr': "Turkish/Türkçe",
+        # 'ru': "Russian/Россия",
+        # 'zh': "Chinese/中国人",
     }
 
     # Mail config
