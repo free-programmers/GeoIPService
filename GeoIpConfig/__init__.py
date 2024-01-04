@@ -1,1 +1,1 @@
-from setting import config
+from setting import Development, Production
