@@ -22,7 +22,7 @@ class IPV4(BaseModel):
 
 class IPV6(BaseModel):
     """This Class Contain Ipv6 range and name"""
-    __tablename__ = "IPV6"
+    __tablename__ = BaseModel.SetTableName("IPV6")
     StartRange = Column(DECIMAL(scale=0, precision=36), unique=False, nullable=False)
     EndRange = Column(DECIMAL(scale=0, precision=36), nullable=False, unique=True)
 
@@ -38,7 +38,7 @@ class IPV6(BaseModel):
 
 
 class CountryInfo(BaseModel):
-    __tablename__ = "CountryInfo"
+    __tablename__ = BaseModel.SetTableName("CountryInfo")
     CommonName = Column(String(255), unique=False, nullable=False)
     OfficialName = Column(String(255), unique=False, nullable=False)
     CountryCode = Column(String(64), unique=False, nullable=False)
