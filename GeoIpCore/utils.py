@@ -12,11 +12,16 @@ import khayyam
 from celery import Celery, Task
 
 
-
 def Make_API_Cache_Key(*args, **kwargs):
     # every time a view point is called this function is called and
     # return  a unique key for searching in redis
-    return str(request.url)
+    more = request.args.get("more", type=int, default=0)
+    if more and more == 1:
+        return str(request.url)
+    else:
+        # base url path:
+        # http://127.0.0.1:8080/api/v1/ipv4/128.45.45.2/?more=983->> http://127.0.0.1:8080/api/v1/ipv4/128.45.45.2/
+        return str(request.path)
 
 
 def generateRandomString(len_prob: int = 6) -> str:

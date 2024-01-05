@@ -30,9 +30,8 @@
                         Services
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item " href="">Public IP
-                            Address</a></li>
-                        <li><a class="dropdown-item " href="">IP to Location</a>
+                        <li><a class="dropdown-item " href="">Public IP Address</a></li>
+                        <li><a class="dropdown-item " href="{{  url_for('docs.serve', documentName='ip-to-location') }}">IP to Location</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -64,15 +63,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Under Development</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <p class="modal-title h4" id="staticBackdropLabel">{{  _('Under Development')  }}</p>
             </div>
             <div class="modal-body">
-                This section is under development and not Available now,
-                Please Try again Later
+                {{  _('This section is under development and not Available now,Please Try again Later')  }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">{{  _('OK')  }}</button>
             </div>
         </div>
     </div>

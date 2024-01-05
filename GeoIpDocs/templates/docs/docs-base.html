@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block script %}
+    {% block docscript %}
+
+    {% endblock %}
+    <script>
+function replaceVariables(elements) {
+    // Convert elements to an array if it's not already an array
+    elements = Array.from(elements);
+
+    elements.forEach(element => {
+        if (element.children.length > 0) {
+            replaceVariables(element.children);
+        }
+
+        let content = element.innerHTML.trim();
+        content = content.replace(/\{\s*SERVER\s*\}/g, '127.0.0.1');
+        element.innerHTML = content;
+    });
+}
+
+window.addEventListener("DOMContentLoaded", e => {
+    replaceVariables([document.body]);
+});
+    </script>
+{% endblock %}

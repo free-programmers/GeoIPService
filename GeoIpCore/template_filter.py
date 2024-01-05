@@ -13,3 +13,7 @@ def StorageUrl(path: str):
         return url_for("FlaskServeStorageFile", path=path)  # flask serve
     else:
         return f"/Storage/{path}"  # Nginx Serve Files
+
+
+
+

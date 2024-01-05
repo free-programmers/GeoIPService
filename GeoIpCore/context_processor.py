@@ -8,7 +8,8 @@ def app_context():
 
 
     ctx = {
+        "SERVER_NAME": app.config.get("SERVER", "")
 
     }
-
     return ctx
+

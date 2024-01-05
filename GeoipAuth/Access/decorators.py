@@ -1,12 +1,19 @@
-from flask import session, request, redirect, url_for, flash
+# build in
 from functools import wraps
-from GeoipAuth.model import User
-from flask_babel import lazy_gettext as _l
 
+# framework
+from flask import session, request, redirect, url_for, flash
+
+# apps
+from GeoipAuth.model import User
+
+# libs
+from flask_babel import lazy_gettext as _l
 
 
 def login_required(f):
     """Base Login required Decorator for users"""
+
     @wraps(f)
     def inner(*args, **kwargs):
         next = request.url_rule
@@ -41,14 +48,14 @@ def login_required(f):
             flash(message, "danger")
             return redirect(url_for("auth.login_get", next=next))
 
-
-
         return f(*args, **kwargs)
+
     return inner
 
 
 def only_reset_password(f):
     """"""
+
     @wraps(f)
     def inner(*args, **kwargs):
 
@@ -59,6 +66,6 @@ def only_reset_password(f):
         if not session.get("allow-set-password"):
             return redirect(url_for("auth.login_get"))
 
-
         return f(*args, **kwargs)
+
     return inner

@@ -26,7 +26,7 @@ def doo(app, db, fp):
             print("Added")
 def dooo(app, db, fp):
     with app.app_context():
-        for each in json.load(fp):
+            each  = json.load(fp)
             ip = CountryInfo()
             CountryInfo.CountryCode =
             CountryInfo.PublicKey =

@@ -27,6 +27,9 @@ def create_app():
     from GeoipAuth import auth
     app.register_blueprint(auth, url_prefix="/auth/")
 
+    from GeoIpDocs import docs
+    app.register_blueprint(docs, url_prefix="/docs/")
+
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/")
 

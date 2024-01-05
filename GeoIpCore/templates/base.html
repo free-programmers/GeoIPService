@@ -5,6 +5,9 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
     <title>
         {% block title %}
         {% endblock title %}
@@ -27,15 +30,40 @@
 
     {% block style %}
     {% endblock style %}
+
+    {#    add a template for meta tags#}
+    <link rel="apple-touch-icon" sizes="57x57" href="">
+    <link rel="icon" type="image/png" href="{{ 'media/logo.png' | StorageUrl }}">
+
+    <link rel="manifest" href="/">
+
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="ip to geo"/>
+    <meta name="description"
+          content="Fast, Free, Easy to use, and Open Source, Easy to integrate, Available in JSON"/>
+    <meta name="keywords"
+          content="ip, ip2geo, ip location, convert ip 2 location, geolocation, internet protocol to location"/>
+
+
+    <!-- highlight code -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/go.min.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", event => {
+            hljs.highlightAll();
+        })
+    </script>
 </head>
 <body style="overflow-x: hidden">
 {% block content %}
 {% endblock %}
 <script>
     document.addEventListener("DOMContentLoaded", e => {
-
         AOS.init({
-            duration: 1800
+            duration: 1800,
         })
     })
 </script>

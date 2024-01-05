@@ -1,0 +1,21 @@
+{% extends 'docs/docs-base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+    <section class="bg-dark">
+    {% include 'web/utils/navbar.html' %}
+    {{ content | safe }}
+    {% include 'web/utils/footer.html' %}
+    </section>
+{% endblock %}
+
+{% block docscript %}
+    <script>
+    </script>
+{% endblock %}

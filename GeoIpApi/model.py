@@ -1,6 +1,11 @@
+# build in
+import json
 import ipaddress
 
+# apps
 from GeoIpCore.model import BaseModel
+
+# libs
 from sqlalchemy import Column, String, BIGINT, JSON, DECIMAL
 
 
@@ -12,16 +17,22 @@ class BaseIPSerializer:
             "CountryName": self.CountryName,
             "StateName": self.StateName,
             "CityName": self.CityName,
-            "Lat": self.Lat,
-            "Long": self.Long,
+            "latitude": self.Lat,
+            "longitude": self.Long,
             "ZipCode": self.ZipCode,
             "TimeZone": self.TimeZone,
-            "ip":{
+            "ip": {
                 "oct": ip,
                 "hex": hex(intip),
                 "decimal": intip,
             }
         }
+
+
+class BaseCOUNTRYSerializer:
+
+    def serialize(self):
+        return json.loads(self.Info)
 
 
 class IPV4(BaseModel, BaseIPSerializer):
@@ -65,7 +76,7 @@ class IPV6(BaseModel, BaseIPSerializer):
     TimeZone = Column(String(64), unique=False, nullable=False)
 
 
-class CountryInfo(BaseModel):
+class CountryInfo(BaseModel, BaseCOUNTRYSerializer):
     __tablename__ = BaseModel.SetTableName("CountryInfo")
     CommonName = Column(String(255), unique=False, nullable=False)
     OfficialName = Column(String(255), unique=False, nullable=False)

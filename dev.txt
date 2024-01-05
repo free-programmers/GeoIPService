@@ -4,5 +4,11 @@ todo:
     background Task
     Add User Panel
     Add API-KEY for special EndPoints
+
+    change flask blueprint static view to Storage endpoint
+    subdomain="docs",
+    static_folder="static",
+    template_folder="templates",
+    static_url_path="DocsStaticStorage"
     
     
