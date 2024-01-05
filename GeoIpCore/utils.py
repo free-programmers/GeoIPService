@@ -5,11 +5,18 @@ import secrets
 from string import punctuation, digits, ascii_letters
 
 # framework
-from flask import Flask
+from flask import Flask, request
 
 # libs
 import khayyam
 from celery import Celery, Task
+
+
+
+def Make_API_Cache_Key(*args, **kwargs):
+    # every time a view point is called this function is called and
+    # return  a unique key for searching in redis
+    return str(request.url)
 
 
 def generateRandomString(len_prob: int = 6) -> str:

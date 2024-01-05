@@ -1,21 +1,45 @@
 import ipaddress
-import json
 
 
+def is_public_ip_v6(ip: str):
+    """Returns True if the IPv6 address is public, False otherwise."""
 
-def convert_IP2int(ip:str):
     try:
         ip = ipaddress.ip_address(ip)
-    except Exception as e:
+        if ip.version != 6:
+            raise ValueError
+    except ValueError:
+        return False
+
+    return ip if not ip.is_link_local and not ip.is_loopback and not ip.is_reserved else False
+
+
+def convert_IP2intv6(ip: str):
+    """Converts an IPv6 address to an integer, handling various cases."""
+
+    if not (ip := is_public_ip_v6(ip)):
         return "invalid ip address"
 
-    match ip:
-        case ip.is_private:
-            return "private ip address"
-        case ip.is_loopback:
-            return "loopback ip address"
-        case ip.is_reserved:
-            return "reserved ip address"
+    return int(ip)
+
+
+def is_public_ip_v4(ip: str):
+    """Returns True if the IP address is public, False otherwise."""
+    try:
+        ip = ipaddress.ip_address(ip)
+        if ip.version != 4:
+            raise ValueError
+    except ValueError:
+        return False
+
+    return ip if not ip.is_private and not ip.is_loopback and not ip.is_reserved else False
+
+
+def convert_IP2intv4(ip: str):
+    """Converts an IP address to an integer, handling various cases."""
+
+    if not (ip := is_public_ip_v4(ip)):
+        return "invalid ip address"
 
     return int(ip)
 
@@ -26,10 +50,8 @@ class IPserializer:
         }
 
 
-
 class IPV4serializer(IPserializer):
     ...
-
 
 
 class IPV6serializer(IPserializer):
