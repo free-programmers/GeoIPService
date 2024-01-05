@@ -78,7 +78,7 @@ class LoginForm(FormFlask):
 
         render_kw={
             "value": _l('Login Via Password'),
-            "class": "btn bg-orange text-white w-100 py-2 my-3 fs-5 border-0"
+            "class": "btn bg-danger text-white w-100 py-2 my-3 fs-5 border-0"
         }
     )
 
