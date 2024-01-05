@@ -1,0 +1,34 @@
+/*
+- public css < Global css >
+    loaded in all pages automatically
+*/
+
+
+:root {
+    --main-blue: #419dd7;
+    --main-blue-hover: #2b83ba;
+    --main-blue-dark: #154464;
+    --main-orange: #f1592a;
+    --main-orange-hover: #d2512a;
+}
+
+/*@font-face {*/
+/*    font-family: "vazir";*/
+/*    src: url("") format("truetype");*/
+/*    font-weight: normal;*/
+/*    font-style: normal;*/
+/*}*/
+
+/*.persian-font {*/
+/*    font-family: vazir, sans-serif;*/
+/*}*/
+
+
+.brand-blue-shadow {
+    box-shadow: 0px 0px 45px -7px #419dd7;
+}
+
+.brand-orange-shadow {
+    box-shadow: 0px 0px 45px -7px #f1592a;
+}
+}

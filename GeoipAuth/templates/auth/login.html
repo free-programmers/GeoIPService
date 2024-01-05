@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ _('ورود به حساب کاربری') }}
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ 'auth/css/login.css' | StorageUrl }}">
+{% endblock style %}
+
+{% block content %}
+    <section style="width: 100vw; height: 100vh; background-color:#eeeeee">
+        <div class="persian-font w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-4 col-md-10 col-11 px-md-5 px-auto">
+                        <div class="card  border-primary border-2 border mx-auto brand-blue-shadow">
+                            <div class="card-header text-center bg-white border-0">
+                                <a href="{{ url_for('web.index_get') }}">
+                                    <img src="{{ 'media/logo.png' | StorageUrl }}"
+                                         style="width: 110px; height: 110px"
+                                         alt="ip2geo.ir Logo" class="p-0 m-0"/>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" action="" id="loginForm">
+                                    {{ form.hidden_tag() }}
+                                    {{ form.Username() }}
+                                    {% if form.Username.errors %}
+                                        <ul>
+                                            {% for err in form.Username.errors %}
+                                                <li class="text-danger">
+                                                    {{ err }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                    {{ form.Password() }}
+                                    {% if form.Password.errors %}
+                                        <ul>
+                                            {% for err in form.Password.errors %}
+                                                <li class="text-danger">
+                                                    {{ err }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                    <div class="captcha-container d-flex justify-content-center align-items-center mt-3">
+                                        {{ captchaField }}
+                                    </div>
+                                    {{ form.Submit() }}
+                                </form>
+                            </div>
+                            <div class="card-footer bg-white border-0 d-flex flex-column justify-content-center align-items-center">
+                                <div class="w-75 border-top">
+                                    <a href=""
+                                       class="text-muted text-center d-block my-2">{{ _('forget Password') }}</a>
+                                </div>
+                                <a href="" class="btn btn-primary w-100 py-2 fs-5">{{ _('create an account') }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 d-none d-lg-block col-split-main " style="height: 100vh;"></div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+
+{% block script %}
+{% endblock script %}
