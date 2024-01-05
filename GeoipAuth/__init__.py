@@ -8,6 +8,5 @@ auth = Blueprint(
     static_url_path="AuthStaticStorage"
 )
 
-
 from . import views
 from . import model

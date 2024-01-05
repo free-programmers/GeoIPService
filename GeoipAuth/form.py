@@ -81,4 +81,3 @@ class LoginForm(FormFlask):
             "class": "btn bg-danger text-white w-100 py-2 my-3 fs-5 border-0"
         }
     )
-

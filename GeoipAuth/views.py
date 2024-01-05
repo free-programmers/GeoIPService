@@ -1,10 +1,7 @@
 from . import auth
 from . import form as AuthForm
 
-
 from flask import render_template
-
-
 
 
 @auth.route("/login/", methods=["GET"])
