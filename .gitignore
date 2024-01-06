@@ -6,7 +6,6 @@ __pycache__/
 # C extensions
 *.so
 .idea
-.env
 ADD-DATA-PY
 insert_data.py
 deploy_to_server.py
@@ -16,8 +15,6 @@ migrations
 migrations/
 GeoIpUpdater/database
 GeoIpUpdater/database/
-.env.sample
-.env
 
 
 
@@ -135,7 +132,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
