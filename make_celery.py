@@ -1,4 +1,4 @@
-from geoipCore import create_app
+from GeoIpCore import create_app
 
 
 flask_app = create_app()

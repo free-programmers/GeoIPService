@@ -5,6 +5,10 @@ from .extensions import (db, babel, ServerSession, ServerMigrate,
                          ServerMail, RedisServer, ServerCache, ServerCaptcha2)
 
 
+from .utils import celery_init_app
+from GeoipAuth.model import User
+
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Setting)
@@ -12,13 +16,13 @@ def create_app():
     # init Extensions
     db.init_app(app=app)
     babel.init_app(app=app)
+    celery_init_app(app=app)
 
     ServerSession.init_app(app)
     ServerMigrate.init_app(app=app, db=db)
     ServerMail.init_app(app=app)
     ServerCache.init_app(app=app)
     ServerCaptcha2.init_app(app=app)
-
 
     # read Blueprints
     from GeoIpAdmin import admin
@@ -37,18 +41,18 @@ def create_app():
     app.register_blueprint(web, url_prefix="/")
 
 
-
     return app
 
 
 def userLocalSelector():
     """
         this function select user local base on session
+        this func called every time user send a request
     """
     try:
-        return session.get("language", "fa")
+        return session.get("language", "en") # change with request.best...
     except:
-        return "en"
+        return "fa"
 
 
 app = create_app()
@@ -81,8 +85,8 @@ def set_user_statue():
             db.select(User).filter_by(id=session.get("account-id", None))).scalar_one_or_none()
 
 
-@app.route("/lang/set/<string:language>")
-def setUserLanguage(language):
+@app.route("/lang/set/<string:language>/")
+def setUserLanguage(language:str):
     """
         this view select a  language for user
     """
@@ -93,6 +97,7 @@ def setUserLanguage(language):
     else:
         session["language"] = language
         return redirect(location)
+
 
 
 from . import views
