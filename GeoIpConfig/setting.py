@@ -110,4 +110,4 @@ class Setting:
     FLASK_DEBUG = APP_DEBUG_STATUS
 
     DOMAIN = os.environ.get("SERVER", "")
-    SERVER = "127.0.0.1"
+    SERVER_NAME = DOMAIN

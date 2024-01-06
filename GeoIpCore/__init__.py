@@ -35,13 +35,14 @@ def create_app():
     app.register_blueprint(auth, url_prefix="/auth/")
 
     from GeoIpDocs import docs
-    app.register_blueprint(docs, url_prefix="/docs/")
+    app.register_blueprint(docs, subdomain='docs', url_prefix="/")
 
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/")
 
     app.viewLOGGER = GetStdoutLogger(name="viewLOGGER")
     app.simpleLOGGER = GetStdoutLogger(name="simpleLOGGER", type="simple")
+
     return app
 
 
@@ -79,11 +80,10 @@ def set_user_statue():
 
 
     """
-    if False:
-        request.current_language = userLocalSelector()
-        request.is_authenticated = session.get("login", False)
-        request.user_object = db.session.execute(
-            db.select(User).filter_by(id=session.get("account-id", None))).scalar_one_or_none()
+    request.current_language = userLocalSelector()
+    request.is_authenticated = session.get("login", False)
+    request.user_object = db.session.execute(
+        db.select(User).filter_by(id=session.get("account-id", None))).scalar_one_or_none()
 
 
 @app.route("/lang/set/<string:language>/")
@@ -101,8 +101,6 @@ def setUserLanguage(language: str):
 
 
 
-
 from . import views
 from . import context_processor
 from . import template_filter
-
