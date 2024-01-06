@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark" style="border-bottom: 1px solid rgba(255,255,255,0.5)">
     <div class="container-fluid">
+
         <a class="navbar-brand" href="{{ url_for('web.index_get') }}">
             <img class="img-fluid rounded-circle" style="width:75px"
                  src="{{ "media/logo.png" | StorageUrl }}">
@@ -16,40 +17,41 @@
 
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0 pe-auto pe-3">
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page"
-                       href="{{ url_for('web.index_get') }}">Home</a>
+                       href="{{ url_for('web.index_get') }}">{{ _('Home') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="">Contact</a>
+                    <a class="nav-link text-white" href="">{{ _('Contact') }}</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle text-white text-end" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        Services
+                        {{ _('Services') }}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item " href="">Public IP Address</a></li>
-                        <li><a class="dropdown-item " href="{{  url_for('docs.serve', documentName='ip-to-location') }}">IP to Location</a>
+                        <li><a class="dropdown-item text-end" href="{{ url_for('docs.serve', documentName='public-ip') }}">{{ _('Public IP Address') }}</a></li>
+                        <li><a class="dropdown-item text-end"
+                               href="{{ url_for('docs.serve', documentName='ip-to-location') }}">{{ _('IP to Location') }}</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#"
-                               href="#UnderDevelopmentModal">Country info API</a></li>
-                        <li><a class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#"
-                               href="#UnderDevelopmentModal">Country flag API</a></li>
+                        <li><a class="dropdown-item text-end" role="button" data-bs-toggle="modal" data-bs-target="#"
+                               href="#UnderDevelopmentModal">{{ _('Country info API') }}</a></li>
+                        <li><a class="dropdown-item text-end" role="button" data-bs-toggle="modal" data-bs-target="#"
+                               href="#UnderDevelopmentModal">{{ _('Country flag API') }}</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#"
-                               href="#UnderDevelopmentModal">DNS Servers List</a></li>
+                        <li><a class="dropdown-item text-end" role="button" data-bs-toggle="modal" data-bs-target="#"
+                               href="#UnderDevelopmentModal">{{ _('DNS Servers List') }}</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-white">Privacy/Terms of
-                        Use</a>
+                <li class="nav-item text-end">
+                    <a href="{{ url_for('web.term_get') }}"
+                       class="nav-link text-white">{{ _('Privacy/Terms of Use') }}</a>
 
             </ul>
         </div>
@@ -64,13 +66,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <p class="modal-title h4" id="staticBackdropLabel">{{  _('Under Development')  }}</p>
+                <p class="modal-title h4" id="staticBackdropLabel">{{ _('Under Development') }}</p>
             </div>
             <div class="modal-body">
-                {{  _('This section is under development and not Available now,Please Try again Later')  }}
+                {{ _('This section is under development and not Available now,Please Try again Later') }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">{{  _('OK')  }}</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">{{ _('OK') }}</button>
             </div>
         </div>
     </div>
