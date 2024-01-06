@@ -8,3 +8,9 @@ from flask import render_template
 def login_get():
     form = AuthForm.LoginForm()
     return render_template("auth/login.html", form=form)
+
+
+@auth.route("/register/", methods=["GET"])
+def register_get():
+    form = AuthForm.RegisterForm()
+    return render_template("auth/register.html", form=form)

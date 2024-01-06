@@ -23,37 +23,44 @@
                          style="height: auto">
 
                         <div class="my-5">
-                            <h4 class="text-center display-4 text-warning fw-bold mt-3 " data-aos="fade-left">IP 2 Geo Location</h4>
+                            <h4 class="text-center display-4 text-warning fw-bold mt-3 " data-aos="fade-left">IP 2 Geo
+                                Location</h4>
                             <p class="m-0 text-center fs-4 text-gray" data-aos="fade-right">{{ _('Fast') }}, <span
-                                    class="text-danger fw-bold">{{ _('Free') }}</span>, {{ _('Easy to use, and') }} Open Source</p>
-                            <p class="m-0 text-center fs-4 text-gray" data-aos="fade-left">{{ _('Easy to integrate, Available in') }} JSON</p>
+                                    class="text-danger fw-bold">{{ _('Free') }}</span>, {{ _('Easy to use, and') }} Open
+                                Source</p>
+                            <p class="m-0 text-center fs-4 text-gray"
+                               data-aos="fade-left">{{ _('Easy to integrate, Available in') }} JSON</p>
                         </div>
 
-                        <div class="row justify-content-center align-items-center w-100">
-                            <div data-aos="fade-up" class="col-lg-8 col-11 rounded shadow-md"
-                                 style="border: 2px solid rgba(163,160,160,0.7)">
-                                <div class="">
-                                <pre class="mb-0"><code class="language-json bg-transparent">{
-  "City": "Mountain View",
-  "Country": {
-    "name": "United States of America"
-  },
-  "CountryCode": "US",
-  "IPv4": {
-    "decimal": 134744072,
-    "hex": "0x8080808",
-    "octet": "8.8.8.8"
-  },
-  "Latitude": "37.405992",
-  "Longitude": "-122.078515",
-  "State": "California",
-  "TimeZone": "-07:00",
-  "ZipCode": "94043"
-}</code></pre>
+                        <div class="container-fluid">
+                            <div class="row justify-content-center align-items-center">
+                                <div data-aos="fade-up" class="col-lg-8 col-11 rounded shadow-md"
+                                     style="border: 2px solid rgba(163,160,160,0.7)">
+                                    <div class="">
+                                    <pre class="mb-0"><code class="language-json bg-transparent">{
+      "City": "Mountain View",
+      "Country": {
+        "name": "United States of America"
+      },
+      "CountryCode": "US",
+      "IPv4": {
+        "decimal": 134744072,
+        "hex": "0x8080808",
+        "octet": "8.8.8.8"
+      },
+      "Latitude": "37.405992",
+      "Longitude": "-122.078515",
+      "State": "California",
+      "TimeZone": "-07:00",
+      "ZipCode": "94043"
+    }</code></pre>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center">
-                                <a href="{{ url_for('docs.serve', documentName='ip-to-location') }}" class="btn btn-info px-5 my-3 fw-bold w-50" data-aos="fade-up">API {{ _('Documentation') }}</a>
+                                <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center">
+                                    <a href="{{ url_for('docs.serve', documentName='ip-to-location') }}"
+                                       class="btn btn-info px-5 fs-5 my-3 fw-bold"
+                                       data-aos="fade-up">API {{ _('Documentation') }}</a>
+                                </div>
                             </div>
                         </div>
 
@@ -68,8 +75,8 @@
         <section class="my-5" style="border-top: 1px solid rgba(255,255,255,0.5)">
             <div class="container-fluid">
                 <div class="row mt-5 justify-content-center">
-                    <div class="col-12 my-3">
-                        <h5 class="text-center text-white fs-3" data-aos="zoom-in">Frequently Asked Questions</h5>
+                    <div class="col-12 my-3" data-aos="zoom-in">
+                        <p class="text-center text-white fs-1" data-aos="zoom-in">Frequently Asked Questions</p>
                     </div>
                     <div class="col-11">
                         <div class="row">
@@ -135,30 +142,36 @@
         <section class="mt-5" style="border-top: 1px solid rgba(255,255,255,0.5)">
             <div class="container-fluid my-5">
                 <div class="row justify-content-center">
-                    <div class="col-12">
-                        <h2 class="text-white text-center ">Services That We Provide</h2>
+                    <div class="col-12 my-3" data-aos="zoom-in">
+                        <p class="text-white text-center  fs-1">Services That We Provide</p>
                     </div>
                     <div class="col-11">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2" data-aos="fade-left">
+                                <h4 class="text-warning">Public IP address</h4>
+                                <p class="m-0 answer-faq">
+                                    This Service helps you to get information about your public IP Address
+                                </p>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2" data-aos="fade-left">
                                 <h4 class="text-warning">IP to GeoLocation Service</h4>
                                 <p class="m-0 answer-faq">
                                     This Service helps you to get location of an ip address
                                 </p>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2" data-aos="fade-left">
                                 <h4 class="text-warning">Countries Information</h4>
                                 <p class="m-0 answer-faq">
                                     This service can help you for getting a country full information in json format
                                 </p>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2" data-aos="fade-left">
                                 <h4 class="text-warning">DNS Servers</h4>
                                 <p class="m-0 answer-faq">
                                     This service can help you for getting a full list of a countries DNS servers
                                 </p>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2">
+                            <div class="col-lg-4 col-md-6 col-12 py-3 px-4 shadow-md my-2" data-aos="fade-left">
                                 <h4 class="text-warning">Uptime server</h4>
                                 <p class="m-0 answer-faq">
                                     This service can help you for monitoring your services
@@ -179,8 +192,4 @@
 
 {% block script %}
     <script src="{{ 'index/js/index.js' | StorageUrl }}"></script>
-    <script>
-
-    </script>
-
 {% endblock script %}

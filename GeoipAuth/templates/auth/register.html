@@ -2,11 +2,11 @@
 
 
 {% block title %}
-    {{ _('Login') }}
+    {{ _('create Account') }}
 {% endblock title %}
 
 {% block style %}
-    <link rel="stylesheet" href="{{ 'auth/css/login.css' | StorageUrl }}">
+    <link rel="stylesheet" href="{{ 'auth/css/register.css' | StorageUrl }}">
 {% endblock style %}
 
 {% block content %}
@@ -24,7 +24,7 @@
                                 </a>
                             </div>
                             <div class="card-body">
-                                <form method="post" action="" id="loginForm">
+                                <form method="post" action="" id="RegisterForm">
                                     {{ form.hidden_tag() }}
                                     {{ form.Username() }}
                                     {% if form.Username.errors %}
@@ -46,10 +46,41 @@
                                             {% endfor %}
                                         </ul>
                                     {% endif %}
+                                    {{ form.PasswordConfirm() }}
+                                    {% if form.PasswordConfirm.errors %}
+                                        <ul>
+                                            {% for err in form.PasswordConfirm.errors %}
+                                                <li class="text-danger">
+                                                    {{ err }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+
+                                    {{ form.EmailAddress() }}
+                                    {% if form.EmailAddress.errors %}
+                                        <ul>
+                                            {% for err in form.EmailAddress.errors %}
+                                                <li class="text-danger">
+                                                    {{ err }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+
                                     <div class="captcha-container d-flex justify-content-center align-items-center mt-3">
                                         {{ captchaField }}
                                     </div>
                                     {{ form.Submit() }}
+                                    {% if form.Submit.errors %}
+                                        <ul>
+                                            {% for err in form.Submit.errors %}
+                                                <li class="text-danger">
+                                                    {{ err }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
                                 </form>
                             </div>
                             <div class="card-footer bg-white border-0 d-flex flex-column justify-content-center align-items-center">
@@ -57,7 +88,8 @@
                                     <a href=""
                                        class="text-muted text-center d-block my-2">{{ _('forget Password') }}</a>
                                 </div>
-                                <a href="{{ url_for('auth.register_get') }}" class="btn btn-primary w-100 py-2 fs-5">{{ _('create an account') }}</a>
+                                <a href="{{ url_for('auth.login_get') }}"
+                                   class="btn btn-primary w-100 py-2 fs-5">{{ _('Already registered?') }}</a>
                             </div>
                         </div>
                     </div>

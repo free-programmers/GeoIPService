@@ -81,3 +81,83 @@ class LoginForm(FormFlask):
             "class": "btn bg-danger text-white w-100 py-2 my-3 fs-5 border-0"
         }
     )
+
+
+
+class RegisterForm(FormFlask):
+    """Register Users Form"""
+    Username = StringField(
+        validators=[
+            DataRequired(message=_l("data for this field is required!")),
+            InputRequired(message=_l("input for this field is required!")),
+            Length(
+                min=4,
+                max=128,
+                message=_l
+                ('minimum and maximum length for this field is %(length)s', length="4-128")
+            )
+        ],
+        render_kw={
+            "class": "form-control my-2 py-2",
+            "placeholder": _l("Username")
+        }
+    )
+
+    Password = PasswordField(
+        validators=[
+            DataRequired(message=_l("data for this field is required!")),
+            InputRequired(message=_l("input for this field is required!")),
+            Length(
+                min=6,
+                max=256,
+                message=_l
+                ('minimum and maximum length for this field is %(length)s', length="6-256")
+            )
+        ],
+        render_kw={
+            "class": "form-control my-2 py-2",
+            "placeholder": _l("Password")
+        }
+    )
+
+    PasswordConfirm = PasswordField(
+        validators=[
+            EqualTo("Password", message=_l("Password's are not match")),
+            DataRequired(message=_l("data for this field is required!")),
+            InputRequired(message=_l("input for this field is required!")),
+            Length(
+                min=6,
+                max=256,
+                message=_l
+                ('minimum and maximum length for this field is %(length)s', length="6-256")
+            )
+        ],
+        render_kw={
+            "class": "form-control my-2 py-2",
+            "placeholder": _l("Password Confirm")
+        }
+    )
+
+    EmailAddress = EmailField(
+        validators=[
+            Email(message=_l("invalid email address")),
+            DataRequired(message=_l("data for this field is required!")),
+            InputRequired(message=_l("input for this field is required!")),
+            Length(
+                min=4,
+                max=256,
+                message=_l
+                ('minimum and maximum length for this field is %(length)s', length="11-256")
+            )
+        ],
+        render_kw={
+            "class": "form-control my-2 py-2",
+            "placeholder": _l("Email Address")
+        }
+    )
+
+    Submit = SubmitField(
+        render_kw={
+            "value": _l('Register'),
+            "class": "btn bg-danger  text-white w-100 py-2 my-3 fs-5 border-0"
+        })
