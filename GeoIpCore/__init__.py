@@ -4,8 +4,8 @@ from GeoIpConfig import Setting
 from .extensions import (db, babel, ServerSession, ServerMigrate,
                          ServerMail, RedisServer, ServerCache, ServerCaptcha2)
 
-
 from .utils import celery_init_app
+from .logger import GetStdoutLogger
 from GeoipAuth.model import User
 
 
@@ -40,7 +40,8 @@ def create_app():
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/")
 
-
+    app.viewLOGGER = GetStdoutLogger(name="viewLOGGER")
+    app.simpleLOGGER = GetStdoutLogger(name="simpleLOGGER", type="simple")
     return app
 
 
@@ -50,7 +51,7 @@ def userLocalSelector():
         this func called every time user send a request
     """
     try:
-        return session.get("language", "en") # change with request.best...
+        return session.get("language", "en")  # change with request.best...
     except:
         return "fa"
 
@@ -86,7 +87,7 @@ def set_user_statue():
 
 
 @app.route("/lang/set/<string:language>/")
-def setUserLanguage(language:str):
+def setUserLanguage(language: str):
     """
         this view select a  language for user
     """
@@ -100,6 +101,8 @@ def setUserLanguage(language:str):
 
 
 
+
 from . import views
 from . import context_processor
 from . import template_filter
+

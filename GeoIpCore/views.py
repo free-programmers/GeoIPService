@@ -7,8 +7,10 @@ from . import app
 # framework
 from flask import send_from_directory
 
-if app.debug: # only read this view if debug is on
-    app.logger.warning("Development Serve File View is Up")
+if app.debug:  # only read this view if debug is on
+    app.simpleLOGGER.warning("Flask Serving Static files.\n\t\tbecause app.debug is True")
+
+
     @app.get("/ServeStorageFile/<path:path>")
     def FlaskServeStorageFile(path):
         if os.path.exists(app.config.get("STORAGE_DIR") / path):

@@ -14,3 +14,9 @@ def login_get():
 def register_get():
     form = AuthForm.RegisterForm()
     return render_template("auth/register.html", form=form)
+
+
+@auth.route("/process_activate_account/", methods=["GET"])
+def process_activate_account():
+    # token = token, lang = lang
+    ...
