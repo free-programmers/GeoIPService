@@ -20,7 +20,10 @@ def create_app():
     ServerCaptcha2.init_app(app=app)
 
 
-    # read Apps
+    # read Blueprints
+    from GeoIpAdmin import admin
+    app.register_blueprint(admin, url_prefix="/admin/")
+
     from GeoIpApi import api
     app.register_blueprint(api, url_prefix="/api/v1/")
 
@@ -32,6 +35,8 @@ def create_app():
 
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/")
+
+
 
     return app
 

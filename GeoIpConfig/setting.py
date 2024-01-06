@@ -21,7 +21,7 @@ class Setting:
     """
     BASE_DIR = Path(__file__).parent.parent
     APP_DEBUG_STATUS = os.environ.get("APP_DEBUG", "") == "True"
-    SECRET_KEY = os.environ.get("APP_SECRET_KEY", generateRandomString())
+    SECRET_KEY = os.environ.get("APP_SECRET_KEY", generateRandomString(64))
     STORAGE_DIR = BASE_DIR.joinpath("Storage")
 
     # Database Config
@@ -84,11 +84,12 @@ class Setting:
     MAIL_DEBUG = os.environ.get("MAIL_DEBUG") == "True"
     MAIL_DEFAULT_SENDER = os.environ.get("MAIL_DEFAULT_SENDER")
 
+
     # https: // flask - caching.readthedocs.io / en / latest /  # built-in-cache-backends
     # https: // flask - caching.readthedocs.io / en / latest /  # configuring-flask-caching
     # CACHE_TYPE = "RedisCache"  # NullCache for disable Flask-Caching related os.environs
     CACHE_TYPE = os.environ.get("CACHE_TYPE", 'NullCache')
-    CACHE_DEFAULT_TIMEOUT = ((60 * 60) * 12) # seconds
+    CACHE_DEFAULT_TIMEOUT = ((60 * 60) * 12)  # seconds
     CACHE_REDIS_HOST = os.environ.get("REDIS_HOST", '')
     CACHE_REDIS_PORT = os.environ.get("REDIS_PORT", '')
     CACHE_REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", '')
