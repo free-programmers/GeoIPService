@@ -2,18 +2,17 @@
 
 
 {% block title %}
-    {{ _("IP to Geo") }}
+    {{ _("IP to Geolocation") }}
 {% endblock title %}
 
 {% block style %}
     <link rel="stylesheet" href="{{ 'index/css/index.css' | StorageUrl }}">
-
-
 {% endblock style %}
+
 
 {% block content %}
 
-    <section class="base-index-background p-0 m-0">
+    <section class="base-index-background p-0 m-0" style="overflow-x: hidden">
         {% include "web/utils/navbar.html" %}
         <section class="w-100">
             <div class="container-fluid">
