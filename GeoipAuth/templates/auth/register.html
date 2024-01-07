@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-4 col-md-10 col-11 px-md-5 px-auto">
-                        <div class="card  border-primary border-2 border mx-auto brand-blue-shadow">
+                        <div dir="ltr" class="card border-primary border-2 border mx-auto brand-blue-shadow">
                             <div class="card-header text-center bg-white border-0">
                                 <a href="{{ url_for('web.index_get') }}">
                                     <img src="{{ 'media/logo.png' | StorageUrl }}"
@@ -23,7 +23,7 @@
                                          alt="ip2geo.ir Logo" class="p-0 m-0"/>
                                 </a>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <form method="post" action="" id="RegisterForm">
                                     {{ form.hidden_tag() }}
                                     {{ form.Username() }}

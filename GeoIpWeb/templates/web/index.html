@@ -23,19 +23,18 @@
                          style="height: auto">
 
                         <div class="my-5">
-                            <h4 class="text-center display-4 text-warning fw-bold mt-3 " data-aos="fade-left">IP 2 Geo
+                            <h4 class="text-center display-4 text-warning fw-bold " data-aos="fade-left">IP 2 Geo
                                 Location</h4>
                             <p class="m-0 text-center fs-4 text-gray" data-aos="fade-right">{{ _('Fast') }}, <span
                                     class="text-danger fw-bold">{{ _('Free') }}</span>, {{ _('Easy to use, and') }} Open
                                 Source</p>
                             <p class="m-0 text-center fs-4 text-gray"
-                               data-aos="fade-left">{{ _('Easy to integrate, Available in') }} JSON</p>
+                               data-aos="fade-left">{{ _('Easy to integrate, Available in') }} <span class="text-info">JSON</span></p>
                         </div>
 
                         <div class="container-fluid">
                             <div class="row justify-content-center align-items-center">
-                                <div data-aos="fade-up" class="col-lg-8 col-11 rounded shadow-md"
-                                     style="border: 2px solid rgba(163,160,160,0.7)">
+                                <div data-aos="fade-up" class="col-lg-6 col-11 rounded shadow-md border-info border">
                                     <div class="">
                                     <pre class="mb-0"><code class="language-json bg-transparent">{
       "City": "Mountain View",
@@ -59,7 +58,7 @@
                                 <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center">
                                     <a href="{{ url_for('docs.serve', documentName='ip-to-location') }}"
                                        class="btn btn-info px-5 fs-5 my-3 fw-bold"
-                                       data-aos="fade-up">API {{ _('Documentation') }}</a>
+                                       data-aos="fade-up" data-aos-delay="300">API {{ _('Documentation') }}</a>
                                 </div>
                             </div>
                         </div>

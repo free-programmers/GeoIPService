@@ -6,3 +6,7 @@
     background-size: contain;
     background-color: white;
 }
+
+body{
+    direction: rtl;
+}

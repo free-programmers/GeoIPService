@@ -12,7 +12,7 @@ def serve(documentName: str) -> str:
     """
     Serve Docs
     this view take a file name and search it in docs folder and if file exists read file and serve it to user
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this view cache the response
     """
     documentName += ".html"
