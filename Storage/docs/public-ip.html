@@ -26,17 +26,34 @@
 
 
                     <div class="col-11">
-                        <pre><code class="hljs bash rounded">{ SERVER }/ip/</code></pre>
+                        <pre><code class="language-bash rounded">{ SERVER }/ip/</code></pre>
                     </div>
                     <div class="col-11">
                         <p class="text-white">This Endpoint return Your public IP address in <span class="text-warning">JSON</span>
                             format</p>
+                        <p class="text-white">if my public ip address is 51.195.233.10 this view return a response
+                            like:</p>
                     </div>
                     <div class="col-11">
                     <pre><code class="language-json rounded">{
-  "Country-Code-2D": "IR",
-  "IPv4": "164.215.236.103",
-  "IPv6": "NULL",
+  "Country-Code": "GB",
+  "X-Status": true,
+  "ip": {
+    "v4": {
+      "decimal": 868477194,
+      "hex": "0x33c3e90a",
+      "octet": "51.195.233.10"
+    },
+    "v6": {
+      "decimal": 0,
+      "hex": "0x0",
+      "octet": null
+    }
+  },
+  "more": { // this option gives you more information about your public ip address
+    "v4": "{ SERVER }/api/v1/ipv4/51.195.233.10/",
+    "v6": null
+  }
 }</code></pre>
                     </div>
 
@@ -47,20 +64,20 @@
                     <div class="col-11 my-3">
                         <p class="text-warning fs-5 m-0">Curl</p>
                         <pre><code
-                                class="language-bash shadow-md rounded text-sm hljs">curl https://ip2geo.ip/ip/</code></pre>
+                            class="language-bash shadow-md rounded text-sm ">curl https://ip2geo.ip/ip/</code></pre>
                     </div>
 
 
                     <div class="col-11 my-3">
                         <p class="text-warning fs-5 m-0">Python</p>
-                        <pre><code class="language-Python shadow-md rounded text-sm hljs">import requests
+                        <pre><code class="language-Python shadow-md rounded text-sm">import requests
 response = requests.get("{ SERVER } /ip/")
 print(response.json())</code></pre>
                     </div>
 
                     <div class="col-11 my-3">
                         <p class="text-warning fs-5 m-0">C#</p>
-                        <pre><code class="language-csharp shadow-md rounded text-sm hljs">using System.Net.Http;
+                        <pre><code class="language-csharp shadow-md rounded text-sm">using System.Net.Http;
 
 using var client = new HttpClient();
 using var response = await client.GetAsync("{ SERVER } /ip/");
@@ -71,7 +88,7 @@ Console.WriteLine(content);</code></pre>
 
                     <div class="col-11 my-3">
                         <p class="text-warning fs-5 m-0">PHP</p>
-                        <pre><code class="language-Php shadow-md rounded text-sm hljs">$url = "{ SERVER } /ip/";
+                        <pre><code class="language-php shadow-md rounded text-sm">$url = "{ SERVER } /ip/";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
@@ -81,7 +98,7 @@ $json_data = json_decode($result, true);</code></pre>
 
                     <div class="col-11 my-3">
                         <p class="text-warning fs-5 m-0">JavaScript</p>
-                        <pre><code class="language-javascript shadow-md rounded text-sm hljs">fetch('{ SERVER } /ip/', {
+                        <pre><code class="language-javascript shadow-md rounded text-sm">fetch('{ SERVER } /ip/', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -95,7 +112,7 @@ $json_data = json_decode($result, true);</code></pre>
 
                     <div class="col-11 my-3">
                         <p class="text-warning fs-5 m-0">Javascript - Jquery</p>
-                        <pre><code class="language-javascript shadow-md rounded text-sm hljs">$.get( "{ SERVER } /ip/", function (response) {
+                        <pre><code class="language-js shadow-md rounded text-sm">$.get( "{ SERVER } /ip/", function (response) {
   console.log(response)
 });</code></pre>
                     </div>

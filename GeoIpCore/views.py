@@ -49,7 +49,7 @@ def userOwnIP():
 
     v4intIP = 0
     if ip and ip != "NULL":
-        intIP = int(ipaddress.ip_address(ip))
+        v4intIP = int(ipaddress.ip_address(ip))
 
     return jsonify({
         "ip": {
