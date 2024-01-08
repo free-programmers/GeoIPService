@@ -2,7 +2,7 @@ from flask import Flask, session, url_for, redirect, request
 
 from GeoIpConfig import Setting
 from .extensions import (db, babel, ServerSession, ServerMigrate,
-                         ServerMail, RedisServer, ServerCache, ServerCaptcha2)
+                         ServerMail, RedisServer, ServerCache, ServerCaptcha2, ServerRequestLimiter)
 
 from .utils import celery_init_app
 from .logger import GetStdoutLogger
@@ -23,6 +23,7 @@ def create_app():
     ServerMail.init_app(app=app)
     ServerCache.init_app(app=app)
     ServerCaptcha2.init_app(app=app)
+    ServerRequestLimiter.init_app(app=app)
 
     # read Blueprints
     from GeoipAdmin import admin
