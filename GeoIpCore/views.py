@@ -69,7 +69,7 @@ def userOwnIP():
         "more": {
             "v4": url_for('api.process_ipv4', ipv4=ip, _external=True) if ip else None ,
             "v6": None
-        }
+        },
     })
 
 
