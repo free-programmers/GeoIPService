@@ -80,9 +80,7 @@ def process_ipv6(ipv6):
 
     if not ip_db:
         return CachedResponse(
-            response=make_response(
-                jsonify({"status": "failed", "message": "sorry we dont have any information about this ip address."}),
-                HTTP_200_OK),
+            response=make_response(jsonify({"status": "failed", "message": "sorry we dont have any information about this ip address."}), HTTP_200_OK),
             timeout=((60 * 60) * 6)
         )
     if not more or more != '1':
