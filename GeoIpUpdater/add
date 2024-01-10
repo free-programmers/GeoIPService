@@ -62,3 +62,43 @@ with app.app_context():
             file = totalpath + "/" + file
             with open(file) as f:
                 Thread(target=dooo, args=(current_app._get_current_object(), db, f)).start()
+
+
+
+
+
+from GeoIpCore import app
+from GeoIpApi.model import CountryInfo
+from GeoIpCore.extensions import db
+import json
+import os
+from threading import Thread
+from flask import current_app
+
+def dooo(app, db, fp):
+    with app.app_context():
+            each  = json.load(fp)
+            ip = CountryInfo()
+            ip.CountryCode = each["CCA2"]
+            ip.PublicKey = each["PUBLIC-KEY"]
+            ip.CommonName = each["NAME"]["common"]
+            ip.OfficialName = each["NAME"]["official"]
+            ip.Info = json.dumps(each)
+            try:
+                db.session.add(ip)
+                db.session.commit()
+            except Exception as e:
+                print(e)
+                db.session.rollback()
+            print("Added")
+
+path = "./GeoIpUpdater/Countries-database"
+# with app.app_context():
+#     countries = os.listdir(path)
+#     for each in countries:
+#         totalpath = path + "/" + each
+#         print(totalpath)
+#         for file in os.listdir(totalpath):
+#             file = totalpath + "/" + file
+#             with open(file) as f:
+#                 Thread(target=dooo, args=(current_app._get_current_object(), db, f)).start()
