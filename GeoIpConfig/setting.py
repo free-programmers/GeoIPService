@@ -35,13 +35,14 @@ class Setting:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Redis Config
-    REDIS_URL = os.environ.get("REDIS_URI")
-    REDIS_INTERFACE = redis.Redis().from_url(REDIS_URL)
-    REDIS_PORT = os.environ.get("REDIS_PORT", "")
-    REDIS_HOST = os.environ.get("REDIS_HOST", "")
-    REDIS_USERNAME = os.environ.get("REDIS_USERNAME", "")
-    REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", "")
-    REDIS_DB = os.environ.get("REDIS_DB", 0)
+    REDIS_DEFAULT_URI = os.environ.get("REDIS_DEFAULT_URI")
+    REDIS_SERVER = redis.Redis.from_url(REDIS_DEFAULT_URI)
+    # REDIS_PORT = os.environ.get("REDIS_PORT", "")
+    # REDIS_HOST = os.environ.get("REDIS_HOST", "")
+    # REDIS_USERNAME = os.environ.get("REDIS_USERNAME", "")
+    # REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", "")
+    # REDIS_DB = os.environ.get("REDIS_DB", 0)
+
 
     # session cookie setting
     SESSION_TYPE = "redis"
@@ -51,18 +52,20 @@ class Setting:
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = 'Lax'
     SESSION_COOKIE_NAME = '_session_cookie_'
-    SESSION_REDIS = REDIS_INTERFACE
+    SESSION_REDIS = redis.Redis.from_url(os.environ.get("SESSION_REDIS_URI", REDIS_DEFAULT_URI))
+
 
     # Recaptcha Config <Flask-captcha2>
     RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY", '')
     RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY", '')
-    RECAPTCHA_ENABLED = os.environ.get("RECAPTCHA_ENABLED", False) == "True"
-    RECAPTCHA_LOG = os.environ.get("RECAPTCHA_LOG", True) == "True"
+    RECAPTCHA_ENABLED = os.environ.get("RECAPTCHA_ENABLED", "False") == "True"
+    RECAPTCHA_LOG = os.environ.get("RECAPTCHA_LOG", "True") == "True"
     # RECAPTCHA_THEME = ''
     # RECAPTCHA_TYPE = ''
     # RECAPTCHA_SIZE = ''
     # RECAPTCHA_LANGUAGE = ''
     # RECAPTCHA_TABINDEX = ''
+
 
     # available languages
     LANGUAGES = {
@@ -73,6 +76,7 @@ class Setting:
         # 'ru': "Russian/Россия",
         # 'zh': "Chinese/中国人",
     }
+
 
     # Mail config
     MAIL_SERVER = os.getenv('MAIL_SERVER')
@@ -85,22 +89,22 @@ class Setting:
     MAIL_DEFAULT_SENDER = os.environ.get("MAIL_DEFAULT_SENDER")
 
 
-    # https: // flask - caching.readthedocs.io / en / latest /  # built-in-cache-backends
-    # https: // flask - caching.readthedocs.io / en / latest /  # configuring-flask-caching
-    # CACHE_TYPE = "RedisCache"  # NullCache for disable Flask-Caching related os.environs
-    CACHE_TYPE = os.environ.get("CACHE_TYPE", 'NullCache')
-    CACHE_DEFAULT_TIMEOUT = ((60 * 60) * 12)  # seconds
-    CACHE_REDIS_HOST = os.environ.get("REDIS_HOST", '')
-    CACHE_REDIS_PORT = os.environ.get("REDIS_PORT", '')
-    CACHE_REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", '')
-    CACHE_REDIS_DB = os.environ.get("CACHE_REDIS_DB", '')
-    CACHE_REDIS_URL = (f"redis://{REDIS_HOST}:{REDIS_PORT}/{CACHE_REDIS_DB}")
+    # Flask-Caching config
+    # https://flask-caching.readthedocs.io/en/latest/  # configuring-flask-caching
+    CACHE_TYPE = 'NullCache' if APP_DEBUG_STATUS else os.environ.get("CACHE_TYPE", 'NullCache')
+    CACHE_DEFAULT_TIMEOUT = ((60 * 60) * 12)  # ==> 12 hour  # seconds
+    CACHE_REDIS_URL = (os.environ.get("CACHE_REDIS_URI", REDIS_DEFAULT_URI))
+    # CACHE_REDIS_HOST = os.environ.get("REDIS_HOST", '')
+    # CACHE_REDIS_PORT = os.environ.get("REDIS_PORT", '')
+    # CACHE_REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", '')
+    # CACHE_REDIS_DB = os.environ.get("CACHE_REDIS_DB", '')
     # redis: // user: password @ localhost:6379 / 2
+
 
     # celery config
     CELERY = dict(
-        broker_url=os.environ.get("REDIS_URI_CELERY_BROKER", REDIS_URL),
-        result_backend=os.environ.get("REDIS_URI_CELERY_BACKEND", REDIS_URL),
+        broker_url=os.environ.get("CELERY_BROKER_REDIS_URI", REDIS_DEFAULT_URI),
+        result_backend=os.environ.get("CELERY_BACKEND_REDIS_URI", REDIS_DEFAULT_URI),
         task_ignore_result=True,
         broker_connection_retry_on_startup=True,
         result_serializer="pickle"

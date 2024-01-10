@@ -2,7 +2,7 @@ from flask import Flask, session, url_for, redirect, request
 
 from GeoIpConfig import Setting
 from .extensions import (db, babel, ServerSession, ServerMigrate,
-                         ServerMail, RedisServer, ServerCache, ServerCaptcha2, ServerRequestLimiter)
+                         ServerMail, ServerCache, ServerCaptcha2, ServerRequestLimiter)
 
 from .utils import celery_init_app
 from .logger import GetStdoutLogger

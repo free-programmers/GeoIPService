@@ -1,7 +1,6 @@
 # flask extensions
 
 import os
-from redis import Redis
 from flask_mail import Mail
 from flask_session import Session
 from flask_migrate import Migrate
@@ -15,18 +14,11 @@ from flask_limiter.util import get_remote_address
 
 load_dotenv()
 
-RedisServer = Redis(
-    username=os.environ.get("REDIS_USERNAME", ""),
-    password=os.environ.get("REDIS_PASSWORD", ""),
-    host=os.environ.get("REDIS_HOST", "localhost"),
-    port=os.environ.get("REDIS_PORT", "6379"),
-    db=os.environ.get("REDIS_DB", "0"),
-)
 
 ServerRequestLimiter = Limiter(
     get_remote_address,
-    default_limits=["60 per hour"],
-    storage_uri=os.environ.get("LIMITER_REDIS_URI", "redis://localhost:6379"),
+    default_limits=["60 per minute"],
+    storage_uri=os.environ.get("LIMITER_REDIS_URI", ""),
     storage_options={"socket_connect_timeout": 30},
     strategy="fixed-window",  # or "moving-window"
 )
