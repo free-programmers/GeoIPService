@@ -47,7 +47,7 @@ def process_ipv4(ipv4):
         return jsonify({"status": "success", "data": ip_db.serialize(intIP, ipv4)}), HTTP_200_OK
 
     CountryFullInfo = db.session.execute(
-        db.select(CountryInfo).filter_by(CommonName=ip_db.CountryName)).scalar_one_or_none()
+        db.select(CountryInfo).filter_by(CountryCode=ip_db.CountryCode)).scalar_one_or_none()
 
     if not CountryFullInfo:
         return jsonify(
@@ -89,7 +89,7 @@ def process_ipv6(ipv6):
         return jsonify({"status": "success", "data": ip_db.serialize(intIP, ipv6)}), HTTP_200_OK
 
     CountryFullInfo = db.session.execute(
-        db.select(CountryInfo).filter_by(CommonName=ip_db.CountryName)).scalar_one_or_none()
+        db.select(CountryInfo).filter_by(CountryCode=ip_db.CountryCode)).scalar_one_or_none()
 
     if not CountryFullInfo:
         return jsonify(
