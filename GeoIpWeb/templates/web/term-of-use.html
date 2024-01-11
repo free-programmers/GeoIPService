@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    {{ _("Privacy | Term of Use") }}
+    {{ _("Privacy") }} | {{ _('Term of Use') }}
 {% endblock title %}
 
 {% block style %}
@@ -19,38 +19,36 @@
         <section class="w-100">
             <div class="container-fluid my-5">
                 <div class="row justify-content-center">
-                    <div class="col-11">
-                        <p class="text-center text-warning fw-bold h1">Privacy/Terms of Use</p>
+                    <div class="col-11 my-3">
+                        <p class="text-center text-info fw-bold h1">{{ _('Privacy') }}/ {{ _('Terms of Use') }}</p>
                     </div>
 
                     <div class=" col-11 my-4 ps-5">
-                        <h3 class="t text-white">FREE Account</h3>
-                        <p class="text-white">...</p>
+                        <h3 class="t text-warning">{{  _('FREE Account')  }}</h3>
+                        <p class="text-gray">{{ _('The use of this service is completely free and no fees or subscriptions are required') }}</p>
                     </div>
                     <div class=" col-11 my-4 ps-5">
-                        <h3 class="text-white">Data and Security</h3>
-                        <p class="text-white">We make every effort to provide accurate and up-to-date
-                            information to you, and we also strive to maintain the security of our users.</p>
+                        <h3 class="text-warning">{{  _('Data and Security')  }}</h3>
+                        <p class="text-gray">{{ _('We make every effort to provide accurate and up-to-date information to you, and we also strive to maintain the security of our users.') }}</p>
                     </div>
                     <div class="col-11 my-4 ps-5">
-                        <h3 class="text-white">Cost and services</h3>
-                        <p class="text-white">Our service and offerings are free for the general
-                            public, and there is no cost required to use our service</p>
+                        <h3 class="text-warning">{{  _('Cost and services')  }}</h3>
+                        <p class="text-gray">{{  _('Our service and offerings are free for the general public, and there is no cost required to use our service')  }}</p>
                     </div>
 
                     <div class="col-11 my-4 ps-5">
-                        <h3 class="text-white">Rate Limit</h3>
-                        <p class="text-white">...</p>
+                        <h3 class="text-warning">Rate Limit</h3>
+                        <p class="text-gray">{{ _('In order to prevent DDoS attacks or to reduce the traffic sent to the servers, each view has a rate limit that does not allow users to send more than 60 requests per minute.') }}</p>
                     </div>
 
                     <div class="col-11 my-4 ps-5">
-                        <h3 class="text-white">Price and Donation</h3>
-                        <p class="text-white">...</p>
+                        <h3 class="text-warning">{{ _('Price and Donation') }}</h3>
+                        <p class="text-gray">{{  _('This service is provided completely free of charge, but to support this service, you can donate to us from the links below')  }}</p>
                     </div>
 
                     <div class="col-11 my-4 ps-5">
-                        <h3 class="text-white">IP database</h3>
-                        <p class="text-white">...</p>
+                        <h3 class="text-warning">{{ _('IP database') }}</h3>
+                        <p class="text-gray">{{ _('We receive and update our IP information from reliable sources (open source databases) on a daily basis') }}</p>
                     </div>
 
                 </div>

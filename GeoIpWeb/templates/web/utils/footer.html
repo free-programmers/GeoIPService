@@ -5,18 +5,15 @@
             <div class="col-10 my-2">
                 <div class="row">
                     <div class="col-lg-4 col-md-4  col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center m-md-0 my-3">
-                        <img class="rounded img-fluid" style="width: 45px" src="{{ "media/logo.png" | StorageUrl }}">
+                        <img class="rounded img-fluid" style="width: 45px" src="{{ "media/logo.png" | StorageUrl(external=True) }}">
                         <h6 class="text-white">IP 2 Geo Location / {{ _('Free to Everyone') }}</h6>
-                        <p class="text-white" style="font-size: 15px">© 2023 ip2geo.ir. All rights reserved.</p>
+                        <p class="text-white" style="font-size: 15px">© 2023 ip2geo.ir. {{ _('All rights reserved.') }}</p>
                     </div>
                     <div class="col-lg-4 col-md-4  col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center m-md-0 my-3">
                         <h6 class="text-white">{{ _('Terms of Use') }}</h6>
-                        <a href="" class="text-gray m-0 text-decoration-none"
-                           style="font-size: 15px" class="text-white text-decoration-none">{{ _('Privacy') }}</a>
-                        <a href="{{ url_for('web.contact_us_get') }}" class="text-gray m-0 text-decoration-none"
-                           style="font-size: 15px" class="text-white text-decoration-none">{{ _('Contact Us') }}</a>
-                        <a href="" class="text-white m-0 text-decoration-none"
-                           style="font-size: 15px">{{ _('About us') }}</a>
+                        <a href="" style="font-size: 15px" class="text-white text-decoration-none">{{ _('Privacy') }}</a>
+                        <a href="{{ url_for('web.contact_us_get') }}" style="font-size: 15px" class="text-white text-decoration-none">{{ _('Contact Us') }}</a>
+                        <a href="" class="text-white m-0 text-decoration-none" style="font-size: 15px">{{ _('About us') }}</a>
                     </div>
                     <div class="col-lg-4 col-md-4  col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center m-md-0 my-3">
                         <h5 class="text-white text-center">{{ _('Social Networks') }}</h5>
@@ -34,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-10 my-2"><p class="text-center  text-white">© all rights reserved - 2023</p></div>
+            <div class="col-10 my-2"><p class="text-center  text-white">© {{ _('all rights reserved') }} - 2023</p></div>
         </div>
     </div>
 
