@@ -1,7 +1,7 @@
 <section class="my-2">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-10 ">
+            <div class="col-11 ">
                 <div class="row justify-content-center">
 
                     <div class="col-12">
@@ -9,7 +9,7 @@
                             IP to Location
                         </h1>
                     </div>
-                    <div class="col-11">
+                    <div class="col-md-11 col-12">
                         <p class="text-white my-3" style="text-align: justify" data-aos="fade-left">
                             An IP-to-location service is a type of technology that helps determine the physical location
                             of a particular device based on its IP address. Every device connected to the internet is
@@ -24,21 +24,21 @@
                     </div>
 
 
-                    <div class="col-11">
+                    <div class="col-md-11 col-12">
                         <div class="alert alert-info">
                             <p class="m-0">this View Support <span class="text-danger">IPV4</span> and <span
                                     class="text-danger">IPV6</span> as well</p>
                         </div>
                     </div>
 
-                    <div class="col-11">
+                    <div class="col-md-11 col-12">
                         <p class="m-0 text-white"> Url schema: </p>
                         <pre><code class="language-python rounded">{ SERVER }/api/v1/<span class="text-danger">IP version</span>/<span
                                 class="text-danger">IP address</span>/<span>[true <span
                                 class="text-danger">optional</span>]</span></code></pre>
                     </div>
 
-                    <div class="col-11">
+                    <div class="col-md-11 col-12">
                         <p class="text-white">This Endpoint return Your public IP address in <span class="text-warning">JSON</span>
                             format</p>
                         <p class="text-white">Switches: if you pass <span class="text-warning fw-bold">/true</span> in
@@ -46,12 +46,12 @@
 
                     </div>
 
-                    <div class="col-11">
+                    <div class="col-md-11 col-12">
                         <pre><code class=" rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/true</code></pre>
                         <pre><code class="rounded">{ SERVER }/api/v1/ipv6/::ffff:100:100/true</code></pre>
                     </div>
 
-                    <div class="col-11">
+                    <div class="col-md-11 col-12">
                     <pre><code class="hljs json rounded">{
   "City": "Mountain View",
   "Country": {
@@ -73,14 +73,14 @@
                     </div>
 
 
-                    <div class="col-11 mt-5">
+                    <div class="col-md-11 col-12 mt-5">
                         <h4 class="text-white">Full Answer Look like this:</h4>
                     </div>
-                    <div class="col-11">
+                    <div class="col-md-11 col-12">
                         <pre><code class="hljs python rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/true</code></pre>
                     </div>
 
-                    <div class="col-11" data-aos="fade-up">
+                    <div class="col-md-11 col-12" data-aos="fade-up">
                     <pre><code class="language-json">{
   "data": {
     "CityName": "Tokyo",
@@ -311,17 +311,17 @@
 }</code></pre>
                     </div>
 
-                    <div class="col-11 mt-5">
+                    <div class="col-md-11 col-12 mt-5">
                         <h2 class="text-white">How to Use:</h2>
                     </div>
 
 
-                    <div class="col-11 my-3">
+                    <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Curl</p>
                         <pre><code class="language-bash shadow-md rounded text-sm hljs">curl https://ip2geo.ip/api/v1/8.8.8.8</code></pre>
                     </div>
 
-                    <div class="col-11 my-3">
+                    <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Python</p>
                         <pre><code class="language-python">import requests
 response = requests.get("{ SERVER }/api/v1/ipv4/8.8.8.8")
@@ -329,7 +329,7 @@ response = requests.get("{ SERVER }/api/v1/ipv4/8.8.8.8")
 print(response.json())</code></pre>
                     </div>
 
-                    <div class="col-11 my-3">
+                    <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">C#</p>
                         <pre><code class="language-csharp shadow-md rounded text-sm hljs">using System.Net.Http;
 
@@ -340,7 +340,7 @@ Console.WriteLine(content);</code></pre>
                     </div>
 
 
-                    <div class="col-11 my-3">
+                    <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">PHP</p>
                         <pre><code class="language-Php shadow-md rounded text-sm hljs">$url = "{ SERVER }/api/v1/ipv4/8.8.8.8";
 $ch = curl_init($url);
@@ -350,7 +350,7 @@ curl_close($ch);
 $json_data = json_decode($result, true);</code></pre>
                     </div>
 
-                    <div class="col-11 my-3">
+                    <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">JavaScript</p>
                         <pre><code class="language-javascript shadow-md rounded text-sm hljs">fetch('{ SERVER }/api/v1/ipv4/8.8.8.8', {
   method: 'GET'
@@ -364,7 +364,7 @@ $json_data = json_decode($result, true);</code></pre>
 });</code></pre>
                     </div>
 
-                    <div class="col-11 my-3">
+                    <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Javascript - Jquery</p>
                         <pre><code class="language-javascript shadow-md rounded text-sm hljs">$.get( "{ SERVER }/api/v1/ipv4/8.8.8.8", function (response) {
   console.log(response)
