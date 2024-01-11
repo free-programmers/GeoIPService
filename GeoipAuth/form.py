@@ -5,7 +5,6 @@ from flask_babel import lazy_gettext as _l
 
 
 class FormFlask(FlaskForm):
-
     def validate_username(self):
         """
         Validate username contains valid characters

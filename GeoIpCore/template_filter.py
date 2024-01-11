@@ -12,4 +12,4 @@ def StorageUrl(path: str, external: bool = False):
     if app.config.get("DEBUG"):
         return url_for("FlaskServeStorageFile", path=path, _external=external)  # flask serve
     else:
-        return f"{app.config.get('SERVER') if external else ''}/Storage/{path}"  # Nginx Serve Files
+        return f"{app.config.get('SERVER', '') if external else ''}/Storage/{path}"  # Nginx Serve Files
