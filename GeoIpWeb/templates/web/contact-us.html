@@ -16,7 +16,7 @@
                     <h3 class="text-center text-warning display-5">Contact US</h3>
                 </div>
                     {{ form.hidden_tag() }}
-                    <div class="col-lg-9 col-md-8 col-11 p-0 my-2">
+                    <div class="col-lg-9 col-md-9 col-11 p-0 my-2">
                         <label for="Title" class="text-white fs-5">Title</label>
                         {{ form.Title(id="Title", class="form-control py-2 m-0", placeholder="Title / Name") }}
                         {% if form.Title.errors %}
@@ -25,7 +25,7 @@
                             {% endfor %}
                         {% endif %}
                     </div>
-                    <div class="col-lg-9 col-md-8 col-11 p-0 my-2">
+                    <div class="col-lg-9 col-md-9 col-11 p-0 my-2">
                         <label for="Email" class="text-white fs-5">Email</label>
                         {{ form.Email(id="Email", class="form-control py-2 m-0", placeholder="Email Address") }}
                         {% if form.Email.errors %}
@@ -34,7 +34,7 @@
                             {% endfor %}
                         {% endif %}
                     </div>
-                    <div class="col-lg-9 col-md-8 col-11 p-0 my-2">
+                    <div class="col-lg-9 col-md-9 col-11 p-0 my-2">
                         <label for="Message" class="text-white fs-5">Title</label>
                         {{ form.Message(rows="10" ,id="Message", class="form-control py-2 m-0", placeholder="Message") }}
                         {% if form.Message.errors %}
@@ -43,10 +43,10 @@
                             {% endfor %}
                         {% endif %}
                     </div>
-                    <div class="col-lg-9 col-md-8 col-11 p-0 my-2">
+                    <div class="col-lg-9 col-md-9 col-11 p-0 my-2">
                         {{ captchaField  }}
                     </div>
-                    <div class="col-lg-9 col-md-8 col-11 p-0 d-flex justify-content-start align-items-center">
+                    <div class="col-lg-9 col-md-9 col-11 p-0 d-flex justify-content-start align-items-center">
                         {{ form.submit() }}
                     </div>
                 </div>
