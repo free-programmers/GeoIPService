@@ -67,14 +67,14 @@ def userOwnIP():
         "Country-Code": Country_code_2D,
         "X-Status": True if ip and Country_code_2D else False,
         "more": {
-            "v4": url_for('api.process_ipv4', ipv4=ip, _external=True) if ip else None ,
+            "v4": url_for('api.process_ipv4', ipv4=ip, _external=True) if ip else None,
             "v6": None
         },
     })
 
 
 if app.debug:  # only read this view if debug is on
-    app.simpleLOGGER.warning("Flask Serving Static files.\n\t\tbecause app.debug is True")
+    app.simpleLOGGER.warning("\tFlask Serving Static files.\n\tbecause app.debug is True")
 
 
     @app.get("/ServeStorageFile/<path:path>")
