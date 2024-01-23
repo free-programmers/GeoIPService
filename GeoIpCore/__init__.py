@@ -1,5 +1,6 @@
 from flask import Flask, session, url_for, redirect, request
 
+
 from GeoIpConfig import Setting
 from .extensions import (db, babel, ServerSession, ServerMigrate,
                          ServerMail, ServerCache, ServerCaptcha2, ServerRequestLimiter)
@@ -105,3 +106,4 @@ def setUserLanguage(language: str):
 from . import views
 from . import context_processor
 from . import template_filter
+
