@@ -37,7 +37,7 @@ function push_notification(toast, time) {
 
 async function setUP() {
     let notifications = await get_notifications();
-    waiter = 500;
+    waiter = 980;
     notifications.forEach((each, index) => {
         window.setTimeout((e) => {
             toast = create_toast_object(

@@ -16,8 +16,6 @@ from flask_babel import lazy_gettext as _l
 @web.route("/", methods=["GET"])
 def index_get() -> str:
     """Render Index Page"""
-    flash(_l("invalid request"), "daner")
-
     return render_template("web/index.html")
 
 
@@ -36,7 +34,7 @@ def contact_us_get() -> str:
 
 @web.route("/contact-us/", methods=["POST"])
 def contact_us_post() -> str:
-    """Render term of use privacy page to user"""
+    """saving contact us messages"""
     form = WebForm.ContactUsForm()
     if not ServerCaptcha2.is_verify():
         flash(_l("invalid captcha"), "daner")
@@ -60,6 +58,5 @@ def contact_us_post() -> str:
 
 @web.route("/about-us/", methods=["GET"])
 def about_us_get() -> str:
-    """Render term of use privacy page to user"""
-    form = WebForm.ContactUsForm()
-    return render_template("web/contact-us.html", form=form)
+    """Render about us page"""
+    return render_template("web/about-us.html")

@@ -8,4 +8,4 @@ web = Blueprint(
     static_url_path="WebStaticStorage",
 )
 
-import GeoIpWeb.views
+from . import views, model

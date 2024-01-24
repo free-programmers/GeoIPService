@@ -35,7 +35,7 @@
                         {% endif %}
                     </div>
                     <div class="col-lg-9 col-md-9 col-11 p-0 my-2">
-                        <label for="Message" class="text-white fs-5">Title</label>
+                        <label for="Message" class="text-white fs-5">Message</label>
                         {{ form.Message(rows="10" ,id="Message", class="form-control py-2 m-0", placeholder="Message") }}
                         {% if form.Message.errors %}
                             {% for err in form.Message.errors %}
