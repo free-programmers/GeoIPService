@@ -12,6 +12,10 @@ import khayyam
 from celery import Celery, Task
 
 
+def user_real_ip():
+    return request.headers.get('X-Real-Ip', request.remote_addr)
+
+
 def Make_API_Cache_Key(*args, **kwargs):
     # every time a view point is called this function is called and
     # return  a unique key for searching in redis

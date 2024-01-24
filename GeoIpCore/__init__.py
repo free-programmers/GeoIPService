@@ -5,7 +5,7 @@ from GeoIpConfig import Setting
 from .extensions import (db, babel, ServerSession, ServerMigrate,
                          ServerMail, ServerCache, ServerCaptcha2, ServerRequestLimiter)
 
-from .utils import celery_init_app
+from .utils import celery_init_app, user_real_ip
 from .logger import GetStdoutLogger
 from GeoipAuth.model import User
 
@@ -86,6 +86,7 @@ def set_user_statue():
     request.is_authenticated = session.get("login", False)
     request.user_object = db.session.execute(
         db.select(User).filter_by(id=session.get("account-id", None))).scalar_one_or_none()
+    request.real_ip = user_real_ip()
 
 
 @app.route("/lang/set/<string:language>/")
@@ -106,4 +107,4 @@ def setUserLanguage(language: str):
 from . import views
 from . import context_processor
 from . import template_filter
-
+from . import errors

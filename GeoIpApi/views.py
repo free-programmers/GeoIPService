@@ -6,7 +6,7 @@ from . import api
 from .model import IPV4, IPV6, CountryInfo
 from .utils import convert_IP2intv6, convert_IP2intv4
 
-from GeoIpCore.extensions import ServerCache, db
+from GeoIpCore.extensions import ServerCache, db, ServerRequestLimiter
 from GeoIpConfig.http.code import HTTP_400_BAD_REQUEST, HTTP_200_OK
 from GeoIpCore.utils import Make_API_Cache_Key
 
@@ -15,6 +15,7 @@ from flask_caching import CachedResponse
 
 
 @api.get("/ipv4/<string:ipv4>/")
+@ServerRequestLimiter.limit("60/minute")
 @ServerCache.cached(make_cache_key=Make_API_Cache_Key)
 def process_ipv4(ipv4):
     more = (request.args.get("more", None))
@@ -58,6 +59,7 @@ def process_ipv4(ipv4):
 
 
 @api.get("/ipv6/<string:ipv6>/")
+@ServerRequestLimiter.limit("60/minute")
 @ServerCache.cached(make_cache_key=Make_API_Cache_Key)
 def process_ipv6(ipv6):
     more = (request.args.get("more", None))

@@ -52,6 +52,31 @@ path = "./GeoIpUpdater/IPV6-database"
 #             with open(file) as f:
 #                 Thread(target=doo, args=(current_app._get_current_object(), db, f)).start()
 
+from GeoIpCore import app
+from GeoIpCore.extensions import db
+from GeoIpApi.model import CountryInfo
+import os
+import json
+from flask import current_app
+from threading import Thread
+def dooo(app, db, fp):
+    with app.app_context():
+            each  = json.load(fp)
+            country = CountryInfo()
+            country.CountryCode = each["CCA2"]
+            country.PublicKey =each["PUBLIC-KEY"]
+            country.CommonName = each["NAME"]["common"]
+            country.OfficialName = each["NAME"]["official"]
+            country.Info = json.dumps(each)
+            try:
+                db.session.add(country)
+                db.session.commit()
+            except Exception as e:
+                print(e)
+                db.session.rollback()
+            print("Added")
+
+
 path = "./GeoIpUpdater/Countries-database"
 with app.app_context():
     countries = os.listdir(path)
