@@ -27,14 +27,14 @@ def create_app():
     ServerRequestLimiter.init_app(app=app)
 
     # read Blueprints
-    from GeoipAdmin import admin
-    app.register_blueprint(admin, url_prefix="/admin/")
+    # from GeoipAdmin import admin
+    # app.register_blueprint(admin, url_prefix="/admin/")
 
     from GeoIpApi import api
     app.register_blueprint(api, url_prefix="/api/v1/")
 
-    from GeoipAuth import auth
-    app.register_blueprint(auth, url_prefix="/auth/")
+    # from GeoipAuth import auth
+    # app.register_blueprint(auth, url_prefix="/auth/")
 
     from GeoIpDocs import docs
     app.register_blueprint(docs, subdomain='docs', url_prefix="/")

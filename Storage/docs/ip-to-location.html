@@ -34,7 +34,7 @@
                     <div class="col-md-11 col-12">
                         <p class="m-0 text-white"> Url schema: </p>
                         <pre><code class="language-python rounded">{ SERVER }/api/v1/<span class="text-danger">IP version</span>/<span
-                                class="text-danger">IP address</span>/<span>[true <span
+                                class="text-danger">IP address</span>/<span>[?more=1,0  <span
                                 class="text-danger">optional</span>]</span></code></pre>
                     </div>
 
@@ -47,8 +47,10 @@
                     </div>
 
                     <div class="col-md-11 col-12">
-                        <pre><code class=" rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/true</code></pre>
-                        <pre><code class="rounded">{ SERVER }/api/v1/ipv6/::ffff:100:100/true</code></pre>
+                        <pre><code class=" rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/<span>[?more=1,0  <span
+                                class="text-danger">optional</span>]</span></code></pre>
+                        <pre><code class="rounded">{ SERVER }/api/v1/ipv6/::ffff:100:100/<span>[?more=1,0  <span
+                                class="text-danger">optional</span>]</span></code></pre>
                     </div>
 
                     <div class="col-md-11 col-12">
@@ -77,7 +79,7 @@
                         <h4 class="text-white">Full Answer Look like this:</h4>
                     </div>
                     <div class="col-md-11 col-12">
-                        <pre><code class="hljs python rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/true</code></pre>
+                        <pre><code class="hljs python rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/?more=1</code></pre>
                     </div>
 
                     <div class="col-md-11 col-12" data-aos="fade-up">
@@ -318,7 +320,7 @@
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Curl</p>
-                        <pre><code class="language-bash shadow-md rounded text-sm hljs">curl https://ip2geo.ip/api/v1/8.8.8.8</code></pre>
+                        <pre><code class="language-bash shadow-md rounded text-sm hljs">curl https://ip2geo.ip/api/v1/ipv4/8.8.8.8</code></pre>
                     </div>
 
                     <div class="col-md-11 col-12 my-3">
