@@ -6,7 +6,7 @@ import os.path
 from . import app
 
 # framework
-from flask import send_from_directory, request, jsonify, url_for
+from flask import send_from_directory, request, jsonify, url_for, get_flashed_messages
 
 
 @app.route("/ip/", methods=["GET"])
@@ -83,3 +83,25 @@ if app.debug:  # only read this view if debug is on
             return send_from_directory(app.config.get("STORAGE_DIR"), path)
         else:
             return f"File Not Found. at: {path}", 404
+
+
+@app.get("/get/notifications/")
+def get_notification():
+    """Notification Messages view
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    This view return user all flash messages in a json
+
+
+    arguments:
+        None -- clear
+
+    return:
+        return all flash messages in a json format
+    """
+    flashes = []
+    messages = get_flashed_messages(with_categories=True)
+
+    for category, message in messages:
+        temp = {"message": message, "category": category}
+        flashes.append(temp)
+    return jsonify(flashes)
