@@ -11,9 +11,9 @@
                     </div>
                     <div class="col-lg-4 col-md-4  col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center m-md-0 my-3">
                         <h6 class="text-white">{{ _('Terms of Use') }}</h6>
-                        <a href="" style="font-size: 15px" class="text-white text-decoration-none">{{ _('Privacy') }}</a>
+                        <a href="{{ url_for('web.term_get') }}" style="font-size: 15px" class="text-white text-decoration-none">{{ _('Privacy') }}</a>
                         <a href="{{ url_for('web.contact_us_get') }}" style="font-size: 15px" class="text-white text-decoration-none">{{ _('Contact Us') }}</a>
-                        <a href="" class="text-white m-0 text-decoration-none" style="font-size: 15px">{{ _('About us') }}</a>
+                        <a href="{{ url_for('web.about_us_get') }}" class="text-white m-0 text-decoration-none" style="font-size: 15px">{{ _('About us') }}</a>
                     </div>
                     <div class="col-lg-4 col-md-4  col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center m-md-0 my-3">
                         <h5 class="text-white text-center">{{ _('Social Networks') }}</h5>

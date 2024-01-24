@@ -70,6 +70,7 @@
         crossorigin="anonymous"></script>
 <script src="{{ 'global/js/global.js' | StorageUrl(external=True) }}"></script>
 {% block alert %}
+    {% include 'web/components/notification.html' %}
 {% endblock %}
 </body>
 
