@@ -24,7 +24,7 @@ class ContactUsForm(FlaskForm):
         validators=[
             DataRequired(),
             InputRequired(),
-            Length(min=6, max=1024)
+            Length(min=6, max=2048)
         ]
     )
 
