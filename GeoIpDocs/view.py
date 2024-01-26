@@ -7,7 +7,7 @@ from flask import current_app, render_template, abort
 
 
 @docs.route("/<string:documentName>/")
-# @ServerCache.cached(timeout=1296000)  # 30 day
+@ServerCache.cached(timeout=1296000)  # 30 day
 def serve(documentName: str) -> str:
     """
     Serve Docs

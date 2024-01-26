@@ -13,10 +13,11 @@ from celery import Celery, Task
 
 
 def user_real_ip():
-    return request.headers.get('X-Real-Ip', request.remote_addr)
+    return request.headers.get('True-Client-Ip', request.headers.get("Ar-Real-Ip", None))
 
 
-def Make_API_Cache_Key(*args, **kwargs):
+
+def make_api_ip_cache_key(*args, **kwargs):
     # every time a view point is called this function is called and
     # return  a unique key for searching in redis
     more = request.args.get("more", type=int, default=0)
@@ -26,6 +27,7 @@ def Make_API_Cache_Key(*args, **kwargs):
         # base url path:
         # http://127.0.0.1:8080/api/v1/ipv4/128.45.45.2/?more=983->> http://127.0.0.1:8080/api/v1/ipv4/128.45.45.2/
         return str(request.path)
+
 
 
 def generateRandomString(len_prob: int = 6) -> str:
