@@ -43,16 +43,3 @@ def convert_IP2intv4(ip: str):
 
     return int(ip)
 
-
-class IPserializer:
-    def serialize(self):
-        return {
-        }
-
-
-class IPV4serializer(IPserializer):
-    ...
-
-
-class IPV6serializer(IPserializer):
-    ...

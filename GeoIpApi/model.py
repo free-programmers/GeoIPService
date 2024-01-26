@@ -80,5 +80,8 @@ class CountryInfo(BaseModel, BaseCOUNTRYSerializer):
     __tablename__ = BaseModel.SetTableName("CountryInfo")
     CommonName = Column(String(255), unique=False, nullable=False)
     OfficialName = Column(String(255), unique=False, nullable=False)
-    CountryCode = Column(String(64), unique=False, nullable=False)
+    CountryCode = Column(String(64), unique=False, nullable=False) #2D
     Info = Column(JSON, unique=False, nullable=False)
+
+    def serialize(self):
+        return json.loads(self.Info)
