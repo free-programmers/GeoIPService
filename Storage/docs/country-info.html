@@ -1,0 +1,103 @@
+<section class="my-5">
+    <div class="container-fluid my-5">
+        <div class="row justify-content-center">
+            <div class="col-11 ">
+                <div class="row justify-content-center">
+
+                    <div class="col-12">
+                        <p class=" h1 text-center text-warning">
+                            Countries Information
+                        </p>
+                    </div>
+                    <div class="col-md-11 col-12">
+                        <p class="text-white my-4" style="text-align: justify">
+                            get full information about all countries in the world.
+                           A country code is a short alphanumeric identification code for countries and dependent areas. Its primary use is in data processing and communications. Several identification systems have been developed.
+                           The term country code frequently refers to ISO 3166-1 alpha-2, as well as the telephone country code, which is embodied in the E.164 recommendation by the International Telecommunication Union (ITU).
+                        </p>
+                        <div class="alert alert-dismissable alert-danger">
+                            <p class="m-0">notice: All of our Endpoints Have a rate limit of 60 request per minute</p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-11 col-12">
+                        <pre><code class="language-bash rounded">{ SERVER }/country/{CountryCode2D}/</code></pre>
+                    </div>
+                    <div class="col-md-11 col-12">
+                        <p class="text-white">This Endpoint return Full information about given country code in<span class="text-warning">JSON</span>
+                            format</p>
+                        <p class="text-white">if country code was ir this view return a response
+                            like:</p>
+                    </div>
+                    <div class="col-md-11 col-12">
+                    <pre><code class="language-json rounded">{"ALTSPELLINGS":["IR","Islamic Republic of Iran","Iran, Islamic Republic of","Jomhuri-ye Esl\u0101mi-ye Ir\u0101n"],"AREA":1648195.0,"BORDERS":["AFG","ARM","AZE","IRQ","PAK","TUR","TKM"],"CAPITAL":["Tehran"],"CAPITALINFO":{"latlng":[35.7,51.42]},"CAR":{"side":"right","signs":["IR"]},"CCA2":"IR","CCA3":"IRN","CCN3":"364","CIOC":"IRI","COATOFARMS":{"png":"https://mainfacts.com/media/images/coats_of_arms/ir.png","svg":"https://mainfacts.com/media/images/coats_of_arms/ir.svg"},"CONTINENTS":["Asia"],"CURRENCIES":{"IRR":{"name":"Iranian rial","symbol":"\ufdfc"}},"DEMONYMS":{"eng":{"f":"Iranian","m":"Iranian"},"fra":{"f":"Iranienne","m":"Iranien"}},"FIFA":"IRN","FLAG":"\ud83c\uddee\ud83c\uddf7","FLAGS":{"alt":"The flag of Iran is composed of three equal horizontal bands of green, white and red. A red emblem of Iran is centered in the white band and Arabic inscriptions in white span the bottom edge of the green band and the top edge of the red band.","png":"https://flagcdn.com/w320/ir.png","svg":"https://flagcdn.com/ir.svg"},"GINI":{"2018":42.0},"IDD":{"root":"+9","suffixes":["8"]},"INDEPENDENT":true,"LANDLOCKED":false,"LANGUAGES":{"fas":"Persian (Farsi)"},"LATLNG":[32.0,53.0],"MAPS":{"googleMaps":"https://goo.gl/maps/dMgEGuacBPGYQnjY7","openStreetMaps":"https://www.openstreetmap.org/relation/304938"},"NAME":{"common":"Iran","nativeName":{"fas":{"common":"\u0627\u06cc\u0631\u0627\u0646","official":"\u062c\u0645\u0647\u0648\u0631\u06cc \u0627\u0633\u0644\u0627\u0645\u06cc \u0627\u06cc\u0631\u0627\u0646"}},"official":"Islamic Republic of Iran"},"POPULATION":83992953,"POSTALCODE":{"format":"##########","regex":"^(\\d{10})$"},"PUBLIC-KEY":"5376b769-2a92-4a52-8465-63c0e1eebc00","REGION":"Asia","STARTOFWEEK":"saturday","STATUS":"officially-assigned","SUBREGION":"Southern Asia","TIMEZONES":["UTC+03:30"],"TLD":[".ir","\u0627\u06cc\u0631\u0627\u0646."],"TRANSLATIONS":{"ara":{"common":"\u0625\u064a\u0631\u0627\u0646","official":"\u062c\u0645\u0647\u0648\u0631\u064a\u0629 \u0625\u064a\u0631\u0627\u0646 \u0627\u0644\u0625\u0633\u0644\u0627\u0645\u064a\u0629"},"bre":{"common":"Iran","official":"Republik Islamek Iran"},"ces":{"common":"\u00cdr\u00e1n","official":"Isl\u00e1msk\u00e1 republika \u00cdr\u00e1n"},"cym":{"common":"Iran","official":"Islamic Republic of Iran"},"deu":{"common":"Iran","official":"Islamische Republik Iran"},"est":{"common":"Iraan","official":"Iraani Islamivabariik"},"fin":{"common":"Iran","official":"Iranin islamilainen tasavalta"},"fra":{"common":"Iran","official":"R\u00e9publique islamique d'Iran"},"hrv":{"common":"Iran","official":"Islamska Republika Iran"},"hun":{"common":"Ir\u00e1n","official":"Ir\u00e1ni Iszl\u00e1m K\u00f6zt\u00e1rsas\u00e1g"},"ita":{"common":"Iran","official":"Repubblica islamica dell'Iran"},"jpn":{"common":"\u30a4\u30e9\u30f3\u30fb\u30a4\u30b9\u30e9\u30e0\u5171\u548c\u56fd","official":"\u30a4\u30e9\u30f3\u00b7\u30a4\u30b9\u30e9\u30e0\u5171\u548c\u56fd"},"kor":{"common":"\uc774\ub780","official":"\uc774\ub780 \uc774\uc2ac\ub78c \uacf5\ud654\uad6d"},"nld":{"common":"Iran","official":"Islamitische Republiek Iran"},"pol":{"common":"Iran","official":"Islamska Republika Iranu"},"por":{"common":"Ir\u00e3o","official":"Rep\u00fablica Isl\u00e2mica do Ir\u00e3"},"rus":{"common":"\u0418\u0440\u0430\u043d","official":"\u0418\u0441\u043b\u0430\u043c\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0418\u0440\u0430\u043d"},"slk":{"common":"Ir\u00e1n","official":"Ir\u00e1nska islamsk\u00e1 republika"},"spa":{"common":"Iran","official":"Rep\u00fablica Isl\u00e1mica de Ir\u00e1n"},"srp":{"common":"\u0418\u0440\u0430\u043d","official":"\u0418\u0441\u043b\u0430\u043c\u0441\u043a\u0430 \u0420\u0435\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0418\u0440\u0430\u043d"},"swe":{"common":"Iran","official":"Islamiska republiken Iran"},"tur":{"common":"\u0130ran","official":"\u0130ran \u0130slam Cumhuriyeti"},"urd":{"common":"\u0627\u06cc\u0631\u0627\u0646","official":"\u062c\u0645\u06c1\u0648\u0631\u06cc\u06c1 \u0627\u06cc\u0631\u0627\u0646"},"zho":{"common":"\u4f0a\u6717","official":"\u4f0a\u6717\u4f0a\u65af\u5170\u5171\u548c\u56fd"}},"UNMEMBER":true,"X-PROVIDE":"https://ip2geo.ir"}</code></pre>
+                    </div>
+
+                    <div class="col-md-11 col-12 mt-5">
+                        <h2 class="text-white">How to Use:</h2>
+                    </div>
+
+                    <div class="col-md-11 col-12 my-3">
+                        <p class="text-warning fs-5 m-0">Curl</p>
+                        <pre><code
+                                class="language-bash shadow-md rounded text-sm ">curl https://www.ip2geo.ir/country/{CountryCode2D}</code></pre>
+                    </div>
+
+
+                    <div class="col-md-11 col-12 my-3">
+                        <p class="text-warning fs-5 m-0">Python</p>
+                        <pre><code class="language-Python shadow-md rounded text-sm">import requests
+response = requests.get("{ SERVER } /ip/")
+print(response.json())</code></pre>
+                    </div>
+
+                    <div class="col-md-11 col-12 my-3">
+                        <p class="text-warning fs-5 m-0">C#</p>
+                        <pre><code class="language-csharp shadow-md rounded text-sm">using System.Net.Http;
+
+using var client = new HttpClient();
+using var response = await client.GetAsync("{ SERVER }/country/{CountryCode2D}");
+var content = await response.Content.ReadAsStringAsync();
+Console.WriteLine(content);</code></pre>
+                    </div>
+
+
+                    <div class="col-md-11 col-12 my-3">
+                        <p class="text-warning fs-5 m-0">PHP</p>
+                        <pre><code class="language-php shadow-md rounded text-sm">$url = "{ SERVER } /country/{CountryCode2D}";
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$result = curl_exec($ch);
+curl_close($ch);
+$json_data = json_decode($result, true);</code></pre>
+                    </div>
+
+                    <div class="col-md-11 col-12 my-3">
+                        <p class="text-warning fs-5 m-0">JavaScript</p>
+                        <pre><code class="language-javascript shadow-md rounded text-sm">fetch('{ SERVER } /country/{CountryCode2D}', {
+  method: 'GET'
+})
+.then(response => response.json())
+.then(jsonData => {
+  console.log(jsonData);
+})
+.catch((Exception) => {
+  console.error(Exception);
+});</code></pre>
+                    </div>
+
+                    <div class="col-md-11 col-12 my-3">
+                        <p class="text-warning fs-5 m-0">Javascript - Jquery</p>
+                        <pre><code class="language-js shadow-md rounded text-sm">$.get( "{ SERVER } /country/{CountryCode2D}", function (response) {
+  console.log(response)
+});</code></pre>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
