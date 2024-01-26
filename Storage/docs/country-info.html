@@ -22,7 +22,7 @@
 
 
                     <div class="col-md-11 col-12">
-                        <pre><code class="language-bash rounded">{ SERVER }/country/{CountryCode2D}/</code></pre>
+                        <pre><code class="language-bash rounded">{ SERVER }/api/v1/api/v1/country/{CountryCode2D}//</code></pre>
                     </div>
                     <div class="col-md-11 col-12">
                         <p class="text-white">This Endpoint return Full information about given country code in<span class="text-warning">JSON</span>
@@ -259,7 +259,7 @@
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Curl</p>
                         <pre><code
-                                class="language-bash shadow-md rounded text-sm ">curl https://www.ip2geo.ir/country/{CountryCode2D}</code></pre>
+                                class="language-bash shadow-md rounded text-sm ">curl https://www.ip2geo.ir/api/v1/country/{CountryCode2D}/</code></pre>
                     </div>
 
 
@@ -275,7 +275,7 @@ print(response.json())</code></pre>
                         <pre><code class="language-csharp shadow-md rounded text-sm">using System.Net.Http;
 
 using var client = new HttpClient();
-using var response = await client.GetAsync("{ SERVER }/country/{CountryCode2D}");
+using var response = await client.GetAsync("{ SERVER }/api/v1/country/{CountryCode2D}/");
 var content = await response.Content.ReadAsStringAsync();
 Console.WriteLine(content);</code></pre>
                     </div>
@@ -283,7 +283,7 @@ Console.WriteLine(content);</code></pre>
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">PHP</p>
-                        <pre><code class="language-php shadow-md rounded text-sm">$url = "{ SERVER } /country/{CountryCode2D}";
+                        <pre><code class="language-php shadow-md rounded text-sm">$url = "{ SERVER } /api/v1/country/{CountryCode2D}/";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
@@ -293,7 +293,7 @@ $json_data = json_decode($result, true);</code></pre>
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">JavaScript</p>
-                        <pre><code class="language-javascript shadow-md rounded text-sm">fetch('{ SERVER } /country/{CountryCode2D}', {
+                        <pre><code class="language-javascript shadow-md rounded text-sm">fetch('{ SERVER } /api/v1/country/{CountryCode2D}/', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -307,7 +307,7 @@ $json_data = json_decode($result, true);</code></pre>
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Javascript - Jquery</p>
-                        <pre><code class="language-js shadow-md rounded text-sm">$.get( "{ SERVER } /country/{CountryCode2D}", function (response) {
+                        <pre><code class="language-js shadow-md rounded text-sm">$.get( "{ SERVER } /api/v1/country/{CountryCode2D}/", function (response) {
   console.log(response)
 });</code></pre>
                     </div>
