@@ -31,7 +31,7 @@ def create_app():
     # app.register_blueprint(admin, url_prefix="/admin/")
 
     from GeoIpApi import api
-    app.register_blueprint(api, url_prefix="/api/v1/")
+    app.register_blueprint(api, url_prefix="/api/v1/", subdomain="www")
 
     # from GeoipAuth import auth
     # app.register_blueprint(auth, url_prefix="/auth/")
@@ -40,7 +40,7 @@ def create_app():
     app.register_blueprint(docs, subdomain='docs', url_prefix="/")
 
     from GeoIpWeb import web
-    app.register_blueprint(web, url_prefix="/")
+    app.register_blueprint(web, url_prefix="/", subdomain="www")
 
     app.viewLOGGER = GetStdoutLogger(name="viewLOGGER")
     app.simpleLOGGER = GetStdoutLogger(name="simpleLOGGER", type="simple")
