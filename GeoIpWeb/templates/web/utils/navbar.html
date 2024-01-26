@@ -42,9 +42,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item text-end" role="button" data-bs-toggle="modal" data-bs-target="#"
-                               href="#UnderDevelopmentModal">{{ _('Country info API') }}</a></li>
-                        <li><a class="dropdown-item text-end" role="button" data-bs-toggle="modal" data-bs-target="#"
-                               href="#UnderDevelopmentModal">{{ _('Country flag API') }}</a></li>
+                               href="{{ url_for('docs.serve', documentName='country-info') }}">{{ _('Country info API') }}</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -58,7 +56,7 @@
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a href="#UnderDevelopmentModal" class="nav-link text-white">Login/Register</a>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#" href="#UnderDevelopmentModal" class="nav-link text-white">Login/Register</a>
                 </li>
 
             </ul>
