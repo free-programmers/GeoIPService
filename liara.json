@@ -1,5 +1,5 @@
 {
-  "app": "geopip",
+  "app": "ip2geo",
   "platform": "flask",
   "flask": {
     "pythonVersion": "3.11",
