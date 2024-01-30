@@ -1,5 +1,6 @@
-from . import app
 from flask import url_for
+
+from . import app
 
 
 @app.template_filter('StorageUrl')

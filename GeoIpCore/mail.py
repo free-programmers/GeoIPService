@@ -2,25 +2,21 @@
 import pickle
 from threading import Thread
 
+from celery import shared_task
 # framework
 from flask import current_app, render_template
-from flask_mail import Message
-
-
 # libs
 from flask_babel import lazy_gettext as _l
-
+from flask_mail import Message
 
 # app
 from GeoIpCore.extensions import ServerMail
-from celery import shared_task
 
 
 def async_send_email_thread(app, msg):
     """ Sending email asynchronously using threading lib """
     with app.app_context():
         ServerMail.send(msg)
-        
 
 
 @shared_task(ignore_result=True)
@@ -30,9 +26,9 @@ def async_send_email_celery(msg):
     ServerMail.send(msg)
 
 
-def send_email(recipients:[], subject:str, sender:str, text_body:str="", html_body:str="",
-               attachments:bool=None, async_thread:bool=False,
-               async_celery:bool=False, language:str="en"):
+def send_email(recipients: [], subject: str, sender: str, text_body: str = "", html_body: str = "",
+               attachments: bool = None, async_thread: bool = False,
+               async_celery: bool = False, language: str = "en"):
     """ This function sends mail via flask-mail
     Args:
         recipients:list = recipient of email (user's email address)

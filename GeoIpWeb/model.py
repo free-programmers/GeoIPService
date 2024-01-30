@@ -3,6 +3,7 @@ from sqlalchemy import Column, String
 
 
 class ContactUS(BaseModel):
+    """  """
     __tablename__ = BaseModel.SetTableName("ContactUs")
 
     Title = Column(String(255), nullable=False, unique=False)

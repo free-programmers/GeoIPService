@@ -1,12 +1,11 @@
 # build in
 import os.path
 
-# App
-from . import app
-
 # framework
 from flask import send_from_directory
 
+# App
+from . import app
 
 if app.debug:  # only read this view if debug is on
     app.simpleLOGGER.warning("\tFlask Serving Static files.\n\tbecause app.debug is True")
@@ -18,4 +17,3 @@ if app.debug:  # only read this view if debug is on
             return send_from_directory(app.config.get("STORAGE_DIR"), path)
         else:
             return f"File Not Found. at: {path}", 404
-

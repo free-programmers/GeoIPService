@@ -2,19 +2,18 @@ from flask import Flask, session, url_for, redirect, request
 
 from GeoIpConfig import Setting
 from GeoipAuth.model import User
-
-from .utils import celery_init_app, user_real_ip
-from .logger import GetStdoutLogger
 from .extensions import (db, babel, ServerSession, ServerMigrate,
                          ServerMail, ServerCache, ServerCaptcha2, ServerRequestLimiter)
+from .logger import GetStdoutLogger
+from .utils import celery_init_app, user_real_ip
 
 
-def create_app(None) -> Flask:
+def create_app() -> Flask:
     """Factory function for main flask app with all configs.
     this function creates an app and then it adds all blueprints
     and configs to it.
     """
-  
+
     app = Flask(__name__)
     app.config.from_object(Setting)
 
@@ -31,19 +30,18 @@ def create_app(None) -> Flask:
     ServerRequestLimiter.init_app(app=app)
 
     # Register all Blueprints
-  
+
     # from GeoipAdmin import admin
     # app.register_blueprint(admin, url_prefix="/admin/")
 
     # from GeoipAuth import auth
     # app.register_blueprint(auth, url_prefix="/auth/")
 
-  
     from GeoIpApi import api
     app.register_blueprint(api, url_prefix="/api/v1/", subdomain="www")
 
     from GeoIpDocs import docs
-    app.register_blueprint(docs, url_prefix="/",  subdomain='docs')
+    app.register_blueprint(docs, url_prefix="/", subdomain='docs')
 
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/", subdomain="www")
@@ -97,18 +95,15 @@ def middle_ware_center():
 
 
     """
-    request.user_object = db.session.execute(db.select(User)
-                                             .filter_by(id=session.get("account-id", None)))
-                                              .scalar_one_or_none()
-  
+    request.user_object = db.session.execute(
+        db.select(User).filter_by(id=session.get("account-id", None))).scalar_one_or_none()
     request.current_language = userLocalSelector()
     request.is_authenticated = session.get("login", False)
-    
-  request.real_ip = user_real_ip()
+    request.real_ip = user_real_ip()
 
 
 @app.route("/lang/set/<string:language>/")
-def setUserLanguage(language: str) -> :
+def setUserLanguage(language: str):
     """This view set a language for user in session"""
     location = (request.referrer or url_for('web.index_get'))
 
@@ -117,7 +112,6 @@ def setUserLanguage(language: str) -> :
     else:
         session["language"] = language
         return redirect(location)
-
 
 
 from . import views

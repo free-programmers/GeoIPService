@@ -1,19 +1,20 @@
 # flask extensions
 
 import os
-from flask_mail import Mail
-from flask_session import Session
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from flask_captcha2 import FlaskCaptcha2
-from flask_babel import Babel
+
 from dotenv import load_dotenv
+from flask_babel import Babel
 from flask_caching import Cache
+from flask_captcha2 import FlaskCaptcha2
 from flask_limiter import Limiter
+from flask_mail import Mail
+from flask_migrate import Migrate
+from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
 
 from .utils import user_real_ip
-load_dotenv()
 
+load_dotenv()
 
 ServerRequestLimiter = Limiter(
     user_real_ip,

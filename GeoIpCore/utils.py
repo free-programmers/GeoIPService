@@ -4,21 +4,19 @@ import random
 import secrets
 from string import punctuation, digits, ascii_letters
 
-# framework
-from flask import Flask, request
-
 # libs
 import khayyam
 from celery import Celery, Task
+# framework
+from flask import Flask, request
 
 
-def user_real_ip(None) -> str:
+def user_real_ip() -> str:
     """ This Function returns users actual public IP address, base on ArvanCloud HTTP header
 
     according to arvancloud documentations `True-Client-Ip` http header contains users actual IP address 
     """
     return request.headers.get('True-Client-Ip', request.headers.get("Ar-Real-Ip", None))
-
 
 
 def make_api_ip_cache_key(*args, **kwargs) -> str:
@@ -27,13 +25,12 @@ def make_api_ip_cache_key(*args, **kwargs) -> str:
     for searching in redis cache server
     """
     more = request.args.get("more", type=int, default=0)
-    if more and more == 1: # if ?more is passing 
+    if more and more == 1:  # if ?more is passing
         return str(request.url)
     else:
         # base url path:
         # http://127.0.0.1:8080/api/v1/ipv4/128.45.45.2/?more=983->> http://127.0.0.1:8080/api/v1/ipv4/128.45.45.2/
         return str(request.path)
-
 
 
 def generateRandomString(len_prob: int = 6) -> str:
@@ -56,7 +53,7 @@ def celery_init_app(app: Flask) -> Celery:
         """Every time a task is added to queue __call__ is called """
 
         def __call__(self, *args: object, **kwargs: object) -> object:
-            with app.app_context(): # under flask context
+            with app.app_context():  # under flask context
                 return self.run(*args, **kwargs)
 
     celery_app = Celery(app.name, task_cls=FlaskTask)

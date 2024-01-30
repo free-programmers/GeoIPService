@@ -1,17 +1,15 @@
 # build in
-import uuid
 import datetime
+import uuid
 
+# framework
+from flask import current_app
 # lib
 from sqlalchemy import String, DateTime, Integer, Column
 
-
+from GeoIpConfig.setting import DATABASE_TABLE_PREFIX_NAME
 # app
 from .extensions import db
-from GeoIpConfig.setting import DATABASE_TABLE_PREFIX_NAME
-
-# framwork
-from flask import current_app
 
 
 class BaseModel(db.Model):
@@ -21,7 +19,7 @@ class BaseModel(db.Model):
     id = Column(Integer, primary_key=True)
 
     @staticmethod
-    def SetTableName(name:str) -> str:
+    def SetTableName(name: str) -> str:
         """Use This Method For setting a table name.
             this method normalize table name and then 
             added DATABASE TABLE PREFIX NAME to beginning of table name        
@@ -39,7 +37,6 @@ class BaseModel(db.Model):
             else:
                 self.PublicKey = token
                 return True
-                
 
     PublicKey = Column(String(36), nullable=False, unique=True)
     CreatedTime = Column(DateTime, default=datetime.datetime.utcnow)
