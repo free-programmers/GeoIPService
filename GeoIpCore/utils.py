@@ -12,16 +12,22 @@ import khayyam
 from celery import Celery, Task
 
 
-def user_real_ip():
+def user_real_ip(None) -> str:
+    """ This Function returns users actual public IP address, base on ArvanCloud HTTP header
+
+    according to arvancloud documentations `True-Client-Ip` http header contains users actual IP address 
+    """
     return request.headers.get('True-Client-Ip', request.headers.get("Ar-Real-Ip", None))
 
 
 
-def make_api_ip_cache_key(*args, **kwargs):
-    # every time a view point is called this function is called and
-    # return  a unique key for searching in redis
+def make_api_ip_cache_key(*args, **kwargs) -> str:
+    """ every time an api view  called this function is calling
+    and base on api url this function generate a unique key for that view 
+    for searching in redis cache server
+    """
     more = request.args.get("more", type=int, default=0)
-    if more and more == 1:
+    if more and more == 1: # if ?more is passing 
         return str(request.url)
     else:
         # base url path:
@@ -31,8 +37,7 @@ def make_api_ip_cache_key(*args, **kwargs):
 
 
 def generateRandomString(len_prob: int = 6) -> str:
-    """
-    this function generates random string included punctuation number and ascii_letters
+    """This function generates random strings including punctuation number and ascii_letters
     #TODO:
         this function should act base on input flags
                     punctuation: bool = True, digits: bool = True,
@@ -48,11 +53,10 @@ def generateRandomString(len_prob: int = 6) -> str:
 
 def celery_init_app(app: Flask) -> Celery:
     class FlaskTask(Task):
-        """Every time a task is added to queue __call__ is called
-        """
+        """Every time a task is added to queue __call__ is called """
 
         def __call__(self, *args: object, **kwargs: object) -> object:
-            with app.app_context():
+            with app.app_context(): # under flask context
                 return self.run(*args, **kwargs)
 
     celery_app = Celery(app.name, task_cls=FlaskTask)
