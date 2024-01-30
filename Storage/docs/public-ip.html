@@ -31,31 +31,74 @@
                     <div class="col-md-11 col-12">
                         <p class="text-white">This Endpoint return Your public IP address in <span class="text-warning">JSON</span>
                             format</p>
-                        <p class="text-white">if my public ip address is 51.195.233.10 this view return a response
-                            like:</p>
+                        <p class="text-white">if your public ip address is 51.195.233.10 this view return a response like:</p>
                     </div>
                     <div class="col-md-11 col-12">
                     <pre><code class="language-json rounded">{
-  "Country-Code": "GB",
-  "X-Status": true,
-  "ip": {
-    "v4": {
-      "decimal": 868477194,
-      "hex": "0x33c3e90a",
-      "octet": "51.195.233.10"
+  "COUNTRY-CODE": "GB",
+  "X-STATUS": true,
+  "IP": {
+    "V4": {
+      "HEX": "0x33c3e90a",
+      "DECIMAL": 868477194,
+      "OCTET": "51.195.233.10"
     },
-    "v6": {
-      "decimal": 0,
-      "hex": "0x0",
-      "octet": null
+    "V6": {
+      "HEX": "0x0",
+      "DECIMAL": 0,
+      "OCTET": null
     }
   },
-  "more": { // this option gives you more information about your public ip address
-    "v4": "{ SERVER }/api/v1/ipv4/51.195.233.10/",
-    "v6": null
+  "MORE": { // this option gives you more information about your public ip address
+    "V4": "{ SERVER }/api/v1/ipv4/51.195.233.10/",
+    "V6": null
   }
 }</code></pre>
                     </div>
+
+                    <div class="col-md-11 col-12 mt-5">
+                        <p class="h1 text-center text-warning">response info</p>
+                        <table class="table table-responsive table-primary table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>key</th>
+                                    <th>type</th>
+                                    <th>value</th>
+                                    <th>description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>COUNTRY-CODE</td>
+                                    <td><span class="badge bg-primary">string</span></td>
+                                    <td>2D Country Code</td>
+                                    <td>2D Country Code of public IP address</td>
+                                </tr>
+                                <tr>
+                                    <td>X-STATUS</td>
+                                    <td><span class="badge bg-info">boolean</span></td>
+                                    <td>status of request in web service</td>
+                                    <td><span class="badge bg-danger">true</span> if request is done, <span class="badge bg-success">false</span> if there was an error in request</td>
+                                </tr>
+                                <tr>
+                                    <td>IP</td>
+                                    <td><span class="badge bg-warning">JSON/Object</span></td>
+                                    <td>hex/octet/decimal of IP address</td>
+                                    <td>public IP address in three format</td>
+                                </tr>
+                                <tr>
+                                    <td>MORE</td>
+                                    <td><span class="badge bg-warning">JSON/Object</span></td>
+                                    <td>more information about IP address</td>
+                                    <td>links for getting more information about ip address</td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
 
                     <div class="col-md-11 col-12 mt-5">
                         <h2 class="text-white">How to Use:</h2>

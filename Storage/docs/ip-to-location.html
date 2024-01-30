@@ -1,59 +1,313 @@
-<section class="my-5">
-    <div class="container-fluid my-5">
+<section class="my-2">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-11 ">
                 <div class="row justify-content-center">
 
                     <div class="col-12">
-                        <p class=" h1 text-center text-warning">
-                            Public IP address
-                        </p>
+                        <h1 class="text-center text-warning fs-1" data-aos="zoom-in" data-aos-delay="300">
+                            IP to Location
+                        </h1>
                     </div>
                     <div class="col-md-11 col-12">
-                        <p class="text-white my-4" style="text-align: justify">
-                            A public IP address is a unique identifier assigned to a device that is connected to the
-                            Internet. This address allows other devices on the Internet to communicate with the device
-                            that has been assigned the public IP address. Public IP addresses are typically provided by
-                            an Internet Service Provider (ISP) and can be either dynamic, meaning they can change over
-                            time, or static, meaning they remain the same for an extended period of time. Public IP
-                            addresses are different from private IP addresses, which are used to identify devices on a
-                            local network.
+                        <p class="text-white my-3" style="text-align: justify" data-aos="fade-left">
+                            An IP-to-location service is a type of technology that helps determine the physical location
+                            of a particular device based on its IP address. Every device connected to the internet is
+                            assigned a unique IP address, and an IP-to-location service can use this information to
+                            accurately identify the general geographic location of that device. This technology can be
+                            useful for a variety of purposes, such as targeted advertising, fraud detection, and
+                            geographically restricted content delivery.
                         </p>
-                        <div class="alert alert-dismissable alert-danger">
+                        <div class="alert alert-danger">
                             <p class="m-0">notice: All of our Endpoints Have a rate limit of 60 request per minute</p>
                         </div>
                     </div>
 
 
                     <div class="col-md-11 col-12">
-                        <pre><code class="language-bash rounded">{ SERVER }/ip/</code></pre>
+                        <div class="alert alert-info">
+                            <p class="m-0">this View Support <span class="text-danger">IPV4</span> and <span
+                                    class="text-danger">IPV6</span> as well</p>
+                        </div>
                     </div>
+
+                    <div class="col-md-11 col-12">
+                        <p class="m-0 text-white"> Url schema: </p>
+                        <pre><code class="language-python rounded">{ SERVER }/api/v1/<span class="text-danger">IP version</span>/<span
+                                class="text-danger">IP address</span>/<span>[true <span
+                                class="text-danger">optional</span>]</span></code></pre>
+                    </div>
+
                     <div class="col-md-11 col-12">
                         <p class="text-white">This Endpoint return Your public IP address in <span class="text-warning">JSON</span>
                             format</p>
-                        <p class="text-white">if my public ip address is 51.195.233.10 this view return a response
-                            like:</p>
+                        <p class="text-white">Switches: if you pass <span class="text-warning fw-bold">/true</span> in
+                            the end of url view return full info about ip's country</p>
+
+                    </div>
+
+                    <div class="col-md-11 col-12">
+                        <pre><code class=" rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/true</code></pre>
+                        <pre><code class="rounded">{ SERVER }/api/v1/ipv6/::ffff:100:100/true</code></pre>
+                    </div>
+
+                    <div class="col-md-11 col-12">
+                    <pre><code class="hljs json rounded">{
+  "City": "Mountain View",
+  "Country": {
+    "name": "United States of America"
+  },
+  "CountryCode": "US",
+  "IPv4": {
+    "decimal": 134744072,
+    "hex": "0x8080808",
+    "octet": "8.8.8.8"
+  },
+  "Latitude": "37.405992",
+  "Longitude": "-122.078515",
+  "State": "California",
+  "TimeZone": "-07:00",
+  "ZipCode": "94043",
+  "x-Response-BY": "{ SERVER }/api/v1/ipv4/8.8.8.8"
+}</code></pre>
+                    </div>
+
+
+                    <div class="col-md-11 col-12 mt-5">
+                        <h4 class="text-white">Full Answer Look like this:</h4>
                     </div>
                     <div class="col-md-11 col-12">
-                    <pre><code class="language-json rounded">{
-  "Country-Code": "GB",
-  "X-Status": true,
-  "ip": {
-    "v4": {
-      "decimal": 868477194,
-      "hex": "0x33c3e90a",
-      "octet": "51.195.233.10"
+                        <pre><code class="hljs python rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/true</code></pre>
+                    </div>
+
+                    <div class="col-md-11 col-12" data-aos="fade-up">
+                    <pre><code class="language-json">{
+  "data": {
+    "CityName": "Tokyo",
+    "CountryCode": "JP",
+    "CountryName": "Japan",
+    "StateName": "+09:00",
+    "TimeZone": "+09:00",
+    "ZipCode": "100-0004",
+    "ip": {
+      "decimal": 2754877441,
+      "hex": "0xa4341801",
+      "oct": "164.52.24.1"
     },
-    "v6": {
-      "decimal": 0,
-      "hex": "0x0",
-      "octet": null
-    }
+    "latitude": "35.689497",
+    "longitude": "139.692317"
   },
-  "more": { // this option gives you more information about your public ip address
-    "v4": "{ SERVER }/api/v1/ipv4/51.195.233.10/",
-    "v6": null
-  }
+  "more": {
+    "ALTSPELLINGS": [
+      "JP",
+      "Nippon",
+      "Nihon"
+    ],
+    "AREA": 377930.0,
+    "CAPITAL": [
+      "Tokyo"
+    ],
+    "CAPITALINFO": {
+      "latlng": [
+        35.68,
+        139.75
+      ]
+    },
+    "CAR": {
+      "side": "left",
+      "signs": [
+        "J"
+      ]
+    },
+    "CCA2": "JP",
+    "CCA3": "JPN",
+    "CCN3": "392",
+    "CIOC": "JPN",
+    "COATOFARMS": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/jp.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/jp.svg"
+    },
+    "CONTINENTS": [
+      "Asia"
+    ],
+    "CURRENCIES": {
+      "JPY": {
+        "name": "Japanese yen",
+        "symbol": "\u00a5"
+      }
+    },
+    "DEMONYMS": {
+      "eng": {
+        "f": "Japanese",
+        "m": "Japanese"
+      },
+      "fra": {
+        "f": "Japonaise",
+        "m": "Japonais"
+      }
+    },
+    "FIFA": "JPN",
+    "FLAG": "\ud83c\uddef\ud83c\uddf5",
+    "FLAGS": {
+      "alt": "The flag of Japan features a crimson-red circle at the center of a white field.",
+      "png": "https://flagcdn.com/w320/jp.png",
+      "svg": "https://flagcdn.com/jp.svg"
+    },
+    "GINI": {
+      "2013": 32.9
+    },
+    "IDD": {
+      "root": "+8",
+      "suffixes": [
+        "1"
+      ]
+    },
+    "INDEPENDENT": true,
+    "LANDLOCKED": false,
+    "LANGUAGES": {
+      "jpn": "Japanese"
+    },
+    "LATLNG": [
+      36.0,
+      138.0
+    ],
+    "MAPS": {
+      "googleMaps": "https://goo.gl/maps/NGTLSCSrA8bMrvnX9",
+      "openStreetMaps": "https://www.openstreetmap.org/relation/382313"
+    },
+    "NAME": {
+      "common": "Japan",
+      "nativeName": {
+        "jpn": {
+          "common": "\u65e5\u672c",
+          "official": "\u65e5\u672c"
+        }
+      },
+      "official": "Japan"
+    },
+    "POPULATION": 125836021,
+    "POSTALCODE": {
+      "format": "###-####",
+      "regex": "^(\\d{7})$"
+    },
+    "PUBLIC-KEY": "e226f404-a5cb-4a72-a704-087ea89ef38d",
+    "REGION": "Asia",
+    "STARTOFWEEK": "monday",
+    "STATUS": "officially-assigned",
+    "SUBREGION": "Eastern Asia",
+    "TIMEZONES": [
+      "UTC+09:00"
+    ],
+    "TLD": [
+      ".jp",
+      ".\u307f\u3093\u306a"
+    ],
+    "TRANSLATIONS": {
+      "ara": {
+        "common": "\u0627\u0644\u064a\u0627\u0628\u0627\u0646",
+        "official": "\u0627\u0644\u064a\u0627\u0628\u0627\u0646"
+      },
+      "bre": {
+        "common": "Japan",
+        "official": "Japan"
+      },
+      "ces": {
+        "common": "Japonsko",
+        "official": "Japonsko"
+      },
+      "cym": {
+        "common": "Japan",
+        "official": "Japan"
+      },
+      "deu": {
+        "common": "Japan",
+        "official": "Japan"
+      },
+      "est": {
+        "common": "Jaapan",
+        "official": "Jaapan"
+      },
+      "fin": {
+        "common": "Japani",
+        "official": "Japani"
+      },
+      "fra": {
+        "common": "Japon",
+        "official": "Japon"
+      },
+      "hrv": {
+        "common": "Japan",
+        "official": "Japan"
+      },
+      "hun": {
+        "common": "Jap\u00e1n",
+        "official": "Jap\u00e1n"
+      },
+      "ita": {
+        "common": "Giappone",
+        "official": "Giappone"
+      },
+      "jpn": {
+        "common": "\u65e5\u672c",
+        "official": "\u65e5\u672c"
+      },
+      "kor": {
+        "common": "\uc77c\ubcf8",
+        "official": "\uc77c\ubcf8\uad6d"
+      },
+      "nld": {
+        "common": "Japan",
+        "official": "Japan"
+      },
+      "per": {
+        "common": "\u0698\u0627\u067e\u0646",
+        "official": "\u0698\u0627\u067e\u0646"
+      },
+      "pol": {
+        "common": "Japonia",
+        "official": "Japonia"
+      },
+      "por": {
+        "common": "Jap\u00e3o",
+        "official": "Jap\u00e3o"
+      },
+      "rus": {
+        "common": "\u042f\u043f\u043e\u043d\u0438\u044f",
+        "official": "\u042f\u043f\u043e\u043d\u0438\u044f"
+      },
+      "slk": {
+        "common": "Japonsko",
+        "official": "Japonsko"
+      },
+      "spa": {
+        "common": "Jap\u00f3n",
+        "official": "Jap\u00f3n"
+      },
+      "srp": {
+        "common": "\u0408\u0430\u043f\u0430\u043d",
+        "official": "\u0408\u0430\u043f\u0430\u043d"
+      },
+      "swe": {
+        "common": "Japan",
+        "official": "Japan"
+      },
+      "tur": {
+        "common": "Japonya",
+        "official": "Japonya"
+      },
+      "urd": {
+        "common": "\u062c\u0627\u067e\u0627\u0646",
+        "official": "\u062c\u0627\u067e\u0627\u0646"
+      },
+      "zho": {
+        "common": "\u65e5\u672c",
+        "official": "\u65e5\u672c\u56fd"
+      }
+    },
+    "UNMEMBER": true,
+    "X-PROVIDE": "https://ip2geo.ir"
+  },
+  "status": "success"
 }</code></pre>
                     </div>
 
@@ -61,26 +315,26 @@
                         <h2 class="text-white">How to Use:</h2>
                     </div>
 
+
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Curl</p>
-                        <pre><code
-                                class="language-bash shadow-md rounded text-sm ">curl https://ip2geo.ir/ip/</code></pre>
+                        <pre><code class="language-bash shadow-md rounded text-sm hljs">curl https://ip2geo.ip/api/v1/8.8.8.8</code></pre>
                     </div>
-
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Python</p>
-                        <pre><code class="language-Python shadow-md rounded text-sm">import requests
-response = requests.get("{ SERVER } /ip/")
+                        <pre><code class="language-python">import requests
+response = requests.get("{ SERVER }/api/v1/ipv4/8.8.8.8")
+
 print(response.json())</code></pre>
                     </div>
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">C#</p>
-                        <pre><code class="language-csharp shadow-md rounded text-sm">using System.Net.Http;
+                        <pre><code class="language-csharp shadow-md rounded text-sm hljs">using System.Net.Http;
 
 using var client = new HttpClient();
-using var response = await client.GetAsync("{ SERVER } /ip/");
+using var response = await client.GetAsync("{ SERVER }/api/v1/ipv4/8.8.8.8");
 var content = await response.Content.ReadAsStringAsync();
 Console.WriteLine(content);</code></pre>
                     </div>
@@ -88,7 +342,7 @@ Console.WriteLine(content);</code></pre>
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">PHP</p>
-                        <pre><code class="language-php shadow-md rounded text-sm">$url = "{ SERVER } /ip/";
+                        <pre><code class="language-Php shadow-md rounded text-sm hljs">$url = "{ SERVER }/api/v1/ipv4/8.8.8.8";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
@@ -98,7 +352,7 @@ $json_data = json_decode($result, true);</code></pre>
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">JavaScript</p>
-                        <pre><code class="language-javascript shadow-md rounded text-sm">fetch('{ SERVER } /ip/', {
+                        <pre><code class="language-javascript shadow-md rounded text-sm hljs">fetch('{ SERVER }/api/v1/ipv4/8.8.8.8', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -112,7 +366,7 @@ $json_data = json_decode($result, true);</code></pre>
 
                     <div class="col-md-11 col-12 my-3">
                         <p class="text-warning fs-5 m-0">Javascript - Jquery</p>
-                        <pre><code class="language-js shadow-md rounded text-sm">$.get( "{ SERVER } /ip/", function (response) {
+                        <pre><code class="language-javascript shadow-md rounded text-sm hljs">$.get( "{ SERVER }/api/v1/ipv4/8.8.8.8", function (response) {
   console.log(response)
 });</code></pre>
                     </div>

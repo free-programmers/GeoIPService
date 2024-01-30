@@ -1,5 +1,6 @@
-from GeoIpCore.model import BaseModel
 from sqlalchemy import Column, String
+
+from GeoIpCore.model import BaseModel
 
 
 class ContactUS(BaseModel):
