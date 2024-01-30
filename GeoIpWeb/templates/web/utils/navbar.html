@@ -32,21 +32,21 @@
                         {{ _('Services') }}
                     </a>
                     <ul class="dropdown-menu">
+                        <p class="text-muted  text-decoration-underline text-end mb-1 me-2" style="font-size: 0.9rem">IP services</p>
                         <li><a class="dropdown-item text-end"
-                               href="{{ url_for('docs.serve', documentName='public-ip') }}">{{ _('Public IP Address') }}</a>
+                               href="{{ url_for('docs.serve', documentName='public-ip') }}">{{ _('Public IP') }}</a>
                         </li>
                         <li><a class="dropdown-item text-end"
-                               href="{{ url_for('docs.serve', documentName='ip-to-location') }}">{{ _('IP to Location') }}</a>
+                               href="{{ url_for('docs.serve', documentName='ip-to-location') }}">{{ _('IP to GeoLocation') }}</a>
                         </li>
-                        <li>
                             <hr class="dropdown-divider">
-                        </li>
+                        <p class="text-muted  text-decoration-underline text-end mb-1 me-2" style="font-size: 0.9rem">Countries services</p>
                         <li>
                             <a class="dropdown-item text-end"
                                href="{{ url_for('docs.serve', documentName='country-info') }}">{{ _('Country info API') }}</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        <hr class="dropdown-divider">
+                        <p class="text-muted  text-decoration-underline text-end mb-1 me-2" style="font-size: 0.9rem">DNS services</p>
+
                         <li><a class="dropdown-item text-end" role="button" data-bs-toggle="modal" data-bs-target="#"
                                href="#UnderDevelopmentModal">{{ _('DNS Servers List') }}</a></li>
                     </ul>

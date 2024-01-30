@@ -1,17 +1,19 @@
 # build in
 import ipaddress
 
-# app
-from . import web
-from . import form as WebForm, model as WebModel
-from GeoIpCore.extensions import ServerCaptcha2
-
 # framework
-from flask import render_template, flash, redirect,\
-        request, jsonify, url_for, get_flashed_messages, current_app
+from flask import render_template, flash, redirect, \
+    request, jsonify, url_for, get_flashed_messages, current_app
 
 # lib
 from flask_babel import lazy_gettext as _l
+
+from GeoIpCore.extensions import ServerCaptcha2
+from GeoIpCore.utils import user_real_ip
+from . import form as WebForm, model as WebModel
+
+# app
+from . import web
 
 
 @web.route("/", methods=["GET"])
@@ -66,7 +68,6 @@ def about_us_get() -> str:
     return render_template("web/about-us.html")
 
 
-
 @web.route("/ip/", methods=["GET"])
 def userOwnIP():
     # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
@@ -101,7 +102,7 @@ def userOwnIP():
         - X-Request-Id: some random string
         - X-Sid: 2062
     """
-    ip = request.headers.get('True-Client-Ip', request.headers.get("Ar-Real-Ip", None))
+    ip = user_real_ip() or None
     Country_code_2D = request.headers.get('X-Real-Country', None)
 
     v4intIP = 0
@@ -109,23 +110,23 @@ def userOwnIP():
         v4intIP = int(ipaddress.ip_address(ip))
 
     return jsonify({
-        "ip": {
-            "v4": {
-                "hex": hex(v4intIP),
-                "decimal": v4intIP,
-                "octet": ip
+        "IP": {
+            "V4": {
+                "HEX": hex(v4intIP),
+                "DECIMAL": v4intIP,
+                "OCTET": ip
             },
-            "v6": {
-                "hex": hex(0),
-                "decimal": 0,
-                "octet": None
+            "V6": {
+                "HEX": hex(0),
+                "DECIMAL": 0,
+                "OCTET": None
             },
         },
-        "Country-Code": Country_code_2D,
-        "X-Status": True if ip and Country_code_2D else False,
-        "more": {
-            "v4": url_for('api.process_ipv4', ipv4=ip, _external=True) if ip else None,
-            "v6": None
+        "COUNTRY-CODE": Country_code_2D,
+        "X-STATUS": True if ip and Country_code_2D else False,
+        "MORE": {
+            "V4": url_for('api.process_ipv4', ipv4=ip, _external=True) if ip else None,
+            "V6": None
         },
     })
 
@@ -150,5 +151,3 @@ def get_notification():
         temp = {"message": message, "category": category}
         flashes.append(temp)
     return jsonify(flashes)
-
-
