@@ -9,7 +9,7 @@
                             IP to Location
                         </h1>
                     </div>
-                    <div class="col-md-11 col-12">
+                    <div class="col-md-9 col-11">
                         <p class="text-white my-3" style="text-align: justify" data-aos="fade-left">
                             An IP-to-location service is a type of technology that helps determine the physical location
                             of a particular device based on its IP address. Every device connected to the internet is
@@ -24,69 +24,64 @@
                     </div>
 
 
-                    <div class="col-md-11 col-12">
-                        <div class="alert alert-info">
-                            <p class="m-0">this View Support <span class="text-danger">IPV4</span> and <span
-                                    class="text-danger">IPV6</span> as well</p>
-                        </div>
+                    <div class="col-md-9 col-11">
+                        <p class="m-0 text-white"> url schema: </p>
+                        <pre><code class="language-python rounded">/api/v1/<span>IP version[v4 or v6]</span>/<span class="text-danger">IP address</span>/<span> [?more= [1 or 0]]</span></code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12">
-                        <p class="m-0 text-white"> Url schema: </p>
-                        <pre><code class="language-python rounded">{ SERVER }/api/v1/<span class="text-danger">IP version</span>/<span
-                                class="text-danger">IP address</span>/<span>[true <span
-                                class="text-danger">optional</span>]</span></code></pre>
-                    </div>
-
-                    <div class="col-md-11 col-12">
+                    <div class="col-md-9 col-11">
                         <p class="text-white">This Endpoint return Your public IP address in <span class="text-warning">JSON</span>
                             format</p>
-                        <p class="text-white">Switches: if you pass <span class="text-warning fw-bold">/true</span> in
+                        <p class="text-white">Switches: if you pass <span class="text-warning fw-bold">?more=1</span> in
                             the end of url view return full info about ip's country</p>
 
                     </div>
 
-                    <div class="col-md-11 col-12">
-                        <pre><code class=" rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/true</code></pre>
-                        <pre><code class="rounded">{ SERVER }/api/v1/ipv6/::ffff:100:100/true</code></pre>
+                    <div class="col-md-9 col-11">
+                        <p class="text-info my-2">ip version 4 query sample</p>
+                        <pre><code class="language-bash rounded">{ SERVER }/api/v1/ipv4/164.52.24.1/</code></pre>
+                        <pre><code class="language-bash rounded">{ SERVER }/api/v1/ipv4/164.52.24.1/?more=1</code></pre>
+                        <p class="text-info my-2">ip version 6 query sample</p>
+                        <pre><code class="language-bash rounded">{ SERVER }/api/v1/ipv6/::ffff:100:100/</code></pre>
+                        <pre><code class="language-bash rounded">{ SERVER }/api/v1/ipv6/::ffff:100:100/?more=0</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12">
+                    <div class="col-md-9 col-11">
+                        <p class="text-white h2 mt-3">simple answer</p>
                     <pre><code class="hljs json rounded">{
-  "City": "Mountain View",
-  "Country": {
-    "name": "United States of America"
+  "data": {
+    "CityName": "Tokyo",
+    "CountryCode": "JP",
+    "CountryName": "Japan",
+    "StateName": "Tokyo",
+    "TimeZone": "+09:00",
+    "ZipCode": "100-0004",
+    "ip": {
+      "decimal": 2754877441,
+      "hex": "0xa4341801",
+      "oct": "164.52.24.1"
+    },
+    "latitude": "35.689497",
+    "longitude": "139.692317"
   },
-  "CountryCode": "US",
-  "IPv4": {
-    "decimal": 134744072,
-    "hex": "0x8080808",
-    "octet": "8.8.8.8"
-  },
-  "Latitude": "37.405992",
-  "Longitude": "-122.078515",
-  "State": "California",
-  "TimeZone": "-07:00",
-  "ZipCode": "94043",
-  "x-Response-BY": "{ SERVER }/api/v1/ipv4/8.8.8.8"
+  "status": true
 }</code></pre>
                     </div>
 
-
-                    <div class="col-md-11 col-12 mt-5">
-                        <h4 class="text-white">Full Answer Look like this:</h4>
+                    <div class="col-md-9 col-11 mt-5">
+                        <p class="text-white h2">full answer</p>
                     </div>
-                    <div class="col-md-11 col-12">
+                    <div class="col-md-9 col-11">
                         <pre><code class="hljs python rounded">{ SERVER }/api/v1/ipv4/8.8.8.8/true</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12" data-aos="fade-up">
+                    <div class="col-md-9 col-11" data-aos="fade-up">
                     <pre><code class="language-json">{
   "data": {
     "CityName": "Tokyo",
     "CountryCode": "JP",
     "CountryName": "Japan",
-    "StateName": "+09:00",
+    "StateName": "Tokyo",
     "TimeZone": "+09:00",
     "ZipCode": "100-0004",
     "ip": {
@@ -307,21 +302,96 @@
     "UNMEMBER": true,
     "X-PROVIDE": "https://ip2geo.ir"
   },
-  "status": "success"
+  "status": true
 }</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 mt-5">
+
+        <div class="col-md-9 col-11 mt-5">
+    <p class="h1 text-center text-warning">response info</p>
+    <table class="table table-responsive table-primary table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>key</th>
+                <th>type</th>
+                <th>value</th>
+                <th>description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CityName</td>
+                <td><span class="badge bg-primary">string</span></td>
+                <td>Tokyo</td>
+                <td>name of the city that ip belong to</td>
+            </tr>
+            <tr>
+                <td>StateName</td>
+                <td><span class="badge bg-primary">string</span></td>
+                <td>Tokyo</td>
+                <td>name of the state that ip belong to</td>
+            </tr>
+            <tr>
+                <td>CountryCode</td>
+                <td><span class="badge bg-primary">string</span></td>
+                <td>JP</td>
+                <td>2D Country Code of country that IP address is belongs to</td>
+            </tr>
+            <tr>
+                <td>CountryName</td>
+                <td><span class="badge bg-primary">string</span></td>
+                <td>Japan</td>
+                <td>Full name of country that ip belongs to</td>
+            </tr>
+            <tr>
+                <td>TimeZone</td>
+                <td><span class="badge bg-primary">string</span></td>
+                <td>+09:00</td>
+                <td>Time zone of country that ip belongs to</td>
+            </tr>
+            <tr>
+                <td>ZipCode</td>
+                <td><span class="badge bg-primary">string</span></td>
+                <td>100-0004</td>
+                <td>Zip Code</td>
+            </tr>
+            <tr>
+                <td>latitude</td>
+                <td><span class="badge bg-primary">string</span></td>
+                <td>35.689497</td>
+                <td>latitude of location where ip belongs to on map </td>
+            </tr>
+            <tr>
+                <td>longitude</td>
+                <td><span class="badge bg-primary">string</span></td>
+                <td>35.689497</td>
+                <td>longitude of location where ip belongs to on map </td>
+            </tr>
+            <tr>
+            <tr>
+                <td>status</td>
+                <td><span class="badge bg-info">boolean</span></td>
+                <td>true</td>
+                <td><span class="badge bg-danger">true</span> if request is done, <span class="badge bg-success">false</span> if there was an error in request</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+
+                    <div class="col-md-9 col-11 mt-5">
                         <h2 class="text-white">How to Use:</h2>
                     </div>
 
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">Curl</p>
-                        <pre><code class="language-bash shadow-md rounded text-sm hljs">curl https://ip2geo.ip/api/v1/8.8.8.8</code></pre>
+                        <pre><code class="language-bash shadow-md rounded text-sm hljs">curl { SERVER }/api/v1/8.8.8.8</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">Python</p>
                         <pre><code class="language-python">import requests
 response = requests.get("{ SERVER }/api/v1/ipv4/8.8.8.8")
@@ -329,7 +399,7 @@ response = requests.get("{ SERVER }/api/v1/ipv4/8.8.8.8")
 print(response.json())</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">C#</p>
                         <pre><code class="language-csharp shadow-md rounded text-sm hljs">using System.Net.Http;
 
@@ -340,7 +410,7 @@ Console.WriteLine(content);</code></pre>
                     </div>
 
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">PHP</p>
                         <pre><code class="language-Php shadow-md rounded text-sm hljs">$url = "{ SERVER }/api/v1/ipv4/8.8.8.8";
 $ch = curl_init($url);
@@ -350,7 +420,7 @@ curl_close($ch);
 $json_data = json_decode($result, true);</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">JavaScript</p>
                         <pre><code class="language-javascript shadow-md rounded text-sm hljs">fetch('{ SERVER }/api/v1/ipv4/8.8.8.8', {
   method: 'GET'
@@ -364,7 +434,7 @@ $json_data = json_decode($result, true);</code></pre>
 });</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">Javascript - Jquery</p>
                         <pre><code class="language-javascript shadow-md rounded text-sm hljs">$.get( "{ SERVER }/api/v1/ipv4/8.8.8.8", function (response) {
   console.log(response)

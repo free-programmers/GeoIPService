@@ -4,12 +4,12 @@
             <div class="col-11 ">
                 <div class="row justify-content-center">
 
-                    <div class="col-12">
+                    <div class="col-11">
                         <p class=" h1 text-center text-warning">
                             Public IP address
                         </p>
                     </div>
-                    <div class="col-md-11 col-12">
+                    <div class="col-md-9 col-11">
                         <p class="text-white my-4" style="text-align: justify">
                             A public IP address is a unique identifier assigned to a device that is connected to the
                             Internet. This address allows other devices on the Internet to communicate with the device
@@ -24,16 +24,18 @@
                         </div>
                     </div>
 
-
-                    <div class="col-md-11 col-12">
-                        <pre><code class="language-bash rounded">{ SERVER }/ip/</code></pre>
+                    <div class="col-md-9 col-11">
+                        <p class="m-0 text-white"> url schema: </p>
+                        <pre><code class="language-python rounded">{ SERVER }/ip/</code></pre>
                     </div>
-                    <div class="col-md-11 col-12">
+
+
+                    <div class="col-md-9 col-11">
                         <p class="text-white">This Endpoint return Your public IP address in <span class="text-warning">JSON</span>
                             format</p>
                         <p class="text-white">if your public ip address is 51.195.233.10 this view return a response like:</p>
                     </div>
-                    <div class="col-md-11 col-12">
+                    <div class="col-md-9 col-11">
                     <pre><code class="language-json rounded">{
   "COUNTRY-CODE": "GB",
   "X-STATUS": true,
@@ -56,7 +58,7 @@
 }</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 mt-5">
+                    <div class="col-md-9 col-11 mt-5">
                         <p class="h1 text-center text-warning">response info</p>
                         <table class="table table-responsive table-primary table-bordered table-hover">
                             <thead>
@@ -72,7 +74,7 @@
                                     <td>COUNTRY-CODE</td>
                                     <td><span class="badge bg-primary">string</span></td>
                                     <td>2D Country Code</td>
-                                    <td>2D Country Code of public IP address</td>
+                                    <td>2D Country Code of country that IP address is belongs to</td>
                                 </tr>
                                 <tr>
                                     <td>X-STATUS</td>
@@ -100,25 +102,25 @@
 
 
 
-                    <div class="col-md-11 col-12 mt-5">
+                    <div class="col-md-9 col-11 mt-5">
                         <h2 class="text-white">How to Use:</h2>
                     </div>
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">Curl</p>
                         <pre><code
                                 class="language-bash shadow-md rounded text-sm ">curl https://ip2geo.ip/ip/</code></pre>
                     </div>
 
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">Python</p>
                         <pre><code class="language-Python shadow-md rounded text-sm">import requests
 response = requests.get("{ SERVER } /ip/")
 print(response.json())</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">C#</p>
                         <pre><code class="language-csharp shadow-md rounded text-sm">using System.Net.Http;
 
@@ -129,7 +131,7 @@ Console.WriteLine(content);</code></pre>
                     </div>
 
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">PHP</p>
                         <pre><code class="language-php shadow-md rounded text-sm">$url = "{ SERVER } /ip/";
 $ch = curl_init($url);
@@ -139,7 +141,7 @@ curl_close($ch);
 $json_data = json_decode($result, true);</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">JavaScript</p>
                         <pre><code class="language-javascript shadow-md rounded text-sm">fetch('{ SERVER } /ip/', {
   method: 'GET'
@@ -153,7 +155,7 @@ $json_data = json_decode($result, true);</code></pre>
 });</code></pre>
                     </div>
 
-                    <div class="col-md-11 col-12 my-3">
+                    <div class="col-md-9 col-11 my-3">
                         <p class="text-warning fs-5 m-0">Javascript - Jquery</p>
                         <pre><code class="language-js shadow-md rounded text-sm">$.get( "{ SERVER } /ip/", function (response) {
   console.log(response)

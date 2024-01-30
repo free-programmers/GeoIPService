@@ -13,7 +13,7 @@ def doo(app, db, fp):
             ip.CountryCode = each["country-code"]
             ip.Lat = each["lat"]
             ip.Long = each["long"]
-            ip.StateName = each["timezone"]
+            ip.StateName = each["state-name"]
             ip.TimeZone = each["timezone"]
             ip.ZipCode = each["zip-code"]
             ip.PublicKey = each["public-key"]

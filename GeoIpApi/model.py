@@ -15,7 +15,7 @@ class BaseIPSerializer:
         return {
             "CountryCode": self.CountryCode,
             "CountryName": self.CountryName,
-            "StateName": self.StateName,
+            # "StateName": self.StateName,
             "CityName": self.CityName,
             "latitude": self.Lat,
             "longitude": self.Long,
