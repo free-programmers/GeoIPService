@@ -1,45 +1,51 @@
+# build in 
 import pickle
-
-from flask import current_app, render_template
-from flask_mail import Message
-from flask_babel import lazy_gettext as _l
 from threading import Thread
 
+# framework
+from flask import current_app, render_template
+from flask_mail import Message
+
+
+# libs
+from flask_babel import lazy_gettext as _l
+
+
+# app
 from GeoIpCore.extensions import ServerMail
 from celery import shared_task
 
 
 def async_send_email_thread(app, msg):
-    """
-    Sending email asynchronously using threading
-    """
+    """ Sending email asynchronously using threading lib """
     with app.app_context():
         ServerMail.send(msg)
+        
 
 
 @shared_task(ignore_result=True)
 def async_send_email_celery(msg):
-    """
-    Sending email asynchronously using celery
-    """
+    """ Sending email asynchronously using celery """
     msg = pickle.loads(msg)
     ServerMail.send(msg)
 
 
-def send_email(recipients, subject, sender, text_body="", html_body="",
-               attachments=None, async_thread=False, async_celery=False, language: str = "en"):
-    """
-        this function send mail via flask-mail
+def send_email(recipients:[], subject:str, sender:str, text_body:str="", html_body:str="",
+               attachments:bool=None, async_thread:bool=False,
+               async_celery:bool=False, language:str="en"):
+    """ This function sends mail via flask-mail
+    Args:
+        recipients:list = recipient of email (user's email address)
+        subject:str = subject of email to send
+        sender:str = sender email address
+        text_body:str = email body
+        html_body:str = if you want to send HTML email to can pass raw HTML
+        attachments:blob = attachment files to be attached in email
+        async_thread:bool = send email asynchronously using threading
+        async_celery: bool = send email asynchronously using celery
 
-        recipients = recipient of email (user's email address)
-        subject = subject of email to send
-        sender = sender email address
-        text_body = email body
-        html_body = if you want to send html email to can pass raw html
-        attachments = attachment files to be attached in email
-        async_thread : send email asynchronously using threading
-        async_celery : send email asynchronously using celery
-        without this parameter this function send email sync
+        
+        without this parameter, this function sends emails in sync mode
     """
 
     msg = Message(subject=subject, sender=sender, recipients=recipients)
@@ -64,8 +70,7 @@ def send_email(recipients, subject, sender, text_body="", html_body="",
 
 
 def sendActivateAccountMail(context: dict = {}, recipients: list = [], **kwargs):
-    """
-    This Function send Activate Account mail
+    """ This Function sends Activate Account mail
 
         context: dict
         values:
