@@ -2,8 +2,9 @@ import ipaddress
 
 
 def is_public_ip_v6(ip: str):
-    """Returns True if the IPv6 address is public, False otherwise."""
-
+    """This Function validate is an IP Address is valid or not
+    Returns True if the IPv6 address is public, False otherwise.
+    """
     try:
         ip = ipaddress.ip_address(ip)
         if ip.version != 6:
@@ -16,7 +17,6 @@ def is_public_ip_v6(ip: str):
 
 def convert_IP2intv6(ip: str):
     """Converts an IPv6 address to an integer, handling various cases."""
-
     if not (ip := is_public_ip_v6(ip)):
         return "invalid ip address"
 

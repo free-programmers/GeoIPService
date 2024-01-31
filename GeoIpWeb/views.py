@@ -8,11 +8,13 @@ from flask import render_template, flash, redirect, \
 # lib
 from flask_babel import lazy_gettext as _l
 
-from GeoIpCore.extensions import ServerCaptcha2
-from GeoIpCore.utils import user_real_ip
-from . import form as WebForm, model as WebModel
 
 # app
+from GeoIpCore.extensions import ServerCaptcha2
+from GeoIpCore.utils import user_real_ip
+
+
+from . import form as WebForm, model as WebModel
 from . import web
 
 
@@ -131,7 +133,7 @@ def userOwnIP():
     })
 
 
-@web.get("/get/notifications/")
+@web.route("/get/notifications/", methods=['GET'])
 def get_notification():
     """Notification Messages view
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -10,7 +10,7 @@ from sqlalchemy import Column, String, BIGINT, JSON, DECIMAL
 
 
 class BaseIPSerializer:
-
+    """Base Serializer for all IP-related"""
     def serialize(self, intip, ip):
         return {
             "CountryCode": self.CountryCode,
@@ -30,7 +30,7 @@ class BaseIPSerializer:
 
 
 class BaseCOUNTRYSerializer:
-
+    """Base Serializer for countries info API"""
     def serialize(self):
         return json.loads(self.Info)
 
