@@ -33,7 +33,7 @@ def make_api_ip_cache_key(*args, **kwargs) -> str:
         return str(request.path)
 
 
-def generateRandomString(len_prob: int = 6) -> str:
+def generate_random_string(len_prob: int = 6) -> str:
     """This function generates random strings including punctuation number and ascii_letters
     #TODO:
         this function should act base on input flags

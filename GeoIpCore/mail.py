@@ -10,20 +10,20 @@ from flask_babel import lazy_gettext as _l
 from flask_mail import Message
 
 # app
-from GeoIpCore.extensions import ServerMail
+from GeoIpCore.extensions import server_mail_manager
 
 
 def async_send_email_thread(app, msg):
     """ Sending email asynchronously using threading lib """
     with app.app_context():
-        ServerMail.send(msg)
+        server_mail_manager.send(msg)
 
 
 @shared_task(ignore_result=True)
 def async_send_email_celery(msg):
     """ Sending email asynchronously using celery """
     msg = pickle.loads(msg)
-    ServerMail.send(msg)
+    server_mail_manager.send(msg)
 
 
 def send_email(recipients: [], subject: str, sender: str, text_body: str = "", html_body: str = "",
@@ -62,10 +62,10 @@ def send_email(recipients: [], subject: str, sender: str, text_body: str = "", h
 
     else:
         current_app.logger.info(f"\n[Sync Normal] Mail Sending {recipients}")
-        ServerMail.send(msg)
+        server_mail_manager.send(msg)
 
 
-def sendActivateAccountMail(context: dict = {}, recipients: list = [], **kwargs):
+def send_activate_account_mail(context: dict = {}, recipients: list = [], **kwargs):
     """ This Function sends Activate Account mail
 
         context: dict

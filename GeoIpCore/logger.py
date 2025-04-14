@@ -4,7 +4,7 @@ import sys
 from colorama import Fore
 
 
-def GetStdoutLogger(name: str = "GeoIP-logger", type: str = "simple"):
+def get_stdout_logger(name: str = "GeoIP-logger", type: str = "simple"):
     """Factory function for creating  stdout logger """
     if type == "simple":
         formatter = logging.Formatter(

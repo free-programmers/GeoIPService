@@ -4,7 +4,7 @@ from . import form as AuthForm
 from flask import render_template, session, request, flash
 from flask_babel import lazy_gettext as _l
 
-from GeoIpCore.extensions import ServerCaptcha2, db
+from GeoIpCore.extensions import server_captcha_manager, db
 from GeoipAuth.model import User
 
 
@@ -25,7 +25,7 @@ def register_get():
 def register_post():
     form = AuthForm.RegisterForm()
 
-    if not ServerCaptcha2.is_verify():
+    if not server_captcha_manager.is_verify():
         flash(_l('invalid captcha.'), "danger")
         form.Submit.errors.append(_l('captcha error'))
         return render_template("auth/register.html", form=form)

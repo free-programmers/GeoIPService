@@ -4,7 +4,7 @@ import datetime
 from pathlib import Path
 
 # app
-from GeoIpCore.utils import generateRandomString
+from GeoIpCore.utils import generate_random_string
 
 # libs
 import redis
@@ -21,7 +21,7 @@ class Setting:
     """
     BASE_DIR = Path(__file__).parent.parent
     APP_DEBUG_STATUS = os.environ.get("APP_DEBUG", "") == "True"
-    SECRET_KEY = os.environ.get("APP_SECRET_KEY", generateRandomString(64))
+    SECRET_KEY = os.environ.get("APP_SECRET_KEY", generate_random_string(64))
     STORAGE_DIR = BASE_DIR.joinpath("Storage")
 
     # Database Config

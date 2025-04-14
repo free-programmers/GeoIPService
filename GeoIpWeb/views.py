@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext as _l
 
 
 # app
-from GeoIpCore.extensions import ServerCaptcha2
+from GeoIpCore.extensions import server_captcha_manager
 from GeoIpCore.utils import user_real_ip
 
 
@@ -43,7 +43,7 @@ def contact_us_post() -> str:
 
     form = WebForm.ContactUsForm()
 
-    if not ServerCaptcha2.is_verify():
+    if not server_captcha_manager.is_verify():
         flash(_l("invalid captcha"), "danger")
         form.form_errors.append(_l("invalid captcha"))
         return render_template("web/contact-us.html", form=form)

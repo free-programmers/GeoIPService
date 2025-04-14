@@ -1,13 +1,13 @@
 import os.path
 
 from . import docs
-from GeoIpCore.extensions import ServerCache
+from GeoIpCore.extensions import server_cache_manager
 
 from flask import current_app, render_template, abort
 
 
 @docs.route("/<string:documentName>/")
-@ServerCache.cached(timeout=1296000)  # 30 day
+@server_cache_manager.cached(timeout=1296000)  # 30 day
 def serve(documentName: str) -> str:
     """
     Serve Docs

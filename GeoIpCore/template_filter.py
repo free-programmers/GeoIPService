@@ -4,7 +4,7 @@ from . import app
 
 
 @app.template_filter('StorageUrl')
-def StorageUrl(path: str, external: bool = False):
+def storage_url(path: str, external: bool = False):
     """ StorageUrl -> dynamic template linking
         this template filter generates dynamic urls based on app.debug, for determining serving files with flask or Nginx
         if debug is on this filter redirect request to nginx to be served.

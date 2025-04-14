@@ -2,9 +2,9 @@ from flask import Flask, session, url_for, redirect, request
 
 from GeoIpConfig import Setting
 from GeoipAuth.model import User
-from .extensions import (db, babel, ServerSession, ServerMigrate,
-                         ServerMail, ServerCache, ServerCaptcha2, ServerRequestLimiter)
-from .logger import GetStdoutLogger
+from .extensions import (db, babel, server_session_manager, server_migrate_manager,
+                         server_mail_manager, server_cache_manager, server_captcha_manager, ServerRequestLimiter)
+from .logger import get_stdout_logger
 from .utils import celery_init_app, user_real_ip
 
 
@@ -22,11 +22,11 @@ def create_app() -> Flask:
     babel.init_app(app=app)
     celery_init_app(app=app)
 
-    ServerSession.init_app(app)
-    ServerMigrate.init_app(app=app, db=db)
-    ServerMail.init_app(app=app)
-    ServerCache.init_app(app=app)
-    ServerCaptcha2.init_app(app=app)
+    server_session_manager.init_app(app)
+    server_migrate_manager.init_app(app=app, db=db)
+    server_mail_manager.init_app(app=app)
+    server_cache_manager.init_app(app=app)
+    server_captcha_manager.init_app(app=app)
     ServerRequestLimiter.init_app(app=app)
 
     # Register all Blueprints
@@ -46,13 +46,13 @@ def create_app() -> Flask:
     from GeoIpWeb import web
     app.register_blueprint(web, url_prefix="/", subdomain="www")
 
-    app.viewLOGGER = GetStdoutLogger(name="viewLOGGER")
-    app.simpleLOGGER = GetStdoutLogger(name="simpleLOGGER", type="simple")
+    app.viewLOGGER = get_stdout_logger(name="viewLOGGER")
+    app.simpleLOGGER = get_stdout_logger(name="simpleLOGGER", type="simple")
 
     return app
 
 
-def userLocalSelector():
+def user_local_selector():
     """ This function selects users local base on  their session
         this is called every time the user send a request
 
@@ -97,13 +97,13 @@ def middle_ware_center():
     """
     request.user_object = db.session.execute(
         db.select(User).filter_by(id=session.get("account-id", None))).scalar_one_or_none()
-    request.current_language = userLocalSelector()
+    request.current_language = user_local_selector()
     request.is_authenticated = session.get("login", False)
     request.real_ip = user_real_ip()
 
 
 @app.route("/lang/set/<string:language>/")
-def setUserLanguage(language: str):
+def set_user_language(language: str):
     """This view set a language for user in session"""
     location = (request.referrer or url_for('web.index_get'))
 

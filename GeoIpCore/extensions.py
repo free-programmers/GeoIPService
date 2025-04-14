@@ -25,8 +25,8 @@ ServerRequestLimiter = Limiter(
 
 db = SQLAlchemy()
 babel = Babel()
-ServerMail = Mail()
-ServerSession = Session()
-ServerMigrate = Migrate()
-ServerCaptcha2 = FlaskCaptcha2()
-ServerCache = Cache()
+server_mail_manager = Mail()
+server_session_manager = Session()
+server_migrate_manager = Migrate()
+server_captcha_manager = FlaskCaptcha2()
+server_cache_manager = Cache()
