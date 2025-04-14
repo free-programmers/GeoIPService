@@ -4,16 +4,19 @@ import uuid
 
 # framework
 from flask import current_app
+
 # lib
 from sqlalchemy import String, DateTime, Integer, Column
 
 from GeoIpConfig.setting import DATABASE_TABLE_PREFIX_NAME
+
 # app
 from .extensions import db
 
 
 class BaseModel(db.Model):
-    """ Base model class for all models in app"""
+    """Base model class for all models in app"""
+
     __abstract__ = True
 
     id = Column(Integer, primary_key=True)
@@ -21,8 +24,8 @@ class BaseModel(db.Model):
     @staticmethod
     def SetTableName(name: str) -> str:
         """Use This Method For setting a table name.
-            this method normalize table name and then 
-            added DATABASE TABLE PREFIX NAME to beginning of table name        
+        this method normalize table name and then
+        added DATABASE TABLE PREFIX NAME to beginning of table name
         """
         name = name.replace("-", "_").replace(" ", "")
 
@@ -40,11 +43,12 @@ class BaseModel(db.Model):
 
     PublicKey = Column(String(36), nullable=False, unique=True)
     CreatedTime = Column(DateTime, default=datetime.datetime.utcnow)
-    LastUpdateTime = Column(DateTime, onupdate=datetime.datetime.utcnow, default=datetime.datetime.utcnow)
+    LastUpdateTime = Column(
+        DateTime, onupdate=datetime.datetime.utcnow, default=datetime.datetime.utcnow
+    )
 
     def save(self) -> bool:
-        """ combination of two steps, add and commit session
-        """
+        """combination of two steps, add and commit session"""
         try:
             db.session.add(self)
             db.session.commit()

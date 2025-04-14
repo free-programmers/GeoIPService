@@ -2,8 +2,16 @@
 import ipaddress
 
 # framework
-from flask import render_template, flash, redirect, \
-    request, jsonify, url_for, get_flashed_messages, current_app
+from flask import (
+    render_template,
+    flash,
+    redirect,
+    request,
+    jsonify,
+    url_for,
+    get_flashed_messages,
+    current_app,
+)
 
 # lib
 from flask_babel import lazy_gettext as _l
@@ -26,7 +34,7 @@ def index_get() -> str:
 
 @web.route("/terms/", methods=["GET"])
 def term_get() -> str:
-    """ Render term of use privacy page """
+    """Render term of use privacy page"""
     return render_template("web/term-of-use.html")
 
 
@@ -60,7 +68,10 @@ def contact_us_post() -> str:
     contactUS.Email = form.Email.data
     contactUS.SetPublicKey()
     contactUS.save()
-    flash(_l("Thanks for your message, we will contact you as soon as possible"), "success")
+    flash(
+        _l("Thanks for your message, we will contact you as soon as possible"),
+        "success",
+    )
     return redirect(request.referrer)
 
 
@@ -105,35 +116,31 @@ def userOwnIP():
         - X-Sid: 2062
     """
     ip = user_real_ip() or None
-    Country_code_2D = request.headers.get('X-Real-Country', None)
+    Country_code_2D = request.headers.get("X-Real-Country", None)
 
     v4intIP = 0
     if ip and ip != "NULL":
         v4intIP = int(ipaddress.ip_address(ip))
 
-    return jsonify({
-        "IP": {
-            "V4": {
-                "HEX": hex(v4intIP),
-                "DECIMAL": v4intIP,
-                "OCTET": ip
+    return jsonify(
+        {
+            "IP": {
+                "V4": {"HEX": hex(v4intIP), "DECIMAL": v4intIP, "OCTET": ip},
+                "V6": {"HEX": hex(0), "DECIMAL": 0, "OCTET": None},
             },
-            "V6": {
-                "HEX": hex(0),
-                "DECIMAL": 0,
-                "OCTET": None
+            "COUNTRY-CODE": Country_code_2D,
+            "X-STATUS": True if ip and Country_code_2D else False,
+            "MORE": {
+                "V4": (
+                    url_for("api.process_ipv4", ipv4=ip, _external=True) if ip else None
+                ),
+                "V6": None,
             },
-        },
-        "COUNTRY-CODE": Country_code_2D,
-        "X-STATUS": True if ip and Country_code_2D else False,
-        "MORE": {
-            "V4": url_for('api.process_ipv4', ipv4=ip, _external=True) if ip else None,
-            "V6": None
-        },
-    })
+        }
+    )
 
 
-@web.route("/get/notifications/", methods=['GET'])
+@web.route("/get/notifications/", methods=["GET"])
 def get_notification():
     """Notification Messages view
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

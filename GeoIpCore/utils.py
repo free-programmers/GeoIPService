@@ -7,21 +7,24 @@ from string import punctuation, digits, ascii_letters
 # libs
 import khayyam
 from celery import Celery, Task
+
 # framework
 from flask import Flask, request
 
 
 def user_real_ip() -> str:
-    """ This Function returns users actual public IP address, base on ArvanCloud HTTP header
+    """This Function returns users actual public IP address, base on ArvanCloud HTTP header
 
-    according to arvancloud documentations `True-Client-Ip` http header contains users actual IP address 
+    according to arvancloud documentations `True-Client-Ip` http header contains users actual IP address
     """
-    return request.headers.get('True-Client-Ip', request.headers.get("Ar-Real-Ip", None))
+    return request.headers.get(
+        "True-Client-Ip", request.headers.get("Ar-Real-Ip", None)
+    )
 
 
 def make_api_ip_cache_key(*args, **kwargs) -> str:
-    """ every time an api view  called this function is calling
-    and base on api url this function generate a unique key for that view 
+    """every time an api view  called this function is calling
+    and base on api url this function generate a unique key for that view
     for searching in redis cache server
     """
     more = request.args.get("more", type=int, default=0)
@@ -50,7 +53,7 @@ def generate_random_string(len_prob: int = 6) -> str:
 
 def celery_init_app(app: Flask) -> Celery:
     class FlaskTask(Task):
-        """Every time a task is added to queue __call__ is called """
+        """Every time a task is added to queue __call__ is called"""
 
         def __call__(self, *args: object, **kwargs: object) -> object:
             with app.app_context():  # under flask context
@@ -66,10 +69,10 @@ def celery_init_app(app: Flask) -> Celery:
 
 class TimeStamp:
     """
-        a base class for working with time&times in app
-        ~!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!~
-        #todo :
-            utils
+    a base class for working with time&times in app
+    ~!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!~
+    #todo :
+        utils
     """
 
     __now_gregorian = None
@@ -127,8 +130,8 @@ class TimeStamp:
     @staticmethod
     def is_persian_date(date: str) -> bool:
         """
-            This function take a  date in format of string
-            and check its valid jalali persian date or not
+        This function take a  date in format of string
+        and check its valid jalali persian date or not
         """
         date = date.split("/")
         if len(date) == 3:
@@ -143,7 +146,7 @@ class TimeStamp:
 
     def convert_jlj2_georgian_d(self, value: khayyam.JalaliDate):
         """
-            this method get a khayyam date<jalali> and convert it to gregorian object datetime.date
+        this method get a khayyam date<jalali> and convert it to gregorian object datetime.date
         """
         if not isinstance(value, khayyam.JalaliDate):
             raise ValueError(f"input {value} must be a khayyam.JalaliDate instance")
@@ -153,10 +156,12 @@ class TimeStamp:
 
     def convert_grg2_jalali_d(self, value: datetime.date):
         """
-            this method get a datetime.date object and convert it o khayyam object
+        this method get a datetime.date object and convert it o khayyam object
         """
         if not isinstance(value, datetime.date):
-            raise ValueError(f"input {value} - {type(value)} must be a Datetime.Date instance")
+            raise ValueError(
+                f"input {value} - {type(value)} must be a Datetime.Date instance"
+            )
 
         year, month, day = value.year, value.month, value.day
         date = self._gregorian_to_jalali(year, month, day)
@@ -164,44 +169,82 @@ class TimeStamp:
 
     def convert_jlj2_georgian_dt(self, value: khayyam.JalaliDatetime):
         """
-            this method get a khayyam date<jalali> and convert it to gregorian object datetime.datetime
+        this method get a khayyam date<jalali> and convert it to gregorian object datetime.datetime
         """
         if not isinstance(value, khayyam.JalaliDatetime):
             raise ValueError("input must be a khayyam.JalaliDatetime instance")
 
-        year, month, day, hour, minute, second, microsecond = value.year, value.month, value.day, value.hour, value.minute, value.second, value.microsecond
+        year, month, day, hour, minute, second, microsecond = (
+            value.year,
+            value.month,
+            value.day,
+            value.hour,
+            value.minute,
+            value.second,
+            value.microsecond,
+        )
         date = self._jalali_to_gregorian(year, month, day)
-        return datetime.datetime(year=date[0], month=date[1], day=date[2], hour=hour, minute=minute, second=second,
-                                 microsecond=microsecond)
+        return datetime.datetime(
+            year=date[0],
+            month=date[1],
+            day=date[2],
+            hour=hour,
+            minute=minute,
+            second=second,
+            microsecond=microsecond,
+        )
 
     def convert_grg2_jalali_dt(self, value: datetime.datetime):
         """
-            this method get a datetime.date object and convert it o khayyam.KhayyamDatetime object
+        this method get a datetime.date object and convert it o khayyam.KhayyamDatetime object
         """
-        year, month, day, hour, minute, second, microsecond = value.year, value.month, value.day, value.hour, value.minute, value.second, value.microsecond
+        year, month, day, hour, minute, second, microsecond = (
+            value.year,
+            value.month,
+            value.day,
+            value.hour,
+            value.minute,
+            value.second,
+            value.microsecond,
+        )
         date = self._gregorian_to_jalali(year, month, day)
-        return khayyam.JalaliDatetime(year=date[0], month=date[1], day=date[2], hour=hour, minute=minute, second=second,
-                                      microsecond=microsecond)
+        return khayyam.JalaliDatetime(
+            year=date[0],
+            month=date[1],
+            day=date[2],
+            hour=hour,
+            minute=minute,
+            second=second,
+            microsecond=microsecond,
+        )
 
     def _gregorian_to_jalali(self, gy, gm, gd):
         """
-            this method convert a Gregorian to a Jalali date
-            https://jdf.scr.ir/
+        this method convert a Gregorian to a Jalali date
+        https://jdf.scr.ir/
         """
         g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
-        if (gm > 2):
+        if gm > 2:
             gy2 = gy + 1
         else:
             gy2 = gy
-        days = 355666 + (365 * gy) + ((gy2 + 3) // 4) - ((gy2 + 99) // 100) + ((gy2 + 399) // 400) + gd + g_d_m[gm - 1]
+        days = (
+            355666
+            + (365 * gy)
+            + ((gy2 + 3) // 4)
+            - ((gy2 + 99) // 100)
+            + ((gy2 + 399) // 400)
+            + gd
+            + g_d_m[gm - 1]
+        )
         jy = -1595 + (33 * (days // 12053))
         days %= 12053
         jy += 4 * (days // 1461)
         days %= 1461
-        if (days > 365):
+        if days > 365:
             jy += (days - 1) // 365
             days = (days - 1) % 365
-        if (days < 186):
+        if days < 186:
             jm = 1 + (days // 31)
             jd = 1 + (days % 31)
         else:
@@ -211,43 +254,43 @@ class TimeStamp:
 
     def _jalali_to_gregorian(self, jy, jm, jd):
         """
-            this method convert a Jalali time to a Gregorian time
-            https://jdf.scr.ir/
+        this method convert a Jalali time to a Gregorian time
+        https://jdf.scr.ir/
         """
         jy += 1595
         days = -355668 + (365 * jy) + ((jy // 33) * 8) + (((jy % 33) + 3) // 4) + jd
-        if (jm < 7):
+        if jm < 7:
             days += (jm - 1) * 31
         else:
             days += ((jm - 7) * 30) + 186
         gy = 400 * (days // 146097)
         days %= 146097
-        if (days > 36524):
+        if days > 36524:
             days -= 1
             gy += 100 * (days // 36524)
             days %= 36524
-            if (days >= 365):
+            if days >= 365:
                 days += 1
         gy += 4 * (days // 1461)
         days %= 1461
-        if (days > 365):
-            gy += ((days - 1) // 365)
+        if days > 365:
+            gy += (days - 1) // 365
             days = (days - 1) % 365
         gd = days + 1
-        if ((gy % 4 == 0 and gy % 100 != 0) or (gy % 400 == 0)):
+        if (gy % 4 == 0 and gy % 100 != 0) or (gy % 400 == 0):
             kab = 29
         else:
             kab = 28
         sal_a = [0, 31, kab, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         gm = 0
-        while (gm < 13 and gd > sal_a[gm]):
+        while gm < 13 and gd > sal_a[gm]:
             gd -= sal_a[gm]
             gm += 1
         return [gy, gm, gd]
 
     def convert_string_jalali2_dateD(self, value: str) -> datetime.date:
         """
-            this Method converts a string (Persian Date) to datetime.date object
+        this Method converts a string (Persian Date) to datetime.date object
         """
         if not self.is_persian_date(value):
             raise ValueError("Input is not a valid date format YYYY/MM/DD")
@@ -258,11 +301,11 @@ class TimeStamp:
 
     def bigger_date(self, date1, date2):
         """
-           this method takes two dates and returns the biggest date
-            :params: date1, date2
-            - if both dates are equal return True
-            - if date1 is biggest return date1
-            - if date2 is biggest return date2
+        this method takes two dates and returns the biggest date
+         :params: date1, date2
+         - if both dates are equal return True
+         - if date1 is biggest return date1
+         - if date2 is biggest return date2
         """
         if date1 > date2:
             return date1
@@ -273,11 +316,11 @@ class TimeStamp:
 
     def smaller_date(self, date1, date2):
         """
-            this method takes two dates and returns the smallest date
-            :params: date1, date2
-            - if both dates are equal return True
-            - if date1 is smallest return date1
-            - if date2 is smallest return date2
+        this method takes two dates and returns the smallest date
+        :params: date1, date2
+        - if both dates are equal return True
+        - if date1 is smallest return date1
+        - if date2 is smallest return date2
         """
         if date1 < date2:
             return date1

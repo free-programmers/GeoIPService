@@ -71,33 +71,33 @@ def only_reset_password(f):
     return inner
 
 
-
-
-
-def login_manager_required(role:int):
-    """ 
+def login_manager_required(role: int):
+    """
     create custom login_required decorator base on user role
 
 
     login_required = login_manger_required(role:int=3)
 
-    
+
     @app.get("/only/role/3")
     @login_required
     def ... ():
         ...
-    
+
     """
+
     def login_required(f):
         """Base Login required Decorator for users"""
 
         @wraps(f)
         def inner(*args, **kwargs):
             next = request.url_rule
-            message = _l("برای دسترسی به صفحه مورد نیاز ابتدا وارد حساب کاربری خود شوید")
+            message = _l(
+                "برای دسترسی به صفحه مورد نیاز ابتدا وارد حساب کاربری خود شوید"
+            )
 
             nonlocal role
-            role = role or request.user_role_id or session.get('role') or None
+            role = role or request.user_role_id or session.get("role") or None
             if not role:
                 flash(message, "danger")
                 return redirect(url_for("auth.login_get", next=next))
@@ -118,12 +118,11 @@ def login_manager_required(role:int):
                 if not user:
                     raise ValueError
                 if user.RoleID != role:
-                    message="access denied"
+                    message = "access denied"
                     raise ValueError
             except Exception as e:
                 flash(message, "danger")
                 return redirect(url_for("auth.login_get", next=next))
-
 
             # check password
             if user.Password != (session.get("password")):
@@ -135,6 +134,7 @@ def login_manager_required(role:int):
                 return redirect(url_for("auth.login_get", next=next))
 
             return f(*args, **kwargs)
+
         return inner
 
     return login_required

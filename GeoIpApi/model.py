@@ -11,6 +11,7 @@ from sqlalchemy import Column, String, BIGINT, JSON, DECIMAL
 
 class BaseIPSerializer:
     """Base Serializer for all IP-related"""
+
     def serialize(self, intip, ip):
         return {
             "CountryCode": self.CountryCode,
@@ -25,18 +26,20 @@ class BaseIPSerializer:
                 "oct": ip,
                 "hex": hex(intip),
                 "decimal": intip,
-            }
+            },
         }
 
 
 class BaseCOUNTRYSerializer:
     """Base Serializer for countries info API"""
+
     def serialize(self):
         return json.loads(self.Info)
 
 
 class IPV4(BaseModel, BaseIPSerializer):
     """This Class Contain Ipv4 range and name"""
+
     __tablename__ = BaseModel.SetTableName("IPV4")
 
     StartRange = Column(BIGINT, unique=False, nullable=False)
@@ -61,6 +64,7 @@ class IPV4(BaseModel, BaseIPSerializer):
 
 class IPV6(BaseModel, BaseIPSerializer):
     """This Class Contain Ipv6 range and name"""
+
     __tablename__ = BaseModel.SetTableName("IPV6")
     StartRange = Column(DECIMAL(scale=0, precision=36), unique=False, nullable=False)
     EndRange = Column(DECIMAL(scale=0, precision=36), nullable=False, unique=True)
@@ -80,7 +84,7 @@ class CountryInfo(BaseModel, BaseCOUNTRYSerializer):
     __tablename__ = BaseModel.SetTableName("CountryInfo")
     CommonName = Column(String(255), unique=False, nullable=False)
     OfficialName = Column(String(255), unique=False, nullable=False)
-    CountryCode = Column(String(64), unique=False, nullable=False) #2D
+    CountryCode = Column(String(64), unique=False, nullable=False)  # 2D
     Info = Column(JSON, unique=False, nullable=False)
 
     def serialize(self):

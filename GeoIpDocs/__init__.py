@@ -5,7 +5,7 @@ docs = Blueprint(
     import_name=__name__,
     static_folder="static",
     template_folder="templates",
-    static_url_path="DocsStaticStorage"
+    static_url_path="DocsStaticStorage",
 )
 
 

@@ -18,86 +18,139 @@ from flask_caching import CachedResponse
 @ServerRequestLimiter.limit("60/minute")
 @server_cache_manager.cached(make_cache_key=make_api_ip_cache_key)
 def process_ipv4(ipv4):
-    more = (request.args.get("more", None))
+    more = request.args.get("more", None)
 
-    if (type(intIP := convert_IP2intv4(ipv4)) != int):
+    if type(intIP := convert_IP2intv4(ipv4)) != int:
         return CachedResponse(
             # """
             # views wraped by @cached can return this (which inherits from flask.Response)
             # to override the cache TTL dynamically
             # """
-            response=make_response(jsonify({"status": False, "message": intIP}), HTTP_400_BAD_REQUEST),
-            timeout=((60 * 60) * 6)
+            response=make_response(
+                jsonify({"status": False, "message": intIP}), HTTP_400_BAD_REQUEST
+            ),
+            timeout=((60 * 60) * 6),
         )
 
-    ip_db = (db.session.execute(
-        db.select(IPV4)
-        .filter(IPV4.StartRange <= intIP)
-        .filter(IPV4.EndRange >= intIP)
-    ).scalar_one_or_none())
+    ip_db = db.session.execute(
+        db.select(IPV4).filter(IPV4.StartRange <= intIP).filter(IPV4.EndRange >= intIP)
+    ).scalar_one_or_none()
 
     if not ip_db:
         return CachedResponse(
             response=make_response(
-                jsonify({"status": False, "message": "sorry we dont have any information about this ip address."}),
-                HTTP_200_OK),
-            timeout=((60 * 60) * 6)
+                jsonify(
+                    {
+                        "status": False,
+                        "message": "sorry we dont have any information about this ip address.",
+                    }
+                ),
+                HTTP_200_OK,
+            ),
+            timeout=((60 * 60) * 6),
         )
 
-    if not more or more != '1':
-        return jsonify({"status": True, "data": ip_db.serialize(intIP, ipv4)}), HTTP_200_OK
+    if not more or more != "1":
+        return (
+            jsonify({"status": True, "data": ip_db.serialize(intIP, ipv4)}),
+            HTTP_200_OK,
+        )
 
     CountryFullInfo = db.session.execute(
-        db.select(CountryInfo).filter_by(CountryCode=ip_db.CountryCode)).scalar_one_or_none()
+        db.select(CountryInfo).filter_by(CountryCode=ip_db.CountryCode)
+    ).scalar_one_or_none()
 
     if not CountryFullInfo:
-        return jsonify(
-            {"more": "failed to fetch data", True: "success", "data": ip_db.serialize(intIP, ipv4)}), HTTP_200_OK
+        return (
+            jsonify(
+                {
+                    "more": "failed to fetch data",
+                    True: "success",
+                    "data": ip_db.serialize(intIP, ipv4),
+                }
+            ),
+            HTTP_200_OK,
+        )
 
-    return jsonify(
-        {"more": CountryFullInfo.serialize(), True: "success", "data": ip_db.serialize(intIP, ipv4)}), HTTP_200_OK
+    return (
+        jsonify(
+            {
+                "more": CountryFullInfo.serialize(),
+                True: "success",
+                "data": ip_db.serialize(intIP, ipv4),
+            }
+        ),
+        HTTP_200_OK,
+    )
 
 
 @api.get("/ipv6/<string:ipv6>/")
 @ServerRequestLimiter.limit("60/minute")
 @server_cache_manager.cached(make_cache_key=make_api_ip_cache_key)
 def process_ipv6(ipv6):
-    more = (request.args.get("more", None))
+    more = request.args.get("more", None)
 
-    if (type(intIP := convert_IP2intv6(ipv6)) != int):
+    if type(intIP := convert_IP2intv6(ipv6)) != int:
         return CachedResponse(
             # """
             # views wraped by @cached can return this (which inherits from flask.Response)
             # to override the cache TTL dynamically
             # """
-            response=make_response(jsonify({"status": "failed", "message": intIP}), HTTP_400_BAD_REQUEST),
-            timeout=((60 * 60) * 6)
+            response=make_response(
+                jsonify({"status": "failed", "message": intIP}), HTTP_400_BAD_REQUEST
+            ),
+            timeout=((60 * 60) * 6),
         )
 
-    ip_db = (db.session.execute(
-        db.select(IPV6)
-        .filter(IPV6.StartRange <= intIP)
-        .filter(IPV6.EndRange >= intIP)
-    ).scalar_one_or_none())
+    ip_db = db.session.execute(
+        db.select(IPV6).filter(IPV6.StartRange <= intIP).filter(IPV6.EndRange >= intIP)
+    ).scalar_one_or_none()
 
     if not ip_db:
         return CachedResponse(
-            response=make_response(jsonify({"status": "failed", "message": "sorry we dont have any information about this ip address."}), HTTP_200_OK),
-            timeout=((60 * 60) * 6)
+            response=make_response(
+                jsonify(
+                    {
+                        "status": "failed",
+                        "message": "sorry we dont have any information about this ip address.",
+                    }
+                ),
+                HTTP_200_OK,
+            ),
+            timeout=((60 * 60) * 6),
         )
-    if not more or more != '1':
-        return jsonify({"status": "success", "data": ip_db.serialize(intIP, ipv6)}), HTTP_200_OK
+    if not more or more != "1":
+        return (
+            jsonify({"status": "success", "data": ip_db.serialize(intIP, ipv6)}),
+            HTTP_200_OK,
+        )
 
     CountryFullInfo = db.session.execute(
-        db.select(CountryInfo).filter_by(CountryCode=ip_db.CountryCode)).scalar_one_or_none()
+        db.select(CountryInfo).filter_by(CountryCode=ip_db.CountryCode)
+    ).scalar_one_or_none()
 
     if not CountryFullInfo:
-        return jsonify(
-            {"more": "failed to fetch data", "status": "success", "data": ip_db.serialize(intIP, ipv6)}), HTTP_200_OK
+        return (
+            jsonify(
+                {
+                    "more": "failed to fetch data",
+                    "status": "success",
+                    "data": ip_db.serialize(intIP, ipv6),
+                }
+            ),
+            HTTP_200_OK,
+        )
 
-    return jsonify(
-        {"more": CountryFullInfo.serialize(), "status": "success", "data": ip_db.serialize(intIP, ipv6)}), HTTP_200_OK
-
+    return (
+        jsonify(
+            {
+                "more": CountryFullInfo.serialize(),
+                "status": "success",
+                "data": ip_db.serialize(intIP, ipv6),
+            }
+        ),
+        HTTP_200_OK,
+    )
 
 
 @api.get("/country/<string:countryCode2D>/")
@@ -108,9 +161,18 @@ def process_country_info(countryCode2D):
     if not countryCode2D or len(countryCode2D) != 2:
         return jsonify({"status": "failed", "message": "invalid 2D CountryCode."}), 400
 
-    countryDB = db.session.execute(db.select(CountryInfo).filter_by(CountryCode=countryCode2D)).scalar_one_or_none()
+    countryDB = db.session.execute(
+        db.select(CountryInfo).filter_by(CountryCode=countryCode2D)
+    ).scalar_one_or_none()
     if not countryDB:
-        return jsonify({"status": "failed", "message": "No results were found in the database with the given country code."}), 400
+        return (
+            jsonify(
+                {
+                    "status": "failed",
+                    "message": "No results were found in the database with the given country code.",
+                }
+            ),
+            400,
+        )
 
     return countryDB.serialize()
-

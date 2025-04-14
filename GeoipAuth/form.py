@@ -17,14 +17,18 @@ class FormFlask(FlaskForm):
         """
         data = self.Username.data
         from string import ascii_lowercase, digits
+
         ascii_lowercase = [each for each in ascii_lowercase]
         digits = [each for each in digits]
         valid_char = [*digits, *ascii_lowercase]
 
         for each in data:
             if each not in valid_char:
-                self.Username.errors = [_l("invalid input format"), _l('current format should be like'),
-                                        _l("contain alphabet and numbers only")]
+                self.Username.errors = [
+                    _l("invalid input format"),
+                    _l("current format should be like"),
+                    _l("contain alphabet and numbers only"),
+                ]
                 return False
 
         return True
@@ -39,6 +43,7 @@ class FormFlask(FlaskForm):
 
 class LoginForm(FormFlask):
     """Login Users Form"""
+
     Username = StringField(
         validators=[
             DataRequired(message=_l("data for this field is required!")),
@@ -46,14 +51,13 @@ class LoginForm(FormFlask):
             Length(
                 min=4,
                 max=128,
-                message=_l
-                ('minimum and maximum length for this field is %(length)s', length="4-128")
-            )
+                message=_l(
+                    "minimum and maximum length for this field is %(length)s",
+                    length="4-128",
+                ),
+            ),
         ],
-        render_kw={
-            "class": "form-control my-2 py-2",
-            "placeholder": _l("username")
-        }
+        render_kw={"class": "form-control my-2 py-2", "placeholder": _l("username")},
     )
 
     Password = PasswordField(
@@ -63,28 +67,26 @@ class LoginForm(FormFlask):
             Length(
                 min=6,
                 max=256,
-                message=_l
-                ('minimum and maximum length for this field is %(length)s', length="6-256")
-            )
+                message=_l(
+                    "minimum and maximum length for this field is %(length)s",
+                    length="6-256",
+                ),
+            ),
         ],
-        render_kw={
-            "class": "form-control my-2 py-2",
-            "placeholder": _l("Password")
-        }
+        render_kw={"class": "form-control my-2 py-2", "placeholder": _l("Password")},
     )
 
     Submit = SubmitField(
-
         render_kw={
-            "value": _l('Login Via Password'),
-            "class": "btn bg-danger text-white w-100 py-2 my-3 fs-5 border-0"
+            "value": _l("Login Via Password"),
+            "class": "btn bg-danger text-white w-100 py-2 my-3 fs-5 border-0",
         }
     )
-
 
 
 class RegisterForm(FormFlask):
     """Register Users Form"""
+
     Username = StringField(
         validators=[
             DataRequired(message=_l("data for this field is required!")),
@@ -92,14 +94,13 @@ class RegisterForm(FormFlask):
             Length(
                 min=4,
                 max=128,
-                message=_l
-                ('minimum and maximum length for this field is %(length)s', length="4-128")
-            )
+                message=_l(
+                    "minimum and maximum length for this field is %(length)s",
+                    length="4-128",
+                ),
+            ),
         ],
-        render_kw={
-            "class": "form-control my-2 py-2",
-            "placeholder": _l("Username")
-        }
+        render_kw={"class": "form-control my-2 py-2", "placeholder": _l("Username")},
     )
 
     Password = PasswordField(
@@ -109,14 +110,13 @@ class RegisterForm(FormFlask):
             Length(
                 min=6,
                 max=256,
-                message=_l
-                ('minimum and maximum length for this field is %(length)s', length="6-256")
-            )
+                message=_l(
+                    "minimum and maximum length for this field is %(length)s",
+                    length="6-256",
+                ),
+            ),
         ],
-        render_kw={
-            "class": "form-control my-2 py-2",
-            "placeholder": _l("Password")
-        }
+        render_kw={"class": "form-control my-2 py-2", "placeholder": _l("Password")},
     )
 
     PasswordConfirm = PasswordField(
@@ -127,14 +127,16 @@ class RegisterForm(FormFlask):
             Length(
                 min=6,
                 max=256,
-                message=_l
-                ('minimum and maximum length for this field is %(length)s', length="6-256")
-            )
+                message=_l(
+                    "minimum and maximum length for this field is %(length)s",
+                    length="6-256",
+                ),
+            ),
         ],
         render_kw={
             "class": "form-control my-2 py-2",
-            "placeholder": _l("Password Confirm")
-        }
+            "placeholder": _l("Password Confirm"),
+        },
     )
 
     EmailAddress = EmailField(
@@ -145,18 +147,21 @@ class RegisterForm(FormFlask):
             Length(
                 min=4,
                 max=256,
-                message=_l
-                ('minimum and maximum length for this field is %(length)s', length="11-256")
-            )
+                message=_l(
+                    "minimum and maximum length for this field is %(length)s",
+                    length="11-256",
+                ),
+            ),
         ],
         render_kw={
             "class": "form-control my-2 py-2",
-            "placeholder": _l("Email Address")
-        }
+            "placeholder": _l("Email Address"),
+        },
     )
 
     Submit = SubmitField(
         render_kw={
-            "value": _l('Register'),
-            "class": "btn bg-danger  text-white w-100 py-2 my-3 fs-5 border-0"
-        })
+            "value": _l("Register"),
+            "class": "btn bg-danger  text-white w-100 py-2 my-3 fs-5 border-0",
+        }
+    )

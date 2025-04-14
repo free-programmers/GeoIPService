@@ -4,7 +4,8 @@ from GeoIpCore.model import BaseModel
 
 
 class ContactUS(BaseModel):
-    """ Contact us form """
+    """Contact us form"""
+
     __tablename__ = BaseModel.SetTableName("ContactUs")
 
     Title = Column(String(255), nullable=False, unique=False)

@@ -12,7 +12,11 @@ def is_public_ip_v6(ip: str):
     except ValueError:
         return False
 
-    return ip if not ip.is_link_local and not ip.is_loopback and not ip.is_reserved else False
+    return (
+        ip
+        if not ip.is_link_local and not ip.is_loopback and not ip.is_reserved
+        else False
+    )
 
 
 def convert_IP2intv6(ip: str):
@@ -32,7 +36,9 @@ def is_public_ip_v4(ip: str):
     except ValueError:
         return False
 
-    return ip if not ip.is_private and not ip.is_loopback and not ip.is_reserved else False
+    return (
+        ip if not ip.is_private and not ip.is_loopback and not ip.is_reserved else False
+    )
 
 
 def convert_IP2intv4(ip: str):
@@ -42,4 +48,3 @@ def convert_IP2intv4(ip: str):
         return "invalid ip address"
 
     return int(ip)
-

@@ -5,12 +5,9 @@ from wtforms.validators import Length, DataRequired, InputRequired, Email
 
 class ContactUsForm(FlaskForm):
     """Contact Us Form"""
+
     Title = StringField(
-        validators=[
-            DataRequired(),
-            InputRequired(),
-            Length(min=6, max=255)
-        ]
+        validators=[DataRequired(), InputRequired(), Length(min=6, max=255)]
     )
 
     Email = EmailField(
@@ -22,16 +19,7 @@ class ContactUsForm(FlaskForm):
     )
 
     Message = TextAreaField(
-        validators=[
-            DataRequired(),
-            InputRequired(),
-            Length(min=6, max=2048)
-        ]
+        validators=[DataRequired(), InputRequired(), Length(min=6, max=2048)]
     )
 
-    submit = SubmitField(
-        render_kw={
-            'value': "Send",
-            'class': "btn btn-warning px-5"
-        }
-    )
+    submit = SubmitField(render_kw={"value": "Send", "class": "btn btn-warning px-5"})

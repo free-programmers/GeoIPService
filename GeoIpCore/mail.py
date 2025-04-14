@@ -1,10 +1,12 @@
-# build in 
+# build in
 import pickle
 from threading import Thread
 
 from celery import shared_task
+
 # framework
 from flask import current_app, render_template
+
 # libs
 from flask_babel import lazy_gettext as _l
 from flask_mail import Message
@@ -14,22 +16,30 @@ from GeoIpCore.extensions import server_mail_manager
 
 
 def async_send_email_thread(app, msg):
-    """ Sending email asynchronously using threading lib """
+    """Sending email asynchronously using threading lib"""
     with app.app_context():
         server_mail_manager.send(msg)
 
 
 @shared_task(ignore_result=True)
 def async_send_email_celery(msg):
-    """ Sending email asynchronously using celery """
+    """Sending email asynchronously using celery"""
     msg = pickle.loads(msg)
     server_mail_manager.send(msg)
 
 
-def send_email(recipients: [], subject: str, sender: str, text_body: str = "", html_body: str = "",
-               attachments: bool = None, async_thread: bool = False,
-               async_celery: bool = False, language: str = "en"):
-    """ This function sends mail via flask-mail
+def send_email(
+    recipients: [],
+    subject: str,
+    sender: str,
+    text_body: str = "",
+    html_body: str = "",
+    attachments: bool = None,
+    async_thread: bool = False,
+    async_celery: bool = False,
+    language: str = "en",
+):
+    """This function sends mail via flask-mail
     Args:
         recipients:list = recipient of email (user's email address)
         subject:str = subject of email to send
@@ -40,7 +50,7 @@ def send_email(recipients: [], subject: str, sender: str, text_body: str = "", h
         async_thread:bool = send email asynchronously using threading
         async_celery: bool = send email asynchronously using celery
 
-        
+
         without this parameter, this function sends emails in sync mode
     """
 
@@ -54,7 +64,10 @@ def send_email(recipients: [], subject: str, sender: str, text_body: str = "", h
 
     if async_thread:
         current_app.logger.info(f"\n[Thread Async] Mail Sending {recipients}")
-        Thread(target=async_send_email_thread, args=(current_app._get_current_object(), msg)).start()
+        Thread(
+            target=async_send_email_thread,
+            args=(current_app._get_current_object(), msg),
+        ).start()
 
     elif async_celery:
         current_app.logger.info(f"\n[Celery Async] Mail Sending {recipients}")
@@ -66,19 +79,22 @@ def send_email(recipients: [], subject: str, sender: str, text_body: str = "", h
 
 
 def send_activate_account_mail(context: dict = {}, recipients: list = [], **kwargs):
-    """ This Function sends Activate Account mail
+    """This Function sends Activate Account mail
 
-        context: dict
-        values:
-            token: slug url for activate user Account
+    context: dict
+    values:
+        token: slug url for activate user Account
     """
 
     template = render_template("mail/activate-account.html", **context)
 
     send_email(
         subject=_l("activate account"),
-        sender=(_l('activate account'), current_app.config.get("MAIL_DEFAULT_SENDER", ":)")),
+        sender=(
+            _l("activate account"),
+            current_app.config.get("MAIL_DEFAULT_SENDER", ":)"),
+        ),
         recipients=recipients,
         html_body=template,
-        **kwargs
+        **kwargs,
     )

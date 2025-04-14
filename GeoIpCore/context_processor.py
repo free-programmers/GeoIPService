@@ -5,7 +5,5 @@ from . import app
 def global_app_context():
     """This function register template context_processors"""
 
-    ctx = {
-        "SERVER_NAME": app.config.get("SERVER", "")
-    }
+    ctx = {"SERVER_NAME": app.config.get("SERVER", "")}
     return ctx
