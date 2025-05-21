@@ -1,8 +1,0 @@
-redis database number
-
-default = 0
-session = 1
-celery backend = 2
-celery broker = 3
-caching = 4
-limiter = 5

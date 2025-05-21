@@ -1,7 +1,36 @@
+[project]
+name = "ip2geo"
+version = "0.1.0"
+description = "Simple django DRF appliation ip2geo"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.38.20",
+    "django>=5.2.1",
+    "django-cleanup>=9.0.0",
+    "django-extensions>=4.1",
+    "django-storages>=1.14.6",
+    "djangorestframework>=3.16.0",
+    "gunicorn>=23.0.0",
+    "ipython>=9.2.0",
+    "pip>=25.1.1",
+    "psycopg2-binary>=2.9.10",
+    "redis>=6.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "django-debug-toolbar>=5.2.0",
+    "faker>=37.3.0",
+    "flake8>=7.2.0",
+    "mypy>=1.15.0",
+    "pre-commit>=4.2.0",
+]
+
+
 [tool.black]
 line-length = 88
-target-version = ['py310', 'py311', 'py313']
-include = '\.pyi?$'
+target-version = ['py310', 'py311', 'py312', 'py313']
 exclude = '''
 /(
     \.git
@@ -15,6 +44,7 @@ exclude = '''
   | dist
   | venv
   | .venv
+  | data
 )/
 '''
 fast = true
@@ -26,9 +56,8 @@ check = false
 [tool.flake8]
 max-line-length = 88
 ignore = [
-    "E501",  # Ignore line length warnings
-    "W503",  # Ignore "line break before binary operator" warnings
-    "E203"   # Ignore spacing around operators warnings
+    "E501", # Ignore line length warnings
+    "W503", # Ignore "line break before binary operator" warnings
 ]
 exclude = [
     ".git",
@@ -40,10 +69,10 @@ exclude = [
 ]
 max-complexity = 10
 select = [
-    "C",  # Cyclomatic complexity checks
-    "E",  # Errors
-    "F",  # Pyflakes checks
-    "W",  # Warnings
+    "C", # Cyclomatic complexity checks
+    "E", # Errors
+    "F", # Pyflakes checks
+    "W", # Warnings
 ]
 
 [tool.mypy]
@@ -51,3 +80,6 @@ files = "."
 disallow_untyped-calls = true
 disallow_untyped-defs = true
 strict = true
+
+[tool.profiling]
+profiling_python_version = ["py310", "py311", "py312"]

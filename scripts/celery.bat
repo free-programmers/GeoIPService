@@ -1,1 +1,0 @@
-echo  && echo "Windows Platform" && echo "Starting Celery + gevent win32" && timeout /t 5 && celery -A make_celery worker -l info -P gevent -E
